@@ -1,0 +1,3429 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <script>
+    (function () {
+      try {
+        var q = new URLSearchParams(window.location.search);
+        if (q.get('edit') === '1' || q.get('edit') === 'true') {
+          document.documentElement.classList.add('okinawa-mobile-edit');
+        }
+      } catch (e) {}
+    })();
+  </script>
+  <title>2026/04 沖繩 5 天 4 夜｜家庭行程</title>
+  <style>
+    :root {
+      --ocean: #006eb6;
+      --ocean-dark: #005a94;
+      --coral: #f47b20;
+      --sand: #f8f5f0;
+      --ink: #1a1a1a;
+      --muted: #5c5c5c;
+      --card: #ffffff;
+      --line: #e0e8ef;
+      --optional: #fff4e8;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: "PingFang TC", "Hiragino Sans", "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+      background: var(--sand);
+      color: var(--ink);
+      line-height: 1.55;
+      padding-bottom: 4rem;
+    }
+    header {
+      background: linear-gradient(135deg, var(--ocean) 0%, #0088c9 50%, var(--ocean-dark) 100%);
+      color: #fff;
+      padding: 1.5rem 1.25rem 1.75rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 4px 20px rgba(0, 110, 182, 0.25);
+    }
+    header h1 {
+      margin: 0 0 0.35rem;
+      font-size: 1.35rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+    header p {
+      margin: 0;
+      font-size: 0.88rem;
+      line-height: 1.75;
+      opacity: 0.92;
+      max-width: 40rem;
+      background: rgba(255, 255, 255, 0.16);
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      border-radius: 10px;
+      padding: 0.65rem 0.75rem;
+      backdrop-filter: blur(1px);
+    }
+    .header-collapse-btn {
+      margin-top: 0.55rem;
+      padding: 0.38rem 0.7rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.45);
+      background: rgba(255, 255, 255, 0.2);
+      color: #fff;
+      font-size: 0.8rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .header-collapse-btn:hover,
+    .header-collapse-btn:focus-visible {
+      background: rgba(255, 255, 255, 0.32);
+      outline: none;
+    }
+    body.header-collapsed header p {
+      display: none;
+    }
+    body.header-collapsed .nav-days {
+      margin-top: 0.6rem;
+    }
+    header p code {
+      font-family: ui-monospace, "SF Mono", Menlo, monospace;
+      font-size: 0.86em;
+      background: rgba(255, 255, 255, 0.22);
+      padding: 0.08em 0.35em;
+      border-radius: 4px;
+      font-weight: 600;
+    }
+    .nav-days {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      margin-top: 1rem;
+      justify-content: flex-start;
+    }
+    .nav-days a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 3.2rem;
+      padding: 0.45rem 0.65rem;
+      background: rgba(255, 255, 255, 0.2);
+      color: #fff;
+      text-decoration: none;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      transition: background 0.2s, transform 0.15s;
+    }
+    .nav-days a:hover,
+    .nav-days a:focus-visible {
+      background: rgba(255, 255, 255, 0.35);
+      outline: none;
+    }
+    .nav-days a:active { transform: scale(0.97); }
+    main { max-width: 42rem; margin: 0 auto; padding: 1.25rem 1rem 0; }
+    .day-section {
+      margin-bottom: 2.25rem;
+      scroll-margin-top: 8.5rem;
+    }
+    .day-head {
+      display: flex;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 0.5rem 1rem;
+      margin-bottom: 1rem;
+      padding-bottom: 0.65rem;
+      border-bottom: 3px solid var(--coral);
+    }
+    .day-head h2 {
+      margin: 0;
+      font-size: 1.2rem;
+      color: var(--ocean-dark);
+    }
+    .day-head .date { font-size: 0.95rem; color: var(--muted); font-weight: 500; }
+    .timeline {
+      position: relative;
+      padding-left: 0.5rem;
+    }
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 0.55rem;
+      top: 0.35rem;
+      bottom: 0.35rem;
+      width: 3px;
+      background: linear-gradient(180deg, var(--ocean) 0%, var(--line) 100%);
+      border-radius: 2px;
+    }
+    .item {
+      position: relative;
+      padding-left: 1.35rem;
+      margin-bottom: 1.1rem;
+    }
+    .item::before {
+      content: "";
+      position: absolute;
+      left: 0.15rem;
+      top: 0.45rem;
+      width: 12px;
+      height: 12px;
+      background: var(--coral);
+      border: 2px solid var(--card);
+      border-radius: 50%;
+      box-shadow: 0 0 0 2px var(--ocean);
+    }
+    .card {
+      background: var(--card);
+      border-radius: 12px;
+      padding: 0.9rem 1rem;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+      border: 1px solid var(--line);
+    }
+    .item.optional .card {
+      background: var(--optional);
+      border-color: #ffd9b8;
+    }
+    .time {
+      display: inline-block;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--ocean);
+      letter-spacing: 0.02em;
+      margin-bottom: 0.25rem;
+    }
+    .title { font-size: 1rem; font-weight: 700; margin: 0 0 0.35rem; }
+    .stop-photo {
+      margin: 0.45rem 0 0.65rem;
+      border-radius: 10px;
+      overflow: hidden;
+      aspect-ratio: 16 / 9;
+      min-height: 10.5rem;
+      background: linear-gradient(145deg, var(--line) 0%, #eef4f9 100%);
+      border: 1px solid rgba(0, 110, 182, 0.12);
+    }
+    .stop-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .shorts-embed {
+      width: 33.33%;
+      aspect-ratio: 9 / 16;
+      margin: 0.75rem auto 0.75rem 0;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid rgba(0, 110, 182, 0.12);
+    }
+    .shorts-embed iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      display: block;
+    }
+    .detail { font-size: 0.88rem; color: var(--muted); margin: 0 0 0.5rem; }
+    .note {
+      font-size: 0.8rem;
+      color: var(--ocean-dark);
+      background: #e8f4fc;
+      padding: 0.45rem 0.6rem;
+      border-radius: 8px;
+      margin-top: 0.5rem;
+    }
+    .item.optional .note { background: #fff0e0; color: #8b4513; }
+    .map-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      margin-top: 0.45rem;
+      padding: 0.4rem 0.75rem;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: #fff;
+      background: var(--ocean);
+      text-decoration: none;
+      border-radius: 8px;
+      transition: background 0.2s;
+    }
+    .map-btn:hover,
+    .map-btn:focus-visible { background: var(--ocean-dark); outline: none; }
+    .map-row { display: flex; flex-wrap: wrap; gap: 0.45rem; margin-top: 0.35rem; }
+    .map-btn.secondary {
+      background: #fff;
+      color: var(--ocean);
+      border: 2px solid var(--ocean);
+    }
+    .map-btn.secondary:hover { background: #e8f4fc; }
+    body:not(.view-mode) .map-btn {
+      outline: 1px dashed rgba(0, 110, 182, 0.45);
+      outline-offset: 2px;
+      cursor: pointer;
+    }
+    .map-add-btn {
+      display: inline-flex;
+      align-items: center;
+      margin-top: 0.45rem;
+      padding: 0.4rem 0.7rem;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--ocean);
+      background: #eef8ff;
+      border: 1px dashed rgba(0, 110, 182, 0.55);
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .map-add-btn:hover,
+    .map-add-btn:focus-visible {
+      background: #def1ff;
+      border-color: rgba(0, 110, 182, 0.8);
+      outline: none;
+    }
+    body.view-mode .map-add-btn { display: none; }
+    body:not(.view-mode) .map-btn[data-map-custom="1"] {
+      cursor: grab;
+    }
+    .map-btn.is-dragging {
+      opacity: 0.55;
+      cursor: grabbing !important;
+    }
+    .item--split .split-tracks,
+    .item--meal-split .split-tracks {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0.85rem;
+      margin-top: 0.45rem;
+    }
+    @media (min-width: 640px) {
+      .item--split .split-tracks {
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+        align-items: stretch;
+      }
+      .item--meal-split .split-tracks.split-tracks--2 {
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+        align-items: stretch;
+      }
+    }
+    @media (min-width: 640px) {
+      .item--meal-split .split-tracks.split-tracks--3 {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.85rem;
+        align-items: stretch;
+      }
+    }
+    @media (min-width: 640px) {
+      .item--meal-split .split-tracks.split-tracks--4 {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.85rem;
+        align-items: stretch;
+      }
+    }
+    @media (min-width: 960px) {
+      .item--meal-split .split-tracks.split-tracks--4 {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+    .track-badge {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.5rem;
+      border-radius: 6px;
+      margin-bottom: 0.5rem;
+    }
+    .track-badge--a {
+      color: var(--ocean-dark);
+      background: #e8f4fc;
+      border: 1px solid rgba(0, 110, 182, 0.25);
+    }
+    .track-badge--b {
+      color: #8b4513;
+      background: var(--optional);
+      border: 1px solid #ffd9b8;
+    }
+    .card-track {
+      height: 100%;
+      border-top: 3px solid var(--ocean);
+    }
+    .card-track--b {
+      border-top-color: var(--coral);
+    }
+    .split-hint {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin: 0 0 0.35rem;
+    }
+    .choice-badge {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      padding: 0.2rem 0.5rem;
+      border-radius: 6px;
+      margin-bottom: 0.45rem;
+      color: var(--ocean-dark);
+      background: #eef6fc;
+      border: 1px solid rgba(0, 110, 182, 0.2);
+    }
+    .card-meal {
+      height: 100%;
+      border-top: 3px solid #7eb8dc;
+    }
+    .card-meal:nth-child(even) {
+      border-top-color: var(--coral);
+    }
+    .card-meal:nth-child(3n) {
+      border-top-color: #2e9b7b;
+    }
+    .card-meal:nth-child(4n) {
+      border-top-color: #8b7cbf;
+    }
+    .item--custom .card {
+      border-left: 3px solid #8b7cbf;
+    }
+    .timeline-card-toolbar {
+      margin-top: 0.85rem;
+      padding-left: 0.15rem;
+    }
+    .article-edit-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      align-items: center;
+      margin-top: 0.45rem;
+      padding-left: 0.15rem;
+    }
+    .article-insert-after-btn {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.3rem 0.6rem;
+      font-size: 0.76rem;
+      font-weight: 700;
+      color: var(--ocean-dark);
+      background: #eef8ff;
+      border: 1px dashed rgba(0, 110, 182, 0.55);
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.15s, border-color 0.15s;
+    }
+    .article-insert-after-btn:hover,
+    .article-insert-after-btn:focus-visible {
+      background: #def1ff;
+      border-color: rgba(0, 110, 182, 0.85);
+      outline: none;
+    }
+    .article-delete-station-btn {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.3rem 0.6rem;
+      font-size: 0.76rem;
+      font-weight: 700;
+      color: #b42318;
+      background: #fde8e8;
+      border: 1px solid #f5c2c2;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .article-delete-station-btn:hover,
+    .article-delete-station-btn:focus-visible {
+      background: #fcd4d4;
+      outline: none;
+    }
+    body.view-mode .article-edit-actions {
+      display: none !important;
+    }
+    .timeline-add-card-btn {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.42rem 0.85rem;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #fff;
+      background: var(--ocean);
+      border: none;
+      border-radius: 999px;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(0, 110, 182, 0.25);
+      transition: background 0.2s, transform 0.15s;
+    }
+    .timeline-add-card-btn:hover,
+    .timeline-add-card-btn:focus-visible {
+      background: var(--ocean-dark);
+      outline: none;
+    }
+    .timeline-add-card-btn:active { transform: scale(0.98); }
+    body.view-mode .timeline-card-toolbar {
+      display: none !important;
+    }
+    .meal-name {
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin: 0 0 0.35rem;
+      line-height: 1.35;
+    }
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+    @media (min-width: 480px) {
+      header h1 { font-size: 1.5rem; }
+      header p { font-size: 0.92rem; line-height: 1.78; }
+      .day-head h2 { font-size: 1.35rem; }
+    }
+    @media (max-width: 479px) {
+      header p {
+        font-size: 0.84rem;
+        line-height: 1.85;
+      }
+    }
+    .day-section > .desc-block {
+      margin-bottom: 1.15rem;
+    }
+    .desc-block {
+      display: none;
+      margin-top: 0.75rem;
+      padding: 0.65rem 0.75rem 0.7rem;
+      background: #f4f9fd;
+      border: 1px solid rgba(0, 110, 182, 0.18);
+      border-left: 4px solid var(--ocean);
+      border-radius: 10px;
+    }
+    .desc-row + .desc-row { margin-top: 0; }
+    .desc-label {
+      display: none;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.25rem;
+    }
+    .desc-row:has(.desc-sub) { display: none; }
+    .desc-field {
+      font-size: 0.86rem;
+      color: var(--ink);
+      min-height: 2.1em;
+      padding: 0.35rem 0.45rem;
+      border-radius: 6px;
+      border: 1px dashed rgba(0, 110, 182, 0.25);
+      background: #fff;
+      cursor: text;
+      line-height: 1.45;
+      outline: none;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+    .desc-field:hover { border-color: rgba(0, 110, 182, 0.45); }
+    .desc-field:focus {
+      border-style: solid;
+      border-color: var(--ocean);
+      box-shadow: 0 0 0 2px rgba(0, 110, 182, 0.15);
+    }
+    .desc-field:empty::before {
+      content: attr(data-placeholder);
+      color: #a0a8b0;
+      pointer-events: none;
+    }
+    @keyframes descSavedFlash {
+      0% { box-shadow: 0 0 0 0 rgba(46, 155, 127, 0.55); }
+      100% { box-shadow: 0 0 0 6px rgba(46, 155, 127, 0); }
+    }
+    .desc-field.desc-saved-flash {
+      animation: descSavedFlash 0.55s ease-out 1;
+    }
+    .live-editable {
+      border-radius: 4px;
+      transition: background 0.15s, box-shadow 0.15s;
+      cursor: text;
+    }
+    .live-editable:hover {
+      background: rgba(0, 110, 182, 0.06);
+      outline: 1px dashed rgba(0, 110, 182, 0.3);
+      outline-offset: 2px;
+    }
+    .live-editable:focus {
+      background: rgba(0, 110, 182, 0.04);
+      outline: 2px solid var(--ocean);
+      outline-offset: 2px;
+    }
+    .live-editable.live-saved-flash {
+      animation: descSavedFlash 0.55s ease-out 1;
+    }
+    .build-stamp {
+      display: inline-block;
+      margin-top: 0.35rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.92);
+    }
+    .edit-floating-bar {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      z-index: 999;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 0.45rem;
+    }
+    .share-sync-btn {
+      padding: 0.45rem 0.85rem;
+      border-radius: 999px;
+      border: none;
+      font-size: 0.8rem;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.14);
+      background: #fff;
+      color: var(--ocean-dark);
+      border: 1px solid var(--line);
+      transition: background 0.15s, transform 0.12s;
+    }
+    .share-sync-btn:active { transform: scale(0.98); }
+    .share-sync-btn:disabled {
+      opacity: 0.55;
+      cursor: wait;
+    }
+    .share-sync-btn.is-primary {
+      background: linear-gradient(135deg, #006eb6, #0088c9);
+      color: #fff;
+      border-color: transparent;
+    }
+    .auto-sync-badge {
+      font-size: 0.74rem;
+      font-weight: 700;
+      color: #1b5e20;
+      padding: 0.38rem 0.72rem;
+      background: #e8f5e9;
+      border-radius: 999px;
+      border: 1px solid #a5d6a7;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    }
+    .edit-toggle-btn {
+      padding: 0.6rem 1.25rem;
+      border-radius: 999px;
+      border: none;
+      font-size: 0.92rem;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.18);
+      transition: background 0.2s, transform 0.15s;
+    }
+    .edit-toggle-btn.mode-view {
+      background: var(--ocean);
+      color: #fff;
+    }
+    .edit-toggle-btn.mode-edit {
+      background: #2e9b7b;
+      color: #fff;
+    }
+    /* 窄螢幕（手機）：隱藏右下角浮動的 Edit／同步按鈕，方便家人純閱讀。Safari 底部「返回、網址列」為系統介面，網頁無法關閉。 */
+    @media (max-width: 768px) {
+      .edit-floating-bar {
+        display: none !important;
+      }
+    }
+    html.okinawa-mobile-edit .edit-floating-bar {
+      display: flex !important;
+    }
+    .map-edit-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0, 0, 0, 0.35);
+      padding: 1rem;
+    }
+    .map-edit-modal.is-open { display: flex; }
+    .map-edit-panel {
+      width: min(92vw, 32rem);
+      background: #fff;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      padding: 0.9rem;
+    }
+    .map-edit-panel h3 {
+      margin: 0 0 0.75rem;
+      font-size: 1rem;
+      color: var(--ocean-dark);
+    }
+    .map-edit-field { margin-bottom: 0.65rem; }
+    .map-edit-field label {
+      display: block;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--muted);
+      margin-bottom: 0.3rem;
+    }
+    .map-edit-field input {
+      width: 100%;
+      padding: 0.5rem 0.6rem;
+      border: 1px solid rgba(0, 110, 182, 0.25);
+      border-radius: 8px;
+      font-size: 0.88rem;
+      outline: none;
+    }
+    .map-edit-field input:focus {
+      border-color: var(--ocean);
+      box-shadow: 0 0 0 2px rgba(0, 110, 182, 0.12);
+    }
+    .map-edit-actions {
+      display: flex;
+      gap: 0.5rem;
+      justify-content: flex-end;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-top: 0.35rem;
+    }
+    .map-edit-actions .map-edit-btn.delete {
+      margin-right: auto;
+      background: #fde8e8;
+      color: #b42318;
+    }
+    .map-edit-btn {
+      border: none;
+      border-radius: 8px;
+      padding: 0.45rem 0.75rem;
+      font-size: 0.82rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .map-edit-btn.cancel { background: #eef2f6; color: #3f4b59; }
+    .map-edit-btn.save { background: var(--ocean); color: #fff; }
+    body.view-mode .live-editable:hover,
+    body.view-mode .live-editable:focus {
+      background: none !important;
+      outline: none !important;
+      cursor: default !important;
+    }
+    body.view-mode .desc-field:hover,
+    body.view-mode .desc-field:focus {
+      border-color: rgba(0, 110, 182, 0.25) !important;
+      box-shadow: none !important;
+      cursor: default !important;
+    }
+    .stop-photo {
+      position: relative;
+    }
+    .photo-upload-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.6rem;
+      border: none;
+      border-radius: 10px;
+      background: rgba(0, 0, 0, 0.35);
+      color: #fff;
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      opacity: 0;
+      cursor: pointer;
+      transition: opacity 0.18s ease;
+    }
+    .stop-photo:hover .photo-upload-overlay,
+    .stop-photo:focus-within .photo-upload-overlay {
+      opacity: 1;
+    }
+    .photo-reset-btn {
+      position: absolute;
+      top: 0.45rem;
+      right: 0.45rem;
+      border: none;
+      border-radius: 999px;
+      padding: 0.28rem 0.52rem;
+      background: rgba(0, 0, 0, 0.62);
+      color: #fff;
+      font-size: 0.73rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: none;
+      z-index: 1;
+    }
+    .stop-photo.has-user-photo .photo-reset-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    body.view-mode .photo-upload-overlay,
+    body.view-mode .photo-reset-btn {
+      display: none !important;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>2026/4/24~4/28</h1>
+    <p id="headerStory">這趟五天四夜的沖繩之旅，從那霸機場出發，沿著美麗的海岸線一路北上。<br><br>第一天抵達後先入住休息，隔天租車出發。<br>第二天開始，在讀谷村感受享用海鮮美味，欣賞萬座毛的壯闊海岬風光，北上去最美的小島谷宇利島。<br>第三天走進美麗海水族館，看著優游的鯨鯊，心曠神怡。<br>第四天南下，在美國村散步購物、到Parco City採購，最後入住那霸市區。<br>最後一天逛牧志公設市場，品嚐新鮮海味，再搭機依依不捨地回家。<br><br>整趟行程節奏free style，山海美景與在地美食兼顧，讓每一天都充滿舒心的回憶。<br><span id="buildStamp" class="build-stamp">檔案最後更新：讀取中...</span></p>
+    <button id="headerCollapseBtn" class="header-collapse-btn" type="button" aria-expanded="false" aria-controls="headerStory">展開行程介紹</button>
+    <nav class="nav-days" aria-label="每日行程">
+      <a href="#day1">Day 1</a>
+      <a href="#day2">Day 2</a>
+      <a href="#day3">Day 3</a>
+      <a href="#day4">Day 4</a>
+      <a href="#day5">Day 5</a>
+    </nav>
+  </header>
+
+  <main>
+    <section id="day1" class="day-section" aria-labelledby="d1">
+      <div class="day-head">
+        <h2 id="d1">Day 1</h2>
+        <span class="date">4/24（五）抵達那霸</span>
+      </div>
+      <div class="desc-block" data-day="day1">
+        <div class="desc-row">
+          <span class="desc-label">主說明</span>
+          <div class="desc-field desc-main" contenteditable="true" data-key="day1_main" data-placeholder="為這天加上主說明…"></div>
+        </div>
+        <div class="desc-row">
+          <span class="desc-label">副說明</span>
+          <div class="desc-field desc-sub" contenteditable="true" data-key="day1_sub" data-placeholder="加上副說明或備註…"></div>
+        </div>
+      </div>
+      <div class="timeline">
+        <article class="item" data-article-key="d1b00">
+          <div class="card">
+            <span class="time">15:00–15:30</span>
+            <h3 class="title">自行前往桃園機場</h3>
+            <figure class="stop-photo">
+              <img data-photo="day1-flight-out" src="okinawa%20images/tigerair.jpg" alt="從機窗望向雲海與机翼，象徵從台灣搭機出發" width="960" height="540" loading="eager" fetchpriority="high" decoding="async" />
+            </figure>
+            <p class="detail">可麗山街集合（搭計程車）</p>
+                      
+            
+</div>
+        </article>
+        <article class="item" data-article-key="d1b01">
+          <div class="card">
+            <span class="time">16:00–16:30 · 17:00–18:00</span>
+            <h3 class="title">桃園機場 · Terminal 1</h3>
+            <p class="detail">第一航廈報到／候機</p>
+            <p class="note">出境大廳 7號櫃檯</p>
+            <div class="map-row">
+              <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=%E6%A1%83%E5%9C%92%E6%A9%9F%E5%A0%B4%E7%AC%AC%E4%B8%80%E8%88%AA%E5%BB%88" target="_blank" rel="noopener noreferrer">📍 Google Maps（桃機 T1）</a>
+            </div>
+                      
+            
+</div>
+        </article>
+        <article class="item" data-article-key="d1b02">
+          <div class="card">
+            <span class="time">18:30–20:50</span>
+            <h3 class="title">搭機前往沖繩</h3>
+            <p class="detail">台灣虎航 <strong>IT 233</strong>（飛行約 90 分）</p>
+            <p class="note">請依實際訂位確認登機門。</p>
+                      
+            
+</div>
+        </article>
+        <article class="item" data-article-key="d1b03">
+          <div class="card">
+            <span class="time">21:00–21:50</span>
+            <h3 class="title">抵達那霸 · 入境 · 領行李</h3>
+            <figure class="stop-photo">
+              <img data-photo="day1-airport-arrive" src="okinawa%20images/naha%20airport.jpeg" alt="那霸機場國際線航廈，象徵抵達沖繩" width="960" height="540" loading="eager" decoding="async" />
+            </figure>
+            <p class="detail">Visit Japan Web QR · 國際線航廈 <strong>No.3</strong> 出口附近 · Taxi Stand</p>
+            <p class="note">Uber 約 8 分鐘；或單軌約 10 分鐘 + 步行約 5 分鐘（總表備註）。</p>
+                      
+            
+            <div class="shorts-embed">
+              <iframe
+                src="https://www.youtube-nocookie.com/embed/qR_szOcNkXE"
+                title="那霸機場抵達 Shorts"
+                loading="lazy"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allowfullscreen
+              ></iframe>
+            </div>
+            <div class="map-row">
+              <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=Naha+Airport+International+Terminal" target="_blank" rel="noopener noreferrer">📍 那霸機場 國際線</a>
+              <a class="map-btn secondary" href="https://www.google.com/maps/search/?api=1&query=%E6%97%AD%E6%A9%8B%E9%A7%85+%E6%B2%96%E7%B9%A9" target="_blank" rel="noopener noreferrer">📍 旭橋站</a>
+            </div>
+</div>
+        </article>
+        <article class="item" data-article-key="d1b04">
+          <div class="card">
+            <span class="time">22:00–22:30</span>
+            <h3 class="title">入住那霸市區飯店</h3>
+            <figure class="stop-photo">
+              <img data-photo="day1-hotel-yuquesta" src="okinawa%20images/HOTEL%20YUQUESTA%20AGARIMACHI.jpg" alt="HOTEL YUQUESTA AGARIMACHI 外觀與住宿氛圍" width="960" height="540" loading="eager" decoding="async" />
+            </figure>
+            <p class="detail"><strong>HOTEL YUQUESTA AGARIMACHI</strong> · 郵遞區號 900-0034 · 住宿 4/24–4/25 · <strong>Jalan</strong> 預約</p>
+            <p class="note">總表：<strong>22:00 前</strong> 抵達。</p>
+            <div class="map-row">
+              <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=HOTEL+YUQUESTA+AGARIMACHI+Naha" target="_blank" rel="noopener noreferrer">📍 HOTEL YUQUESTA AGARIMACHI</a>
+            </div>
+                      
+            
+</div>
+        </article>
+        <article class="item optional" data-article-key="d1b05">
+          <div class="card">
+            <span class="time">（選項）</span>
+            <h3 class="title">晚餐／宵夜</h3>
+            <figure class="stop-photo">
+              <img data-photo="day1-optional-menkyokaiden" src="okinawa%20images/%E5%85%8D%E8%A8%B1%E9%96%8B%E4%BC%9D%20%E9%85%92%E5%A0%B4.jpg" alt="免許開伝 酒場（MENKYOKAIDEN SAKABA）" width="960" height="540" loading="lazy" decoding="async" />
+            </figure>
+            <p class="detail"><strong>MENKYOKAIDEN SAKABA</strong>（免許開伝 酒場）· 總表 optional</p>
+            <div class="map-row">
+              <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=MENKYOKAIDEN+SAKABA+Naha" target="_blank" rel="noopener noreferrer">📍 MENKYOKAIDEN SAKABA</a>
+            </div>
+                      
+            
+</div>
+        </article>
+      </div>
+    </section>
+
+    <section id="day2" class="day-section" aria-labelledby="d2">
+      <div class="day-head">
+        <h2 id="d2">Day 2</h2>
+        <span class="date">4/25（六）租車・萬座毛・古宇利・今歸仁</span>
+      </div>
+      <div class="desc-block" data-day="day2">
+        <div class="desc-row">
+          <span class="desc-label">主說明</span>
+          <div class="desc-field desc-main" contenteditable="true" data-key="day2_main" data-placeholder="為這天加上主說明…"></div>
+        </div>
+        <div class="desc-row">
+          <span class="desc-label">副說明</span>
+          <div class="desc-field desc-sub" contenteditable="true" data-key="day2_sub" data-placeholder="加上副說明或備註…"></div>
+        </div>
+      </div>
+      <div class="timeline">
+        <article class="item" data-article-key="d2b00">
+          <div class="card">
+            <span class="time">07:00–09:00（飯店早餐至 10:00）</span>
+            <h3 class="title">早餐</h3>
+            <figure class="stop-photo">
+              <img data-photo="day2-hotel-breakfast" src="okinawa%20images/HOTEL%20YUQUESTA%20AGARIMACHI%20breakfast.jpg" alt="HOTEL YUQUESTA AGARIMACHI 早餐" width="960" height="540" loading="lazy" decoding="async" />
+            </figure>
+            <p class="detail">總表：07:00–09:00 · 飯店早餐區間至 10:00</p>
+                      
+            
+</div>
+        </article>
+        <article class="item" data-article-key="d2b01">
+          <div class="card">
+            <span class="time">09:30–10:30</span>
+            <h3 class="title">租車取車（ORIX）</h3>
+            <figure class="stop-photo">
+              <img data-photo="day2-orix" src="okinawa%20images/orix%20%E6%97%AD%E6%A9%8B.jpeg" alt="ORIX 租車取車" width="960" height="540" loading="lazy" decoding="async" />
+            </figure>
+            <p class="detail"><strong>ORIX Rent-a-car Naha Nishi-machi</strong> · 沖縄県那覇市西 2-3-1 · 郵便 900-0036 · <strong>Jalan</strong> · 預約 <strong>10:00</strong></p>
+            <p class="note">預約代碼（總表）：R0ZR4EZ9、R0VG4ES1 · 從飯店步行約 8 分鐘（若改旭橋取車請以訂單為準）</p>
+            <div class="map-row">
+              <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=ORIX+Rent-a-car+Naha+Nishi-machi+2-3-1" target="_blank" rel="noopener noreferrer">📍 ORIX 那霸西町</a>
+            </div>
+                      
+            
+</div>
+        </article>
+        <article class="item" data-article-key="d2b02">
+          <div class="card">
+            <span class="time">10:50–11:00</span>
+            <h3 class="title">退房 · Standby</h3>
+            <figure class="stop-photo">
+              <img data-photo="day2-hotel-checkout" src="okinawa%20images/HOTEL%20YUQUESTA%20AGARIMACHI%20check%20out.jpg" alt="那霸飯店退房前整理行李" width="960" height="540" loading="lazy" decoding="async" />
+            </figure>
+            <p class="detail"><strong>11:00</strong> 退房（總表）</p>
+                      
+            
+</div>
+        </article>
+        <article class="item item--meal-split" data-article-key="d2b03">
+          <span class="time">11:20–14:00</span>
+          <p class="split-hint">總表多個漁市場／海鮮午餐點 · <strong>當天現場決定</strong>去哪一處 · 下列實景圖檔與地點名稱一對一對應</p>
+          <div class="split-tracks split-tracks--4">
+            <div class="card card-meal">
+              <span class="choice-badge">選項 ①</span>
+              <h3 class="meal-name">読谷村漁業協同組合（直売）</h3>
+              <figure class="stop-photo">
+                <img data-photo="day2-fish-yomitan" src="okinawa%20images/%E8%AA%AD%E8%B0%B7%E6%9D%91%E6%BC%81%E5%8D%94.jpg" alt="読谷村漁業協同組合直売所現場" width="960" height="540" loading="lazy" decoding="async" />
+              </figure>
+              <p class="detail">09:00–15:00 ★ · 郵便區域 904-0305（總表）</p>
+              <div class="map-row">
+                <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=%E8%AE%80%E8%B0%B7%E6%9D%91%E6%BC%81%E6%A5%AD%E5%8D%94%E5%90%8C%E7%B5%84%E5%90%88" target="_blank" rel="noopener noreferrer">📍 読谷村漁協</a>
+              </div>
+                          
+              
+</div>
+            <div class="card card-meal">
+              <span class="choice-badge">選項 ②</span>
+              <h3 class="meal-name">糸滿漁市場</h3>
+              <figure class="stop-photo">
+                <img data-photo="day2-fish-itoman" src="okinawa%20images/%E7%B3%B8%E6%BB%BF%E9%AD%9A%E5%B8%82%E5%A0%B4.webp" alt="糸滿漁市場海鮮採購與用餐" width="960" height="540" loading="lazy" decoding="async" />
+              </figure>
+              <p class="detail">09:00–19:00（總表）</p>
+              <div class="map-row">
+                <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=%E7%B3%B8%E6%BB%BF%E6%BC%81%E5%B8%82%E5%A0%B4" target="_blank" rel="noopener noreferrer">📍 糸滿漁市場</a>
+              </div>
+                          
+              
+</div>
+            <div class="card card-meal">
+              <span class="choice-badge">選項 ③</span>
+              <h3 class="meal-name">泊港漁市場</h3>
+              <figure class="stop-photo">
+                <img data-photo="day2-fish-tomari" src="okinawa%20images/%E6%B3%8A%E6%B8%AF%E6%BC%81%E5%B8%82%E5%A0%B4.jpg" alt="泊港漁市場（那霸）" width="960" height="540" loading="lazy" decoding="async" />
+              </figure>
+              <p class="detail">07:00–18:00 · 總表 Google 短連結同泊港區域</p>
+              <div class="map-row">
+                <a class="map-btn" href="https://maps.app.goo.gl/BKns1YvTqDMLVVUN6" target="_blank" rel="noopener noreferrer">📍 泊港漁市場（總表連結）</a>
+              </div>
+                          
+              
+</div>
+            <div class="card card-meal">
+              <span class="choice-badge">選項 ④</span>
+              <h3 class="meal-name">泡瀨漁港</h3>
+              <figure class="stop-photo">
+                <img data-photo="day2-fish-awase" src="okinawa%20images/%E6%B3%A1%E7%80%A8%E6%BC%81%E6%B8%AF.jpg" alt="泡瀨漁港" width="960" height="540" loading="lazy" decoding="async" />
+              </figure>
+              <p class="detail">10:30–17:30（總表）</p>
+              <div class="map-row">
+                <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=%E6%B3%A1%E7%80%9E%E6%BC%81%E6%B8%AF+%E6%B2%96%E7%B9%A9" target="_blank" rel="noopener noreferrer">📍 泡瀨漁港</a>
+              </div>
+                          
+              
+</div>
+          </div>
+        </article>
+        <article class="item" data-article-key="d2b04">
+          <div class="card">
+            <span class="time">14:00–15:30</span>
+            <h3 class="title">万座毛 Cape Manzamo</h3>
+            <figure class="stop-photo">
+              <img data-photo="day2-manzamo" src="okinawa%20images/%E8%90%AC%E5%BA%A7%E6%AF%9B.jpg" alt="萬座毛海岬象鼻岩與海岸" width="960" height="540" loading="lazy" decoding="async" />
+            </figure>
+            <p class="detail">總表時段 14:00–15:30</p>
+            <div class="map-row">
+              <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=Cape+Manzamo+Okinawa" target="_blank" rel="noopener noreferrer">📍 万座毛</a>
+            </div>
+                      
+            
+</div>
+        </article>
+        <article class="item" data-article-key="d2b05">
+          <div class="card">
+            <span class="time">15:40–17:40</span>
+            <h3 class="title">古宇利島 · 古宇利海洋塔</h3>
+            <figure class="stop-photo">
+              <img data-photo="day2-kouri" src="okinawa%20images/%E5%8F%A4%E5%AE%87%E5%88%A9%E5%B3%B6.webp" alt="古宇利島海景與海洋塔眺望" width="960" height="540" loading="lazy" decoding="async" />
+            </figure>
+            <p class="detail">總表：大人 <strong>¥1,000</strong> · 時段 15:40–17:40（與備瀨／海洋塔排程請以現場為準）</p>
+            <div class="map-row">
+              <a class="map-btn" href="https://maps.app.goo.gl/WdWF1BgwqbcTUjLVA" target="_blank" rel="noopener noreferrer">📍 古宇利海洋塔（總表 Google 連結）</a>
+            </div>
+                      
+            
+</div>
+        </article>
+        <article class="item optional" data-article-key="d2b06">
+          <div class="card">
+            <span class="time">（選項）11:30–17:00</span>
+            <h3 class="title">Gajumaru Rock</h3>
+            <figure class="stop-photo">
+              <img data-photo="day2-gajumaru" src="okinawa%20images/Gajumaru%20Rock.jpeg" alt="Gajumaru Rock 古宇利島下午茶" width="960" height="540" loading="lazy" decoding="async" />
+            </figure>
+            <p class="detail">總表 optional · 古宇利島</p>
+            <div class="map-row">
+              <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=Gajumaru+Rock+Kouri+Island" target="_blank" rel="noopener noreferrer">📍 Gajumaru Rock</a>
+            </div>
+                      
+            
+</div>
+        </article>
+        <article class="item" data-article-key="d2b07">
+          <div class="card">
+            <span class="time">17:40–18:00</span>
+            <h3 class="title">Check-in（車程約 20 分 · 總表）</h3>
+            <p class="detail">移動至旅之邸宅／度假屋</p>
+                      
+            
+</div>
+        </article>
+        <article class="item" data-article-key="d2b08">
+          <div class="card">
+            <span class="time">18:00 起</span>
+            <h3 class="title">旅之邸宅 Okinawa Nakijin</h3>
+            <figure class="stop-photo">
+              <img data-photo="day2-nakijin" src="okinawa%20images/%E4%BB%8A%E6%AD%B8%E4%BB%81%20Tabinoteitaku.jpg" alt="今歸仁旅之邸宅 Okinawa Nakijin 度假小屋" width="960" height="540" loading="lazy" decoding="async" />
+            </figure>
+            <p class="detail"><strong>Tabinoteitaku Okinawa Nakijin</strong> · 住宿 4/25–4/27（總表）</p>
+            <p class="note">總表：<strong>18:00</strong> 抵達目標。</p>
+            <div class="map-row">
+              <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=Tabinoteitaku+Okinawa+Nakijin" target="_blank" rel="noopener noreferrer">📍 旅之邸宅 Okinawa Nakijin</a>
+            </div>
+                      
+            
+</div>
+        </article>
+        <article class="item item--meal-split" data-article-key="d2b09">
+          <span class="time">18:30–21:00</span>
+          <p class="split-hint">晚餐兩店擇一 · <strong>當天現場決定</strong> · 圖片與店名一對一</p>
+          <div class="split-tracks split-tracks--2">
+            <div class="card card-meal">
+              <span class="choice-badge">選項 ①</span>
+              <h3 class="meal-name">沖縄創作居酒屋 天の川食堂 <span lang="ja">てぃんがーら</span></h3>
+              <figure class="stop-photo">
+                <img data-photo="day2-dinner-tingara" src="okinawa%20images/%E6%B2%96%E7%B8%84%E5%89%B5%E4%BD%9C%E5%B1%85%E9%85%92%E5%B1%8B%20%E5%A4%A9%E3%81%AE%E5%B7%9D%E9%A3%9F%E5%A0%82%20%E3%81%A6%E3%81%83%E3%82%93%E3%81%8C%E3%83%BC%E3%82%89.jpg" alt="沖縄創作居酒屋 天の川食堂 てぃんがーら" width="960" height="540" loading="lazy" decoding="async" />
+              </figure>
+              <p class="detail">創作居酒屋 · 訂位／營業時間請以當日為準</p>
+              <div class="map-row">
+                <a class="map-btn" href="https://maps.app.goo.gl/bFAbWyR1xRBLz46z6" target="_blank" rel="noopener noreferrer">📍 Google Maps（てぃんがーら）</a>
+              </div>
+                          
+              
+</div>
+            <div class="card card-meal">
+              <span class="choice-badge">選項 ②</span>
+              <h3 class="meal-name">燒肉 我那霸／焼肉のがなは · 本部店</h3>
+              <figure class="stop-photo">
+                <img data-photo="day2-dinner-yakiniku" src="okinawa%20images/%E7%84%BC%E8%82%89%E6%9C%AC%E9%83%A8%E7%89%A7%E5%A0%B4%20%E6%9C%AC%E9%83%A8%E6%9C%AC%E5%BA%97.jpg" alt="燒肉餐桌（圖為焼肉本部牧場 本部本店實景；行程店家為焼肉のがなは本部店）" width="960" height="540" loading="lazy" decoding="async" />
+              </figure>
+              <p class="detail">本部町 · Google 地標請對「<strong>焼肉のがなは 本部店</strong>」</p>
+              <div class="map-row">
+                <a class="map-btn secondary" href="https://www.google.com/maps/search/?api=1&query=%E7%84%BC%E8%82%89%E3%81%AE%E3%81%8C%E3%81%AA%E3%81%AF+%E6%9C%AC%E9%83%A8%E5%BA%97" target="_blank" rel="noopener noreferrer">📍 焼肉のがなは 本部店</a>
+              </div>
+                          
+              
+</div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="day3" class="day-section" aria-labelledby="d3">
+      <div class="day-head">
+        <h2 id="d3">Day 3</h2>
+        <span class="date">4/26（日）美麗海・下午／晚上（依總表順序）</span>
+      </div>
+      <div class="desc-block" data-day="day3">
+        <div class="desc-row">
+          <span class="desc-label">主說明</span>
+          <div class="desc-field desc-main" contenteditable="true" data-key="day3_main" data-placeholder="為這天加上主說明…"></div>
+        </div>
+        <div class="desc-row">
+          <span class="desc-label">副說明</span>
+          <div class="desc-field desc-sub" contenteditable="true" data-key="day3_sub" data-placeholder="加上副說明或備註…"></div>
+        </div>
+      </div>
+      <div class="timeline">
+        <article class="item" data-article-key="d3b00">
+          <div class="card">
+            <span class="time">07:30–09:30</span>
+            <h3 class="title">早餐</h3>
+            <figure class="stop-photo">
+              <img data-photo="day3-breakfast" src="okinawa%20images/1504674900247.jpg" alt="北部度假屋早餐時段（餐桌上／送餐示意，與住宿外觀分開示意）" width="960" height="540" loading="lazy" decoding="async" />
+            </figure>
+            <p class="detail">總表：07:30–09:30（備註 7:30、8:30 送達欄）</p>
+                      
+            
+</div>
+        </article>
+        <article class="item" data-article-key="d3b01">
+          <div class="card">
+            <span class="time">09:00–12:00</span>
+            <h3 class="title">沖縄美ら海水族館</h3>
+            <figure class="stop-photo">
+              <img data-photo="day3-churaumi" src="okinawa%20images/%E7%BE%8E%E9%BA%97%E6%B5%B7%E6%B0%B4%E6%97%8F%E9%A4%A8.jpg" alt="沖繩美麗海水族館" width="960" height="540" loading="lazy" decoding="async" />
+            </figure>
+            <p class="detail">郵便 <strong>905-0206</strong> · 海豚表演 <strong>10:30／11:30</strong> · 大人 <strong>¥2,180</strong>（+1 欄請依現場）· 總表 2F 欄請於館內確認動線</p>
+            <p class="note">總表此列與早餐時段重疊，實際入館時間請以當天為準。</p>
+            <div class="map-row">
+              <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=Okinawa+Churaumi+Aquarium" target="_blank" rel="noopener noreferrer">📍 沖縄美ら海水族館</a>
+            </div>
+                      
+            
+</div>
+        </article>
+        <article class="item item--meal-split" data-article-key="d3b02">
+          <span class="time">11:30–13:30</span>
+          <p class="split-hint">總表午餐「① 4F INOH／② Kaihomaru」· <strong>當天現場決定</strong> · 圖片與店名對應如下</p>
+          <div class="split-tracks split-tracks--2">
+            <div class="card card-meal">
+              <span class="choice-badge">選項 ①</span>
+              <h3 class="meal-name">美ら海水族館 4F · INOH</h3>
+              <figure class="stop-photo">
+                <img data-photo="day3-lunch-inoh" src="okinawa%20images/%E7%BE%8E%E9%BA%97%E6%B5%B7%E6%B0%B4%E6%97%8F%E9%A4%A8%204F%20INOH.jpg" alt="沖縄美ら海水族館 4F INOH 餐廳海景餐席（示意）" width="960" height="540" loading="lazy" decoding="async" />
+              </figure>
+              <p class="detail">總表括號 11:00 開店等 · 建議先排隊</p>
+              <div class="map-row">
+                <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=Inoh+Restaurant+Churaumi+Aquarium" target="_blank" rel="noopener noreferrer">📍 INOH（美ら海）</a>
+              </div>
+                          
+              
+</div>
+            <div class="card card-meal">
+              <span class="choice-badge">選項 ②</span>
+              <h3 class="meal-name">海人料理 海邦丸 2nd · Kaihomaru</h3>
+              <figure class="stop-photo">
+                <img data-photo="day3-lunch-kaihomaru" src="okinawa%20images/%E6%B5%B7%E4%BA%BA%E6%96%99%E7%90%86%20Kaihomaru.jpg" alt="海人料理 Kaihomaru 海邦丸店餐點" width="960" height="540" loading="lazy" decoding="async" />
+              </figure>
+              <p class="detail">沖縄県国頭郡本部町字山川 <strong>1421-5</strong>（總表）</p>
+              <div class="map-row">
+                <a class="map-btn secondary" href="https://www.google.com/maps/search/?api=1&query=Kaihomaru+Motobu+1421-5" target="_blank" rel="noopener noreferrer">📍 Kaihomaru 本部</a>
+              </div>
+                          
+              
+</div>
+          </div>
+        </article>
+        <article class="item" data-article-key="d3b03">
+          <div class="card">
+            <span class="time">13:45–15:00</span>
+            <h3 class="title">返回旅之邸宅</h3>
+            <figure class="stop-photo">
+              <img data-photo="day3-return-nakijin" src="okinawa%20images/%E4%BB%8A%E6%AD%B8%E4%BB%81%20Tabinoteitaku.jpg" alt="返回今歸仁旅之邸宅休息" width="960" height="540" loading="lazy" decoding="async" />
+            </figure>
+            <p class="detail"><strong>Tabinoteitaku Okinawa Nakijin</strong>（總表「／」移動欄）</p>
+            <div class="map-row">
+              <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=Tabinoteitaku+Okinawa+Nakijin" target="_blank" rel="noopener noreferrer">📍 旅之邸宅 Okinawa Nakijin</a>
+            </div>
+                      
+            
+</div>
+        </article>
+        <article class="item item--split" data-article-key="d3b04">
+          <span class="time">15:00–17:00</span>
+          <p class="split-hint">15:00 起兩組分流 · 手機上為上下排列 · 寬螢幕並排</p>
+          <div class="split-tracks split-tracks--2">
+            <div class="card card-track">
+              <span class="track-badge track-badge--a">A 組</span>
+              <h3 class="title">婚禮／儀式</h3>
+              <figure class="stop-photo">
+                <img data-photo="day3-wedding-ceremony" src="okinawa%20images/1551524164.jpg" alt="宴席餐桌與聚餐氛圍，象徵婚宴或家人晚餐" width="960" height="540" loading="lazy" decoding="async" />
+              </figure>
+              <p class="detail">總表第 1 頁 ·「X」「<strong>15:30</strong>」欄 · 請依當天集合地點為準</p>
+                          
+              
+</div>
+            <div class="card card-track card-track--b">
+              <span class="track-badge track-badge--b">B 組</span>
+              <h3 class="title">備瀨福木林道</h3>
+              <figure class="stop-photo">
+                <img data-photo="day3-bise" src="okinawa%20images/1441974231531.jpg" alt="林蔭小徑與陽光，象徵備瀨福木林道散步" width="960" height="540" loading="lazy" decoding="async" />
+              </figure>
+              <p class="detail">總表第 2 頁（or）· Bise-Fukugi Tree R ㄒoad · 郵便 905-0423 等</p>
+              <div class="map-row">
+                <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=Bise-Fukugi+Tree+Road+Okinawa" target="_blank" rel="noopener noreferrer">📍 備瀬のフクギ並木</a>
+              </div>
+                          
+              
+</div>
+          </div>
+        </article>
+        <article class="item item--split" data-article-key="d3b05">
+          <span class="time">18:00–20:00</span>
+          <p class="split-hint">A 組：婚宴<strong>晚餐</strong> · B 組：外食（阿古豬涮涮鍋）</p>
+          <div class="split-tracks split-tracks--2">
+            <div class="card card-track">
+              <span class="track-badge track-badge--a">A 組</span>
+              <h3 class="title">婚宴晚餐</h3>
+              <figure class="stop-photo">
+                <img data-photo="day3-wedding-banquet" src="okinawa%20images/1551524164.jpg" alt="婚宴宴席晚餐" width="960" height="540" loading="lazy" decoding="async" />
+              </figure>
+              <p class="detail">於婚禮會場／宴席用餐 · <strong>非外食店家</strong> · 時間地點依新人通知</p>
+                          
+              
+</div>
+            <div class="card card-track card-track--b">
+              <span class="track-badge track-badge--b">B 組</span>
+              <h3 class="title"><span lang="ja">琉の国</span> 本店 · 阿古豬涮涮鍋</h3>
+              <figure class="stop-photo">
+                <img data-photo="day3-shabu-agu" src="okinawa%20images/%E7%90%89%E3%81%AE%E5%9B%BD%20%E9%98%BF%E5%8F%A4%E8%B1%AC%E6%B6%AE%E6%B6%AE%E9%8D%8B.jpg" alt="涮涮鍋／火鍋用餐（示意），對應琉の国本店阿古豬涮涮鍋" width="960" height="540" loading="lazy" decoding="async" />
+              </figure>
+              <p class="detail">不參加婚宴者 · 外食 · 阿古豬涮涮鍋 · 請依訂位與當日營業為準</p>
+              <div class="map-row">
+                <a class="map-btn" href="https://maps.app.goo.gl/X66eLzZjUV7oUpXr9" target="_blank" rel="noopener noreferrer">📍 Google Maps（<span lang="ja">琉の国</span> 本店）</a>
+              </div>
+                          
+              
+</div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="day4" class="day-section" aria-labelledby="d4">
+      <div class="day-head">
+        <h2 id="d4">Day 4</h2>
+        <span class="date">4/27（一）北上那霸（依總表順序）</span>
+      </div>
+      <div class="desc-block" data-day="day4">
+        <div class="desc-row">
+          <span class="desc-label">主說明</span>
+          <div class="desc-field desc-main" contenteditable="true" data-key="day4_main" data-placeholder="為這天加上主說明…"></div>
+        </div>
+        <div class="desc-row">
+          <span class="desc-label">副說明</span>
+          <div class="desc-field desc-sub" contenteditable="true" data-key="day4_sub" data-placeholder="加上副說明或備註…"></div>
+        </div>
+      </div>
+      <div class="timeline">
+        <article class="item" data-article-key="d4b00">
+          <div class="card">
+            <span class="time">07:30–09:30</span>
+            <h3 class="title">早餐</h3>
+            <figure class="stop-photo">
+              <img data-photo="day4-breakfast" src="okinawa%20images/1504674900247.jpg" alt="北部度假屋早餐（與退房、外觀照片分開示意）" width="960" height="540" loading="lazy" decoding="async" />
+            </figure>
+            <p class="detail">總表：07:30–09:30（備註 7:30、8:30）</p>
+                      
+            
+</div>
+        </article>
+        <article class="item" data-article-key="d4b01">
+          <div class="card">
+            <span class="time">10:00–11:00</span>
+            <h3 class="title">退房</h3>
+            <figure class="stop-photo">
+              <img data-photo="day4-checkout-nakijin" src="okinawa%20images/1553621042.jpg" alt="退房前房內整理行李（與早餐、住宿外觀分開示意）" width="960" height="540" loading="lazy" decoding="async" />
+            </figure>
+            <p class="detail"><strong>11:00</strong> 退房（總表）</p>
+                      
+            
+</div>
+        </article>
+        <article class="item item--meal-split" data-article-key="d4b02">
+          <span class="time">11:00–14:00</span>
+          <p class="split-hint">午餐兩選擇一 · <strong>當天現場決定</strong> · 圖片與店名一對一</p>
+          <div class="split-tracks split-tracks--2">
+            <div class="card card-meal">
+              <span class="choice-badge">選項 ①</span>
+              <h3 class="meal-name">ポーたま Potama · 豬肉蛋飯糰</h3>
+              <figure class="stop-photo">
+                <img data-photo="day4-lunch-potama" src="okinawa%20images/Pork%20Tamago%20Onigiri%20Potama.jpeg" alt="Potama 豬肉蛋飯糰" width="960" height="540" loading="lazy" decoding="async" />
+              </figure>
+              <p class="detail"><strong>Potama – Okinawa Motobu store</strong> · 郵便 904-0116／904-0115 · 9:00–21:00</p>
+              <div class="map-row">
+                <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=Potama+Motobu+Okinawa" target="_blank" rel="noopener noreferrer">📍 Potama 本部店</a>
+              </div>
+                          
+              
+</div>
+            <div class="card card-meal">
+              <span class="choice-badge">選項 ②</span>
+              <h3 class="meal-name">びっくりドンキー 沖縄美浜店</h3>
+              <figure class="stop-photo">
+                <img data-photo="day4-lunch-donkey" src="okinawa%20images/%E3%81%B3%E3%81%A3%E3%81%8F%E3%82%8A%E3%83%89%E3%83%B3%E3%82%AD%E3%83%BC%20%E6%B2%96%E7%B8%84%E7%BE%8E%E6%B5%9C%E5%BA%97.jpg" alt="びっくりドンキー 沖繩美浜店（漢堡排套餐示意）" width="960" height="540" loading="lazy" decoding="async" />
+              </figure>
+              <p class="detail">北谷美浜 · 美式村周邊午餐</p>
+              <div class="map-row">
+                <a class="map-btn secondary" href="https://maps.app.goo.gl/Xqqyut1ncWyFEjuR9" target="_blank" rel="noopener noreferrer">📍 びっくりドンキー 美浜（總表連結）</a>
+              </div>
+                          
+              
+</div>
+          </div>
+        </article>
+        <article class="item item--meal-split" data-article-key="d4b03">
+          <span class="time">14:00–16:00</span>
+          <p class="split-hint">下午兩條線擇一或分開行動 · <strong>American Depot</strong>（美國村核心商區）或 <strong>安良波公園</strong> Araha（總表口語常寫奈良波）</p>
+          <div class="split-tracks split-tracks--2">
+            <div class="card card-meal">
+              <span class="choice-badge">選項 ①</span>
+              <h3 class="meal-name">American Depot · 美國村北谷</h3>
+              <figure class="stop-photo">
+                <img data-photo="day4-american-depot" src="okinawa%20images/American%20Depot.jpeg" alt="American Depot／Depot Island 一帶街景（北谷美濱）" width="960" height="540" loading="lazy" decoding="async" />
+              </figure>
+              <p class="detail">總表：以 <strong>American Depot</strong> 為核心之美國村商區 · 2 Chome-21 Chatan 等</p>
+              <div class="map-row">
+                <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=American+Depot+Chatan+Okinawa" target="_blank" rel="noopener noreferrer">📍 American Depot</a>
+                <a class="map-btn secondary" href="https://www.google.com/maps/search/?api=1&query=American+Village+Okinawa" target="_blank" rel="noopener noreferrer">📍 American Village</a>
+              </div>
+                          
+              
+</div>
+            <div class="card card-meal">
+              <span class="choice-badge">選項 ②</span>
+              <h3 class="meal-name">安良波公園 · Araha Park</h3>
+              <figure class="stop-photo">
+                <img data-photo="day4-araha-park" src="okinawa%20images/araha%20beach%20park.jpeg" alt="安良波公園（Araha Beach／Araha Park）沿海草坪與沙灘" width="960" height="540" loading="lazy" decoding="async" />
+              </figure>
+              <p class="detail">北谷美濱 · 與美國村車程極近，適合草地、戲水與散步</p>
+              <div class="map-row">
+                <a class="map-btn secondary" href="https://www.google.com/maps/search/?api=1&query=Araha+Park+Chatan" target="_blank" rel="noopener noreferrer">📍 Araha Park</a>
+              </div>
+                          
+              
+</div>
+          </div>
+        </article>
+        <article class="item" data-article-key="d4b04">
+          <div class="card">
+            <span class="time">16:00–19:00</span>
+            <h3 class="title">San-A PARCO CITY · 逛街與館内晚餐</h3>
+            <figure class="stop-photo">
+              <img data-photo="day4-parco-city" src="okinawa%20images/PARCO%20CITY.jpeg" alt="San-A PARCO CITY 購物中心與館內餐廳" width="960" height="540" loading="lazy" decoding="async" />
+            </figure>
+            <p class="detail"><strong>晚餐安排在 PARCO CITY 商場內</strong>（美食街／餐廳依當天現場選擇）· 總表 15、3-3、1-1（901-2123）</p>
+            <div class="map-row">
+              <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=San-A+Urasoe+West+Coast+PARCO+CITY" target="_blank" rel="noopener noreferrer">📍 PARCO CITY</a>
+            </div>
+                      
+            
+</div>
+        </article>
+        <article class="item" data-article-key="d4b05">
+          <div class="card">
+            <span class="time">19:30–21:00</span>
+            <h3 class="title">那霸 Check-in</h3>
+            <figure class="stop-photo">
+              <img data-photo="day4-tokyu-checkin" src="okinawa%20images/%E6%9D%B1%E6%80%A5%20Stay%20%E6%B2%96%E7%B9%A9%E9%82%A3%E9%9C%B8.gif" alt="東急 Stay 沖繩那霸 Tokyu Stay Okinawa Naha" width="960" height="540" loading="lazy" decoding="async" />
+            </figure>
+            <p class="detail"><strong>TOKYU STAY Okinawa-Naha</strong> · <strong>壺川（Tsubogawa）3-2-1</strong> · booking（總表）</p>
+            <div class="map-row">
+              <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=Tokyu+Stay+Okinawa+Naha+3-2-1" target="_blank" rel="noopener noreferrer">📍 Tokyu Stay Okinawa Naha</a>
+            </div>
+                      
+            
+</div>
+        </article>
+        <article class="item" data-article-key="d4b06">
+          <div class="card">
+            <span class="time">21:00–22:00</span>
+            <h3 class="title">宵夜 · 國際通屋台村</h3>
+            <figure class="stop-photo">
+              <img data-photo="day4-yataimura" src="okinawa%20images/%E5%B1%8B%E5%8F%B0%E6%9D%91.jpeg" alt="那霸國際通屋台村－宵夜攤位與用餐氛圍" width="960" height="540" loading="lazy" decoding="async" />
+            </figure>
+            <p class="detail">以<strong>國際通屋台村</strong>為主（總表若另寫 Kokusai Street Food Village 亦為沿線小吃市集 · 以現場為準）</p>
+            <div class="map-row">
+              <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=%E5%9C%8B%E9%9A%9B%E9%80%9A%E5%B1%8B%E5%8F%B0%E6%9D%91+%E9%82%A3%E8%A6%87" target="_blank" rel="noopener noreferrer">📍 國際通屋台村</a>
+              <a class="map-btn secondary" href="https://www.google.com/maps/search/?api=1&query=Kokusai+Street+Food+Village+Naha" target="_blank" rel="noopener noreferrer">📍 Kokusai Street Food Village</a>
+            </div>
+                      
+            
+</div>
+        </article>
+      </div>
+    </section>
+
+    <section id="day5" class="day-section" aria-labelledby="d5">
+      <div class="day-head">
+        <h2 id="d5">Day 5</h2>
+        <span class="date">4/28（二）返台（依總表順序）</span>
+      </div>
+      <div class="desc-block" data-day="day5">
+        <div class="desc-row">
+          <span class="desc-label">主說明</span>
+          <div class="desc-field desc-main" contenteditable="true" data-key="day5_main" data-placeholder="為這天加上主說明…"></div>
+        </div>
+        <div class="desc-row">
+          <span class="desc-label">副說明</span>
+          <div class="desc-field desc-sub" contenteditable="true" data-key="day5_sub" data-placeholder="加上副說明或備註…"></div>
+        </div>
+      </div>
+      <div class="timeline">
+        <article class="item item--meal-split" data-article-key="d5b00">
+          <span class="time">08:00–10:00</span>
+          <p class="split-hint">總表早餐「or」· <strong>當天現場決定</strong>飯店用膳或市場早午餐</p>
+          <div class="split-tracks split-tracks--3">
+            <div class="card card-meal">
+              <span class="choice-badge">選項 ①</span>
+              <h3 class="meal-name">Tokyu Stay 沖繩那霸 · 飯店早餐</h3>
+              <figure class="stop-photo">
+                <img data-photo="day5-hotel-breakfast" src="okinawa%20images/%E6%9D%B1%E6%80%A5%20Stay%20%E6%B2%96%E7%B9%A9%E9%82%A3%E9%9C%B8.gif" alt="東急 Stay 沖繩那霸住宿與早餐時段示意" width="960" height="540" loading="lazy" decoding="async" />
+              </figure>
+              <p class="detail">總表 <strong>6:30 AM–10:30 AM</strong> · 是否含早餐依訂房</p>
+                          
+              
+</div>
+            <div class="card card-meal">
+              <span class="choice-badge">選項 ②</span>
+              <h3 class="meal-name">第一牧志公設市場 · Makishi</h3>
+              <figure class="stop-photo">
+                <img data-photo="day5-makishi-market" src="okinawa%20images/%E7%89%A7%E5%BF%97%E5%85%AC%E8%A8%AD%E5%B8%82%E5%A0%B4.webp" alt="第一牧志公設市場早午餐與海鮮" width="960" height="540" loading="lazy" decoding="async" />
+              </figure>
+              <p class="detail">那覇市松尾 <strong>2-10-1</strong> · 總表 08:00 欄</p>
+              <div class="map-row">
+                <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=Makishi+Public+Market+Naha+2-10-1" target="_blank" rel="noopener noreferrer">📍 牧志公設市場</a>
+              </div>
+                          
+              
+</div>
+            <div class="card card-meal">
+              <span class="choice-badge">選項 ③</span>
+              <h3 class="meal-name">泊港漁市場 · Tomari</h3>
+              <figure class="stop-photo">
+                <img data-photo="day5-breakfast-tomari" src="okinawa%20images/%E6%B3%8A%E6%B8%AF%E6%BC%81%E5%B8%82%E5%A0%B4.jpg" alt="泊港漁市場那霸早午餐與海鮮丼" width="960" height="540" loading="lazy" decoding="async" />
+              </figure>
+              <p class="detail">那霸泊港一帶 · 多數店家約 <strong>6:00–17:00</strong>（依店家／總表為準）</p>
+              <div class="map-row">
+                <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=%E6%B3%8A%E6%B8%AF%E6%BC%81%E5%B8%82%E5%A0%B4+%E9%82%A3%E8%A6%87" target="_blank" rel="noopener noreferrer">📍 泊港漁市場</a>
+              </div>
+                          
+              
+</div>
+          </div>
+        </article>
+        <article class="item" data-article-key="d5b01">
+          <div class="card">
+            <span class="time">11:00–11:30</span>
+            <h3 class="title">退房</h3>
+            <figure class="stop-photo">
+              <img data-photo="day5-checkout-tokyu" src="okinawa%20images/1553621042.jpg" alt="退房前整理（與飯店外觀早餐分開示意）· 東急 Stay 沖繩那霸" width="960" height="540" loading="lazy" decoding="async" />
+            </figure>
+            <p class="detail"><strong>11:00</strong> 退房（總表）</p>
+                      
+            
+</div>
+        </article>
+        <article class="item item--meal-split" data-article-key="d5b02">
+          <span class="time">11:30–13:00</span>
+          <p class="split-hint">總表午餐「or」· <strong>當天現場決定</strong></p>
+          <div class="split-tracks split-tracks--2">
+            <div class="card card-meal">
+              <span class="choice-badge">選項 ①</span>
+              <h3 class="meal-name">糸滿魚類食品市場 · Itoman Fish Center</h3>
+              <figure class="stop-photo">
+                <img data-photo="day5-lunch-fish" src="okinawa%20images/%E7%B3%B8%E6%BB%BF%E9%AD%9A%E5%B8%82%E5%A0%B4.webp" alt="糸滿魚類食品市場海鮮午餐（Itoman Fish Center 周邊）" width="960" height="540" loading="lazy" decoding="async" />
+              </figure>
+              <p class="detail">Itoman fishing cooperative Fish Center（總表英文欄）</p>
+              <div class="map-row">
+                <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=Itoman+fishing+cooperative+fish+center" target="_blank" rel="noopener noreferrer">📍 Itoman Fish Center</a>
+              </div>
+                          
+              
+</div>
+            <div class="card card-meal">
+              <span class="choice-badge">選項 ②</span>
+              <h3 class="meal-name">暖暮拉麵 糸滿店 · Danbo Ramen Itoman</h3>
+              <figure class="stop-photo">
+                <img data-photo="day5-lunch-ramen" src="okinawa%20images/%E6%9A%96%E6%9A%AE%E6%8B%89%E9%BA%B5%20%E7%B3%B8%E6%BB%BF%E5%BA%97.jpg" alt="豚骨拉麵（示意），對應暖暮拉麵糸滿店" width="960" height="540" loading="lazy" decoding="async" />
+              </figure>
+              <p class="detail">Danbo Ramen Itoman Branch（總表）</p>
+              <div class="map-row">
+                <a class="map-btn secondary" href="https://www.google.com/maps/search/?api=1&query=Danbo+Ramen+Itoman+Branch" target="_blank" rel="noopener noreferrer">📍 Danbo Ramen Itoman</a>
+              </div>
+                          
+              
+</div>
+          </div>
+        </article>
+        <article class="item" data-article-key="d5b03">
+          <div class="card">
+            <span class="time">14:00–17:00</span>
+            <h3 class="title">RYUBO Department Store</h3>
+            <figure class="stop-photo">
+              <img data-photo="day5-ryubo" src="okinawa%20images/RYUBO%20%E7%90%89%E8%B2%BF%E7%99%BE%E8%B2%A8.jpg" alt="琉球百貨 RYUBO 逛街" width="960" height="540" loading="lazy" decoding="async" />
+            </figure>
+            <p class="detail">郵便 <strong>900-8503</strong> · 沖縄県那覇市久茂地 <strong>1-1-1</strong>（總表）</p>
+            <div class="map-row">
+              <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=RYUBO+Department+Store+Naha+1-1-1" target="_blank" rel="noopener noreferrer">📍 琉球百貨 RYUBO</a>
+            </div>
+                      
+            
+</div>
+        </article>
+        <article class="item" data-article-key="d5b04">
+          <div class="card">
+            <span class="time">17:30–19:00</span>
+            <h3 class="title">ORIX 還車（那霸機場）</h3>
+            <figure class="stop-photo">
+              <img data-photo="day5-orix-airport" src="okinawa%20images/orix%20%E9%82%A3%E9%9C%B8%E6%A9%9F%E5%A0%B4%E5%BA%97.jpg" alt="ORIX Rent-a-car 那霸機場店還車" width="960" height="540" loading="lazy" decoding="async" />
+            </figure>
+            <p class="detail"><strong>ORIX Rent-a-car Naha Airport</strong>（總表 1730–1900）</p>
+            <div class="map-row">
+              <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=ORIX+Rent+a+car+Naha+Airport" target="_blank" rel="noopener noreferrer">📍 ORIX 那霸機場</a>
+            </div>
+                      
+            
+</div>
+        </article>
+        <article class="item" data-article-key="d5b05">
+          <div class="card">
+            <span class="time">19:00–19:30</span>
+            <h3 class="title">機場報到</h3>
+            <figure class="stop-photo">
+              <img data-photo="day5-airport" src="okinawa%20images/naha%20airport.jpeg" alt="那霸機場航廈內報到" width="960" height="540" loading="lazy" decoding="async" />
+            </figure>
+            <p class="detail">總表 check-in 欄</p>
+            <div class="map-row">
+              <a class="map-btn secondary" href="https://www.google.com/maps/search/?api=1&query=%E9%82%A3%E9%9C%B8%E6%A9%9F%E5%A0%B4+%E5%9C%8B%E9%9A%9B%E7%B7%9A" target="_blank" rel="noopener noreferrer">📍 那霸機場</a>
+            </div>
+                      
+            
+</div>
+        </article>
+        <article class="item" data-article-key="d5b06">
+          <div class="card">
+            <span class="time">19:30–20:30</span>
+            <h3 class="title">機場晚餐</h3>
+            <p class="detail">總表 19:30–20:30 欄</p>
+                      
+            
+</div>
+        </article>
+        <article class="item" data-article-key="d5b07">
+          <div class="card">
+            <span class="time">21:40–22:10</span>
+            <h3 class="title">搭機返台</h3>
+            <figure class="stop-photo">
+              <img data-photo="day5-flight-home" src="okinawa%20images/tigerair.jpg" alt="從機窗望向天空與机翼，象徵搭乘虎航返回台灣" width="960" height="540" loading="lazy" decoding="async" />
+            </figure>
+            <p class="detail">台灣虎航 <strong>IT 233</strong>（總表標示約 90 分）</p>
+                      
+            
+</div>
+        </article>
+        <article class="item" data-article-key="d5b08">
+          <div class="card">
+            <span class="time">22:30–23:00</span>
+            <h3 class="title">抵達（總表）</h3>
+            <p class="detail">抵達時段欄 · 請以實際航班為準</p>
+                      
+            
+</div>
+        </article>
+      </div>
+    </section>
+  </main>
+  <input id="photoFileInput" type="file" accept="image/*" style="display:none" />
+
+  <footer>
+    行程內容依《202604 日本沖繩 總行程表.pdf》順序整理 · 實際時間請以現場與預訂為準 · 行程照對照表見 <strong>okinawa_photos.js</strong>
+    <br /><span style="font-size:0.88em;color:var(--muted)">同步：在 Chrome／Edge 按一次「綁定自動儲存」選專案裡的 <strong>okinawa_live_state.json</strong> 後，編輯會自動寫入；手機請用底下「一鍵分享」腳本或任何方式以 <strong>http(s)</strong> 開同一資料夾（勿用 file://）。</span>
+  </footer>
+
+  <script src="okinawa_photos.js"></script>
+  <!-- 同步：與 html 同層的 okinawa_live_state.json（僅 http(s)／localhost／tunnel 會自動載入；file:// 請用「儲存同步檔」後改以本機伺服器或分享連結開啟） -->
+  <script>
+    (function () {
+      window.__OKINAWA_SYNC_FILE_APPLIED = false;
+      if (location.protocol === 'file:') return;
+      try {
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', 'okinawa_live_state.json?' + Date.now(), false);
+        xhr.send(null);
+        if (xhr.status !== 200) return;
+        var bundle = JSON.parse(xhr.responseText);
+        if (!bundle || bundle.v !== 1 || !bundle.localStorage || typeof bundle.localStorage !== 'object') return;
+        var toRemove = [];
+        var i;
+        var k;
+        for (i = 0; i < localStorage.length; i++) {
+          k = localStorage.key(i);
+          if (k && k.indexOf('okinawa26_') === 0) toRemove.push(k);
+        }
+        for (i = 0; i < toRemove.length; i++) localStorage.removeItem(toRemove[i]);
+        var lk = Object.keys(bundle.localStorage);
+        for (i = 0; i < lk.length; i++) {
+          k = lk[i];
+          if (k.indexOf('okinawa26_') !== 0) continue;
+          var val = bundle.localStorage[k];
+          if (typeof val === 'string') localStorage.setItem(k, val);
+        }
+        window.__OKINAWA_PENDING_PHOTO_BUNDLE =
+          bundle.photos && typeof bundle.photos === 'object' ? bundle.photos : {};
+        window.__OKINAWA_SYNC_FILE_APPLIED = true;
+      } catch (err) {}
+    })();
+  </script>
+  <script>
+    (function () {
+      var links = document.querySelectorAll('.nav-days a[href^="#"]');
+      links.forEach(function (a) {
+        a.addEventListener('click', function () {
+          var id = a.getAttribute('href').slice(1);
+          var el = document.getElementById(id);
+          if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+      });
+    })();
+  </script>
+  <script>
+    (function () {
+      var LS_PREFIX = 'okinawa26_';
+
+      function loadAll() {
+        var fields = document.querySelectorAll('.desc-field[data-key]');
+        for (var i = 0; i < fields.length; i++) {
+          var el = fields[i];
+          var k = el.getAttribute('data-key');
+          if (!k) continue;
+          var v = localStorage.getItem(LS_PREFIX + k);
+          if (v !== null && v !== '') el.textContent = v;
+        }
+      }
+
+      function flash(el) {
+        el.classList.remove('desc-saved-flash');
+        void el.offsetWidth;
+        el.classList.add('desc-saved-flash');
+        setTimeout(function () {
+          el.classList.remove('desc-saved-flash');
+        }, 600);
+      }
+
+      loadAll();
+
+      document.addEventListener('input', function (e) {
+        var t = e.target;
+        if (!t.classList || !t.classList.contains('desc-field')) return;
+        var k = t.getAttribute('data-key');
+        if (!k) return;
+        try {
+          localStorage.setItem(LS_PREFIX + k, t.textContent.trim());
+          flash(t);
+        } catch (err) {}
+      });
+
+      document.addEventListener('keydown', function (e) {
+        if (e.key !== 'Enter') return;
+        // IME 組字時 Enter 是用來確認候選字，不能攔截，否則易出現重複輸入。
+        if (e.isComposing || e.keyCode === 229) return;
+        var t = e.target;
+        if (!t.classList) return;
+        if (!t.classList.contains('desc-field') && !t.classList.contains('live-editable')) return;
+        // 所有可編輯欄位都允許 Enter 換行，不做攔截。
+        return;
+      });
+    })();
+  </script>
+  <script>
+    (function () {
+      var LAYOUT_KEY = 'okinawa26_timelineLayout';
+      var LEGACY_MANIFEST = 'okinawa26_customCardManifest';
+      var MIGRATE_FLAG = 'okinawa26_timelineKeysMigrated_v2';
+      var LS_PRE = 'okinawa26_';
+
+      function getLayoutAll() {
+        try {
+          var raw = localStorage.getItem(LAYOUT_KEY);
+          if (!raw) return null;
+          var o = JSON.parse(raw);
+          return o && typeof o === 'object' ? o : null;
+        } catch (err) {
+          return null;
+        }
+      }
+
+      function setLayoutAll(obj) {
+        try {
+          localStorage.setItem(LAYOUT_KEY, JSON.stringify(obj));
+        } catch (err) {}
+      }
+
+      function genId() {
+        return 'c' + Date.now().toString(36) + Math.random().toString(36).slice(2, 10);
+      }
+
+      function removeKeysPrefix(prefix) {
+        try {
+          for (var i = localStorage.length - 1; i >= 0; i--) {
+            var k = localStorage.key(i);
+            if (k && k.indexOf(prefix) === 0) localStorage.removeItem(k);
+          }
+        } catch (err) {}
+      }
+
+      function collectBuiltinKeysInTimelineOrder(timeline) {
+        var out = [];
+        var arts = timeline.querySelectorAll(':scope > article.item:not(.item--custom)');
+        for (var i = 0; i < arts.length; i++) {
+          var key = arts[i].getAttribute('data-article-key');
+          if (key) out.push(key);
+        }
+        return out;
+      }
+
+      function getLegacyCustomIds(dayId) {
+        try {
+          var raw = localStorage.getItem(LEGACY_MANIFEST);
+          if (!raw) return [];
+          var o = JSON.parse(raw);
+          var arr = o[dayId];
+          return Array.isArray(arr) ? arr : [];
+        } catch (err) {
+          return [];
+        }
+      }
+
+      function buildDefaultLayout(timeline, dayId) {
+        var builtins = collectBuiltinKeysInTimelineOrder(timeline);
+        var rows = [];
+        for (var b = 0; b < builtins.length; b++) {
+          rows.push({ t: 'b', k: builtins[b] });
+        }
+        var customs = getLegacyCustomIds(dayId);
+        for (var c = 0; c < customs.length; c++) {
+          if (customs[c]) rows.push({ t: 'c', id: customs[c] });
+        }
+        return rows;
+      }
+
+      function migrateLegacyIndexKeysForDay(dayId, orderedBuiltinKeys) {
+        for (var oldIdx = 0; oldIdx < orderedBuiltinKeys.length; oldIdx++) {
+          var nk = orderedBuiltinKeys[oldIdx];
+          var oldPrefix = LS_PRE + dayId + '_' + oldIdx + '_';
+          var newPrefix = LS_PRE + dayId + '_' + nk + '_';
+          var toCopy = [];
+          for (var ki = 0; ki < localStorage.length; ki++) {
+            var k = localStorage.key(ki);
+            if (!k || k.indexOf(oldPrefix) !== 0) continue;
+            toCopy.push(k);
+          }
+          for (var j = 0; j < toCopy.length; j++) {
+            var ok = toCopy[j];
+            var tail = ok.slice(oldPrefix.length);
+            var nfull = newPrefix + tail;
+            if (localStorage.getItem(nfull) == null) {
+              localStorage.setItem(nfull, localStorage.getItem(ok));
+            }
+          }
+        }
+      }
+
+      function customPhotoPlaceholderSrc() {
+        var svg =
+          '<svg xmlns="http://www.w3.org/2000/svg" width="960" height="540"><rect fill="#e2e8f0" width="100%" height="100%"/><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="#94a3b8" font-family="system-ui,sans-serif" font-size="24">自訂行程 · 編輯模式下可上傳照片</text></svg>';
+        return 'data:image/svg+xml,' + encodeURIComponent(svg);
+      }
+
+      function buildCustomStopPhotoFigure(customId) {
+        var fig = document.createElement('figure');
+        fig.className = 'stop-photo';
+        var imgEl = document.createElement('img');
+        imgEl.setAttribute('data-photo', 'custom-' + customId);
+        imgEl.setAttribute('src', customPhotoPlaceholderSrc());
+        imgEl.setAttribute('alt', '自訂行程照片');
+        imgEl.setAttribute('width', '960');
+        imgEl.setAttribute('height', '540');
+        imgEl.setAttribute('loading', 'lazy');
+        imgEl.setAttribute('decoding', 'async');
+        fig.appendChild(imgEl);
+        return fig;
+      }
+
+      function ensureCustomArticleHasPhoto(article) {
+        if (!article || !article.classList.contains('item--custom')) return;
+        var card = article.querySelector('.card');
+        if (!card || card.querySelector('figure.stop-photo img[data-photo^="custom-"]')) return;
+        var cid = article.getAttribute('data-custom-id');
+        if (!cid) return;
+        var fig = buildCustomStopPhotoFigure(cid);
+        var detail = card.querySelector('.detail');
+        if (detail) card.insertBefore(fig, detail);
+        else {
+          var mapRow = card.querySelector('.map-row');
+          if (mapRow) card.insertBefore(fig, mapRow);
+          else card.appendChild(fig);
+        }
+      }
+
+      function buildCustomArticleEl(dayId, customId) {
+        var art = document.createElement('article');
+        art.className = 'item item--custom';
+        art.setAttribute('data-custom-id', customId);
+        art.setAttribute('data-day', dayId);
+
+        var card = document.createElement('div');
+        card.className = 'card';
+
+        var timeEl = document.createElement('span');
+        timeEl.className = 'time';
+        timeEl.textContent = '—';
+        card.appendChild(timeEl);
+
+        var titleEl = document.createElement('h3');
+        titleEl.className = 'title';
+        titleEl.textContent = '新行程';
+        card.appendChild(titleEl);
+
+        card.appendChild(buildCustomStopPhotoFigure(customId));
+
+        var detailEl = document.createElement('p');
+        detailEl.className = 'detail';
+        card.appendChild(detailEl);
+
+        var mapRow = document.createElement('div');
+        mapRow.className = 'map-row';
+        card.appendChild(mapRow);
+
+        art.appendChild(card);
+        return art;
+      }
+
+      function patchAllCustomArticlePhotos() {
+        var legacyCustom = document.querySelectorAll('.day-section .timeline > article.item--custom');
+        for (var lc = 0; lc < legacyCustom.length; lc++) {
+          ensureCustomArticleHasPhoto(legacyCustom[lc]);
+        }
+      }
+
+      function ensureToolbar(timeline) {
+        var bar = timeline.querySelector('.timeline-card-toolbar');
+        if (!bar) {
+          bar = document.createElement('div');
+          bar.className = 'timeline-card-toolbar';
+          var btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'timeline-add-card-btn';
+          btn.textContent = '＋ 新增自訂行程';
+          btn.setAttribute('aria-label', '在此日最後新增一張自訂行程卡片');
+          btn.addEventListener('click', function () {
+            addCustomAtEnd(timeline);
+          });
+          bar.appendChild(btn);
+        }
+        timeline.appendChild(bar);
+      }
+
+      function applyLayoutForDay(dayId, layoutRows) {
+        var section = document.getElementById(dayId);
+        if (!section) return;
+        var timeline = section.querySelector('.timeline');
+        if (!timeline) return;
+
+        var oldBar = timeline.querySelector('.timeline-card-toolbar');
+        if (oldBar) oldBar.remove();
+
+        var pool = document.createDocumentFragment();
+        var arts = timeline.querySelectorAll(':scope > article');
+        for (var x = 0; x < arts.length; x++) {
+          pool.appendChild(arts[x]);
+        }
+
+        var mapB = {};
+        var mapC = {};
+        var pooledArts = pool.querySelectorAll('article');
+        for (var p = 0; p < pooledArts.length; p++) {
+          var a = pooledArts[p];
+          if (a.classList.contains('item--custom')) {
+            var cid = a.getAttribute('data-custom-id');
+            if (cid) mapC[cid] = a;
+          } else {
+            var bk = a.getAttribute('data-article-key');
+            if (bk) mapB[bk] = a;
+          }
+        }
+
+        for (var r = 0; r < layoutRows.length; r++) {
+          var row = layoutRows[r];
+          var el = null;
+          if (row.t === 'b') el = mapB[row.k];
+          if (row.t === 'c') {
+            el = mapC[row.id];
+            if (!el) el = buildCustomArticleEl(dayId, row.id);
+          }
+          if (el) timeline.appendChild(el);
+        }
+
+        ensureToolbar(timeline);
+      }
+
+      function saveLayoutDay(dayId, rows) {
+        var all = getLayoutAll() || {};
+        all[dayId] = rows;
+        setLayoutAll(all);
+      }
+
+      function finishTimelineRefresh() {
+        patchAllCustomArticlePhotos();
+        if (window.okinawaInitLiveEditables) window.okinawaInitLiveEditables();
+        if (window.okinawaReloadLiveFromStorage) window.okinawaReloadLiveFromStorage();
+        if (window.okinawaRefreshMaps) window.okinawaRefreshMaps();
+        if (window.okinawaRefreshPhotos) window.okinawaRefreshPhotos();
+        if (window.okinawaRefreshTimelineChrome) window.okinawaRefreshTimelineChrome();
+        if (window.refreshAllNoteVisibility) window.refreshAllNoteVisibility();
+      }
+
+      function addCustomAtEnd(timeline) {
+        if (document.body.classList.contains('view-mode')) return;
+        var section = timeline.closest('.day-section');
+        var dayId = section && section.id;
+        if (!dayId) return;
+        var all = getLayoutAll() || {};
+        var layout = Array.isArray(all[dayId]) ? all[dayId].slice() : [];
+        layout.push({ t: 'c', id: genId() });
+        saveLayoutDay(dayId, layout);
+        applyLayoutForDay(dayId, layout);
+        finishTimelineRefresh();
+      }
+
+      function addCustomAfterArticle(afterArticle) {
+        if (document.body.classList.contains('view-mode')) return;
+        var timeline = afterArticle.closest('.timeline');
+        var section = timeline.closest('.day-section');
+        var dayId = section && section.id;
+        if (!dayId) return;
+        var all = getLayoutAll() || {};
+        var layout = Array.isArray(all[dayId]) ? all[dayId].slice() : [];
+        var refT = afterArticle.classList.contains('item--custom') ? 'c' : 'b';
+        var refKey = refT === 'c' ? afterArticle.getAttribute('data-custom-id') : afterArticle.getAttribute('data-article-key');
+        var ix = -1;
+        for (var i = 0; i < layout.length; i++) {
+          var row = layout[i];
+          if (refT === 'b' && row.t === 'b' && row.k === refKey) {
+            ix = i;
+            break;
+          }
+          if (refT === 'c' && row.t === 'c' && row.id === refKey) {
+            ix = i;
+            break;
+          }
+        }
+        if (ix < 0) ix = layout.length - 1;
+        layout.splice(ix + 1, 0, { t: 'c', id: genId() });
+        saveLayoutDay(dayId, layout);
+        applyLayoutForDay(dayId, layout);
+        finishTimelineRefresh();
+      }
+
+      function deleteArticleFromLayout(article) {
+        if (document.body.classList.contains('view-mode')) return;
+        var timeline = article.closest('.timeline');
+        var section = timeline.closest('.day-section');
+        var dayId = section && section.id;
+        if (!dayId) return;
+        var isCustom = article.classList.contains('item--custom');
+        var all = getLayoutAll() || {};
+        var layout = Array.isArray(all[dayId]) ? all[dayId].slice() : [];
+        var filtered = [];
+        for (var i = 0; i < layout.length; i++) {
+          var row = layout[i];
+          if (isCustom && row.t === 'c' && row.id === article.getAttribute('data-custom-id')) continue;
+          if (!isCustom && row.t === 'b' && row.k === article.getAttribute('data-article-key')) continue;
+          filtered.push(row);
+        }
+        saveLayoutDay(dayId, filtered);
+        if (isCustom) {
+          removeKeysPrefix(LS_PRE + dayId + '_custom_' + article.getAttribute('data-custom-id') + '_');
+        } else {
+          removeKeysPrefix(LS_PRE + dayId + '_' + article.getAttribute('data-article-key') + '_');
+        }
+        applyLayoutForDay(dayId, filtered);
+        finishTimelineRefresh();
+      }
+
+      function wireArticleChrome() {
+        var articles = document.querySelectorAll('.day-section .timeline > article');
+        for (var i = 0; i < articles.length; i++) {
+          var art = articles[i];
+          if (art.querySelector('.article-edit-actions')) continue;
+          var wrap = document.createElement('div');
+          wrap.className = 'article-edit-actions';
+          var ins = document.createElement('button');
+          ins.type = 'button';
+          ins.className = 'article-insert-after-btn';
+          ins.textContent = '＋ 在此站之後插入';
+          ins.addEventListener('click', (function (a) {
+            return function () {
+              addCustomAfterArticle(a);
+            };
+          })(art));
+          var del = document.createElement('button');
+          del.type = 'button';
+          del.className = 'article-delete-station-btn';
+          del.textContent = '刪除此站';
+          del.addEventListener('click', (function (a) {
+            return function () {
+              var msg = a.classList.contains('item--custom')
+                ? '刪除此自訂行程？'
+                : '刪除此內建行程？此操作僅影響此瀏覽器儲存的版面；若要還原原始行程，請清除本網站的網頁資料後重新整理。';
+              if (!window.confirm(msg)) return;
+              deleteArticleFromLayout(a);
+            };
+          })(art));
+          wrap.appendChild(ins);
+          wrap.appendChild(del);
+          art.appendChild(wrap);
+        }
+      }
+
+      window.okinawaRefreshTimelineChrome = wireArticleChrome;
+
+      function initAllTimelines() {
+        var layouts = getLayoutAll();
+        var needMigrate = !localStorage.getItem(MIGRATE_FLAG);
+        var merged = layouts ? JSON.parse(JSON.stringify(layouts)) : {};
+        for (var d = 1; d <= 5; d++) {
+          var dayId = 'day' + d;
+          var section = document.getElementById(dayId);
+          if (!section) continue;
+          var timeline = section.querySelector('.timeline');
+          if (!timeline) continue;
+          var orderedBuiltin = collectBuiltinKeysInTimelineOrder(timeline);
+          if (!merged[dayId] || !merged[dayId].length) {
+            merged[dayId] = buildDefaultLayout(timeline, dayId);
+          } else {
+            var layoutArr = merged[dayId];
+            var knownB = {};
+            for (var u = 0; u < layoutArr.length; u++) {
+              if (layoutArr[u].t === 'b') knownB[layoutArr[u].k] = true;
+            }
+            for (var v = 0; v < orderedBuiltin.length; v++) {
+              var kk = orderedBuiltin[v];
+              if (!knownB[kk]) layoutArr.push({ t: 'b', k: kk });
+            }
+          }
+          if (needMigrate && orderedBuiltin.length) {
+            migrateLegacyIndexKeysForDay(dayId, orderedBuiltin);
+          }
+          applyLayoutForDay(dayId, merged[dayId]);
+        }
+        setLayoutAll(merged);
+        if (needMigrate) {
+          try {
+            localStorage.setItem(MIGRATE_FLAG, '1');
+            localStorage.removeItem(LEGACY_MANIFEST);
+          } catch (err) {}
+        }
+        patchAllCustomArticlePhotos();
+      }
+
+      initAllTimelines();
+    })();
+  </script>
+  <script>
+    (function () {
+      var LS_PREFIX = 'okinawa26_';
+
+      function assign(el, suffix) {
+        if (!el) return;
+        var fullKey = LS_PREFIX + suffix;
+        el.setAttribute('contenteditable', 'true');
+        el.classList.add('live-editable');
+        el.setAttribute('data-key', fullKey);
+      }
+
+      function flashLive(el) {
+        el.classList.remove('live-saved-flash');
+        void el.offsetWidth;
+        el.classList.add('live-saved-flash');
+        setTimeout(function () {
+          el.classList.remove('live-saved-flash');
+        }, 600);
+      }
+
+      function ensureCardNote(card) {
+        if (!card) return null;
+        var existing = card.querySelector('.note');
+        if (existing) return existing;
+
+        var note = document.createElement('p');
+        note.className = 'note';
+        note.innerHTML = '';
+
+        var details = card.querySelectorAll('.detail');
+        var anchor = details.length ? details[details.length - 1] : card.querySelector('.title');
+        var next = anchor ? anchor.nextSibling : null;
+        card.insertBefore(note, next);
+        return note;
+      }
+
+      function noteIsEmpty(note) {
+        return !note || !(note.textContent || '').trim();
+      }
+
+      function refreshNoteVisibility(note) {
+        if (!note) return;
+        var shouldHide = noteIsEmpty(note) && document.body.classList.contains('view-mode');
+        note.style.display = shouldHide ? 'none' : 'block';
+      }
+
+      function refreshAllNoteVisibility() {
+        var notes = document.querySelectorAll('.note');
+        for (var i = 0; i < notes.length; i++) {
+          refreshNoteVisibility(notes[i]);
+        }
+      }
+
+      function initLiveEditables() {
+        assign(document.querySelector('header h1'), 'header_title');
+        for (var d = 1; d <= 5; d++) {
+          var dayId = 'day' + d;
+          var section = document.getElementById(dayId);
+          if (!section) continue;
+
+          var dateEl = section.querySelector('.day-head .date');
+          assign(dateEl, dayId + '_date');
+
+          var articles = section.querySelectorAll('.timeline > article');
+          for (var i = 0; i < articles.length; i++) {
+            var article = articles[i];
+            var prefix;
+            if (article.classList.contains('item--custom')) {
+              var cid = article.getAttribute('data-custom-id');
+              if (!cid) continue;
+              prefix = dayId + '_custom_' + cid;
+            } else {
+              var ak = article.getAttribute('data-article-key');
+              if (!ak) continue;
+              prefix = dayId + '_' + ak;
+            }
+            assign(article.querySelector('.time'), prefix + '_time');
+            assign(article.querySelector('.split-hint'), prefix + '_splithint');
+
+            var cards = article.querySelectorAll('.card');
+            for (var j = 0; j < cards.length; j++) {
+              var card = cards[j];
+              ensureCardNote(card);
+              assign(card.querySelector('.title'), prefix + '_' + j + '_title');
+              assign(card.querySelector('.meal-name'), prefix + '_' + j + '_mealname');
+              var details = card.querySelectorAll('.detail');
+              for (var k = 0; k < details.length; k++) {
+                assign(details[k], prefix + '_' + j + '_detail_' + k);
+              }
+              var notes = card.querySelectorAll('.note');
+              for (var n = 0; n < notes.length; n++) {
+                assign(notes[n], prefix + '_' + j + '_note_' + n);
+              }
+            }
+          }
+        }
+      }
+
+      function loadLiveFromStorage() {
+        var els = document.querySelectorAll('.live-editable[data-key]');
+        for (var i = 0; i < els.length; i++) {
+          var el = els[i];
+          var k = el.getAttribute('data-key');
+          if (!k) continue;
+          var v = localStorage.getItem(k);
+          if (v !== null && v !== '') el.innerHTML = v;
+        }
+      }
+
+      window.okinawaInitLiveEditables = initLiveEditables;
+      initLiveEditables();
+      loadLiveFromStorage();
+      refreshAllNoteVisibility();
+      window.refreshAllNoteVisibility = refreshAllNoteVisibility;
+      if (window.okinawaRefreshTimelineChrome) window.okinawaRefreshTimelineChrome();
+
+      window.okinawaWireCustomCard = function (article, dayId, customId) {
+        if (!article || !dayId || !customId) return;
+        var prefix = dayId + '_custom_' + customId;
+        assign(article.querySelector('.time'), prefix + '_time');
+        var card = article.querySelector('.card');
+        if (!card) return;
+        ensureCardNote(card);
+        assign(card.querySelector('.title'), prefix + '_0_title');
+        var details = card.querySelectorAll('.detail');
+        for (var k = 0; k < details.length; k++) {
+          assign(details[k], prefix + '_0_detail_' + k);
+        }
+        var notes = card.querySelectorAll('.note');
+        for (var n = 0; n < notes.length; n++) {
+          assign(notes[n], prefix + '_0_note_' + n);
+        }
+        if (document.body.classList.contains('view-mode')) {
+          var edited = article.querySelectorAll('.live-editable');
+          for (var i = 0; i < edited.length; i++) {
+            edited[i].setAttribute('contenteditable', 'false');
+          }
+        }
+        refreshAllNoteVisibility();
+      };
+
+      window.okinawaReloadLiveFromStorage = function () {
+        var els = document.querySelectorAll('.live-editable[data-key]');
+        for (var i = 0; i < els.length; i++) {
+          var el = els[i];
+          var k = el.getAttribute('data-key');
+          if (!k) continue;
+          var v = localStorage.getItem(k);
+          if (v !== null && v !== '') el.innerHTML = v;
+        }
+      };
+
+      document.addEventListener('input', function (e) {
+        var t = e.target;
+        if (!t.classList || !t.classList.contains('live-editable')) return;
+        var k = t.getAttribute('data-key');
+        if (!k) return;
+        try {
+          localStorage.setItem(k, t.innerHTML);
+          flashLive(t);
+        } catch (err) {}
+        if (t.classList.contains('note')) refreshNoteVisibility(t);
+      });
+    })();
+  </script>
+  <script>
+    (function () {
+      var stamp = document.getElementById('buildStamp');
+      if (!stamp) return;
+      var raw = document.lastModified;
+      if (!raw) {
+        stamp.textContent = '檔案最後更新：未知';
+        return;
+      }
+      var d = new Date(raw);
+      if (isNaN(d.getTime())) {
+        stamp.textContent = '檔案最後更新：' + raw;
+        return;
+      }
+      function pad(n) { return n < 10 ? '0' + n : String(n); }
+      var txt = d.getFullYear() + '/' + pad(d.getMonth() + 1) + '/' + pad(d.getDate()) +
+        ' ' + pad(d.getHours()) + ':' + pad(d.getMinutes()) + ':' + pad(d.getSeconds());
+      stamp.textContent = '檔案最後更新：' + txt;
+    })();
+  </script>
+  <div class="edit-floating-bar" aria-label="編輯與同步選單">
+    <span id="autoSyncBadge" class="auto-sync-badge" hidden title="已綁定檔案，編輯後約 1 秒自動寫入">已自動儲存到專案</span>
+    <button id="bindSyncFileBtn" class="share-sync-btn is-primary" type="button" title="選取或建立與網頁同層的 okinawa_live_state.json（僅需一次；建議用 Chrome／Edge）">① 綁定自動儲存（一次）</button>
+    <button id="saveSyncFileBtn" class="share-sync-btn" type="button" title="立刻再寫入一次（已綁定時寫入綁定檔；未綁定則下載檔案）">立即存檔</button>
+    <button id="exportShareStateBtn" class="share-sync-btn" type="button" title="另存含日期檔名的備份">備份另存…</button>
+    <input id="importShareStateInput" type="file" accept="application/json,.json" style="display:none" />
+    <button id="importShareStateBtn" class="share-sync-btn" type="button" title="選取 JSON 寫入此瀏覽器">匯入</button>
+    <button id="editToggleBtn" class="edit-toggle-btn" type="button" aria-label="切換編輯模式">Edit</button>
+  </div>
+  <div id="mapEditModal" class="map-edit-modal" aria-hidden="true">
+    <div class="map-edit-panel" role="dialog" aria-modal="true" aria-labelledby="mapEditTitle">
+      <h3 id="mapEditTitle">修改地圖按鈕</h3>
+      <div class="map-edit-field">
+        <label for="mapEditText">按鈕文字</label>
+        <input id="mapEditText" type="text" />
+      </div>
+      <div class="map-edit-field">
+        <label for="mapEditHref">地圖連結 URL</label>
+        <input id="mapEditHref" type="url" />
+      </div>
+      <div class="map-edit-actions">
+        <button id="mapEditDelete" class="map-edit-btn delete" type="button" hidden>刪除此按鈕</button>
+        <button id="mapEditCancel" class="map-edit-btn cancel" type="button">取消</button>
+        <button id="mapEditSave" class="map-edit-btn save" type="button">儲存</button>
+      </div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      var LS_PREFIX = 'okinawa26_';
+      var MAP_CUSTOM_KEY = LS_PREFIX + 'map_custom_rows';
+      var activeMapLink = null;
+      var activeMapRow = null;
+      var modal = document.getElementById('mapEditModal');
+      var titleEl = document.getElementById('mapEditTitle');
+      var textInput = document.getElementById('mapEditText');
+      var hrefInput = document.getElementById('mapEditHref');
+      var saveBtn = document.getElementById('mapEditSave');
+      var cancelBtn = document.getElementById('mapEditCancel');
+      var deleteBtn = document.getElementById('mapEditDelete');
+
+      function assignMapRowKeys() {
+        var rows = document.querySelectorAll('.map-row');
+        for (var i = 0; i < rows.length; i++) {
+          rows[i].setAttribute('data-map-row-key', 'row_' + i);
+        }
+      }
+
+      function removeOrphanMapRowsOnItems() {
+        var orphans = document.querySelectorAll('.timeline .item > .map-row');
+        for (var i = 0; i < orphans.length; i++) {
+          orphans[i].remove();
+        }
+      }
+
+      function ensureMapRowsForAllCards() {
+        var cards = document.querySelectorAll('.timeline .card');
+        for (var k = 0; k < cards.length; k++) {
+          var card = cards[k];
+          var existingRow = card.querySelector(':scope > .map-row');
+          if (existingRow) continue;
+
+          var row = document.createElement('div');
+          row.className = 'map-row';
+          var descBlock = card.querySelector(':scope > .desc-block');
+          if (descBlock) {
+            card.insertBefore(row, descBlock);
+          } else {
+            card.appendChild(row);
+          }
+        }
+      }
+
+      function assignMapKeys() {
+        var links = document.querySelectorAll('.map-btn');
+        for (var i = 0; i < links.length; i++) {
+          links[i].setAttribute('data-map-key', 'map_' + i);
+        }
+      }
+
+      function getCustomMapRows() {
+        try {
+          var raw = localStorage.getItem(MAP_CUSTOM_KEY);
+          if (!raw) return {};
+          var parsed = JSON.parse(raw);
+          return parsed && typeof parsed === 'object' ? parsed : {};
+        } catch (err) {
+          return {};
+        }
+      }
+
+      function saveCustomMapRows(data) {
+        try {
+          localStorage.setItem(MAP_CUSTOM_KEY, JSON.stringify(data));
+        } catch (err) {}
+      }
+
+      function createMapLink(text, href, isCustom) {
+        var link = document.createElement('a');
+        link.className = 'map-btn';
+        link.setAttribute('href', href);
+        link.setAttribute('target', '_blank');
+        link.setAttribute('rel', 'noopener noreferrer');
+        if (isCustom) {
+          link.setAttribute('data-map-custom', '1');
+          link.setAttribute('draggable', 'true');
+          link.title = '可拖曳排序，右鍵可刪除';
+        }
+        link.textContent = text;
+        return link;
+      }
+
+      function saveCustomRowFromDom(row) {
+        var rowKey = row && row.getAttribute('data-map-row-key');
+        if (!rowKey) return;
+        var links = row.querySelectorAll('.map-btn[data-map-custom="1"]');
+        var list = [];
+        for (var i = 0; i < links.length; i++) {
+          var text = (links[i].textContent || '').trim();
+          var href = links[i].getAttribute('href') || '';
+          if (!text || !href) continue;
+          list.push({ text: text, href: href });
+        }
+        var customRows = getCustomMapRows();
+        customRows[rowKey] = list;
+        saveCustomMapRows(customRows);
+      }
+
+      function ensureAddButtons() {
+        var rows = document.querySelectorAll('.map-row[data-map-row-key]');
+        for (var i = 0; i < rows.length; i++) {
+          var row = rows[i];
+          var btn = row.querySelector('.map-add-btn');
+          if (!btn) {
+            btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = 'map-add-btn';
+            btn.textContent = '+ 新增地圖';
+            row.appendChild(btn);
+          } else if (row.lastElementChild !== btn) {
+            row.appendChild(btn);
+          }
+        }
+      }
+
+      function renderCustomMapRows() {
+        var rows = document.querySelectorAll('.map-row[data-map-row-key]');
+        var customRows = getCustomMapRows();
+        for (var i = 0; i < rows.length; i++) {
+          var row = rows[i];
+          var oldCustom = row.querySelectorAll('.map-btn[data-map-custom="1"]');
+          for (var j = 0; j < oldCustom.length; j++) oldCustom[j].remove();
+          var rowKey = row.getAttribute('data-map-row-key');
+          var list = customRows[rowKey];
+          if (!Array.isArray(list)) continue;
+          for (var k = 0; k < list.length; k++) {
+            var item = list[k];
+            if (!item || !item.text || !item.href) continue;
+            var link = createMapLink(item.text, item.href, true);
+            row.appendChild(link);
+          }
+        }
+        ensureAddButtons();
+      }
+
+      function loadMapLinksFromStorage() {
+        var links = document.querySelectorAll('.map-btn[data-map-key]');
+        for (var i = 0; i < links.length; i++) {
+          var link = links[i];
+          var key = link.getAttribute('data-map-key');
+          if (!key) continue;
+          var savedHref = localStorage.getItem(LS_PREFIX + key + '_href');
+          if (savedHref) link.setAttribute('href', savedHref);
+          var savedText = localStorage.getItem(LS_PREFIX + key + '_text');
+          if (savedText) link.textContent = savedText;
+        }
+      }
+
+      function bindMapLinkEditor() {
+        document.addEventListener('click', function (e) {
+          var addBtn = e.target.closest && e.target.closest('.map-add-btn');
+          if (addBtn) {
+            if (document.body.classList.contains('view-mode')) return;
+            e.preventDefault();
+            var row = addBtn.closest('.map-row[data-map-row-key]');
+            openMapCreator(row);
+            return;
+          }
+
+          var link = e.target.closest && e.target.closest('.map-btn[data-map-key]');
+          if (!link) return;
+          // 僅在編輯模式攔截，避免一般瀏覽時影響跳轉。
+          if (document.body.classList.contains('view-mode')) return;
+
+          e.preventDefault();
+          openMapEditor(link);
+        });
+
+        document.addEventListener('contextmenu', function (e) {
+          var link = e.target.closest && e.target.closest('.map-btn[data-map-custom="1"]');
+          if (!link) return;
+          if (document.body.classList.contains('view-mode')) return;
+          e.preventDefault();
+          if (!window.confirm('刪除這個自訂地圖按鈕？')) return;
+          var row = link.closest('.map-row[data-map-row-key]');
+          link.remove();
+          if (row) saveCustomRowFromDom(row);
+          assignMapKeys();
+          loadMapLinksFromStorage();
+        });
+      }
+
+      function bindDragSortForCustomMaps() {
+        var dragging = null;
+
+        document.addEventListener('dragstart', function (e) {
+          var link = e.target.closest && e.target.closest('.map-btn[data-map-custom="1"]');
+          if (!link) return;
+          if (document.body.classList.contains('view-mode')) {
+            e.preventDefault();
+            return;
+          }
+          dragging = link;
+          link.classList.add('is-dragging');
+          if (e.dataTransfer) {
+            e.dataTransfer.effectAllowed = 'move';
+            e.dataTransfer.setData('text/plain', 'map-custom');
+          }
+        });
+
+        document.addEventListener('dragend', function () {
+          if (!dragging) return;
+          dragging.classList.remove('is-dragging');
+          dragging = null;
+        });
+
+        document.addEventListener('dragover', function (e) {
+          if (!dragging) return;
+          var row = e.target.closest && e.target.closest('.map-row[data-map-row-key]');
+          if (!row || row !== dragging.parentElement) return;
+          e.preventDefault();
+        });
+
+        document.addEventListener('drop', function (e) {
+          if (!dragging) return;
+          var row = e.target.closest && e.target.closest('.map-row[data-map-row-key]');
+          if (!row || row !== dragging.parentElement) return;
+          e.preventDefault();
+
+          var targetCustom = e.target.closest && e.target.closest('.map-btn[data-map-custom="1"]');
+          if (targetCustom && targetCustom !== dragging) {
+            var rect = targetCustom.getBoundingClientRect();
+            var after = e.clientX > rect.left + rect.width / 2;
+            if (after) {
+              targetCustom.insertAdjacentElement('afterend', dragging);
+            } else {
+              targetCustom.insertAdjacentElement('beforebegin', dragging);
+            }
+          } else {
+            var addBtn = row.querySelector('.map-add-btn');
+            if (addBtn) row.insertBefore(dragging, addBtn);
+            else row.appendChild(dragging);
+          }
+          saveCustomRowFromDom(row);
+          assignMapKeys();
+          loadMapLinksFromStorage();
+        });
+      }
+
+      function openMapEditor(link) {
+        if (!modal || !textInput || !hrefInput) return;
+        activeMapLink = link;
+        activeMapRow = null;
+        if (titleEl) titleEl.textContent = '修改地圖按鈕';
+        textInput.value = (link.textContent || '').trim();
+        hrefInput.value = link.getAttribute('href') || '';
+        if (deleteBtn) deleteBtn.hidden = false;
+        modal.classList.add('is-open');
+        modal.setAttribute('aria-hidden', 'false');
+        textInput.focus();
+      }
+
+      function openMapCreator(row) {
+        if (!modal || !textInput || !hrefInput || !row) return;
+        activeMapLink = null;
+        activeMapRow = row;
+        if (titleEl) titleEl.textContent = '新增地圖按鈕';
+        textInput.value = '📍 ';
+        hrefInput.value = '';
+        if (deleteBtn) deleteBtn.hidden = true;
+        modal.classList.add('is-open');
+        modal.setAttribute('aria-hidden', 'false');
+        textInput.focus();
+      }
+
+      function closeMapEditor() {
+        if (!modal) return;
+        modal.classList.remove('is-open');
+        modal.setAttribute('aria-hidden', 'true');
+        activeMapLink = null;
+        activeMapRow = null;
+        if (deleteBtn) deleteBtn.hidden = true;
+      }
+
+      function deleteActiveMapLink() {
+        if (!activeMapLink) return;
+        if (!window.confirm('刪除這個地圖按鈕？')) return;
+        var link = activeMapLink;
+        var isCustom = link.getAttribute('data-map-custom') === '1';
+        var row = link.closest('.map-row[data-map-row-key]');
+        if (isCustom) {
+          link.remove();
+          if (row) saveCustomRowFromDom(row);
+        } else {
+          var key = link.getAttribute('data-map-key');
+          link.remove();
+          if (key) {
+            try {
+              localStorage.removeItem(LS_PREFIX + key + '_href');
+              localStorage.removeItem(LS_PREFIX + key + '_text');
+            } catch (err) {}
+          }
+        }
+        assignMapKeys();
+        loadMapLinksFromStorage();
+        closeMapEditor();
+      }
+
+      function saveMapEditor() {
+        var nextText = textInput ? textInput.value.trim() : '';
+        var nextHref = hrefInput ? hrefInput.value.trim() : '';
+        if (!nextText || !nextHref) return;
+        if (activeMapRow && !activeMapLink) {
+          var rowKey = activeMapRow.getAttribute('data-map-row-key');
+          if (!rowKey) {
+            closeMapEditor();
+            return;
+          }
+          var customRows = getCustomMapRows();
+          if (!Array.isArray(customRows[rowKey])) customRows[rowKey] = [];
+          customRows[rowKey].push({ text: nextText, href: nextHref });
+          saveCustomMapRows(customRows);
+          renderCustomMapRows();
+          assignMapKeys();
+          loadMapLinksFromStorage();
+          closeMapEditor();
+          return;
+        }
+        if (!activeMapLink) return;
+        activeMapLink.textContent = nextText;
+        activeMapLink.setAttribute('href', nextHref);
+        var key = activeMapLink.getAttribute('data-map-key');
+        if (!key) {
+          closeMapEditor();
+          return;
+        }
+        try {
+          localStorage.setItem(LS_PREFIX + key + '_href', nextHref);
+          localStorage.setItem(LS_PREFIX + key + '_text', nextText);
+        } catch (err) {}
+        closeMapEditor();
+      }
+
+      if (saveBtn) saveBtn.addEventListener('click', saveMapEditor);
+      if (cancelBtn) cancelBtn.addEventListener('click', closeMapEditor);
+      if (deleteBtn) deleteBtn.addEventListener('click', deleteActiveMapLink);
+      if (modal) {
+        modal.addEventListener('click', function (e) {
+          if (e.target === modal) closeMapEditor();
+        });
+      }
+      document.addEventListener('keydown', function (e) {
+        if (!modal || !modal.classList.contains('is-open')) return;
+        if (e.key === 'Escape') {
+          e.preventDefault();
+          closeMapEditor();
+        }
+        if (e.key === 'Enter' && (e.target === textInput || e.target === hrefInput)) {
+          e.preventDefault();
+          saveMapEditor();
+        }
+      });
+
+      removeOrphanMapRowsOnItems();
+      ensureMapRowsForAllCards();
+      assignMapRowKeys();
+      renderCustomMapRows();
+      assignMapKeys();
+      loadMapLinksFromStorage();
+      bindMapLinkEditor();
+      bindDragSortForCustomMaps();
+
+      window.okinawaRefreshMaps = function () {
+        removeOrphanMapRowsOnItems();
+        ensureMapRowsForAllCards();
+        assignMapRowKeys();
+        renderCustomMapRows();
+        assignMapKeys();
+        loadMapLinksFromStorage();
+      };
+    })();
+  </script>
+  <script>
+    (function () {
+      var DB_NAME = 'okinawa26_photoDB';
+      var STORE_NAME = 'photos';
+      var db = null;
+      var pendingImg = null;
+      var pendingKey = null;
+      var fileInput = document.getElementById('photoFileInput');
+
+      function openDB(cb) {
+        if (!window.indexedDB) {
+          cb(null);
+          return;
+        }
+        if (db) {
+          cb(db);
+          return;
+        }
+        var req = indexedDB.open(DB_NAME, 1);
+        req.onupgradeneeded = function (e) {
+          var database = e.target.result;
+          if (!database.objectStoreNames.contains(STORE_NAME)) {
+            database.createObjectStore(STORE_NAME);
+          }
+        };
+        req.onsuccess = function (e) {
+          db = e.target.result;
+          cb(db);
+        };
+        req.onerror = function () {
+          cb(null);
+        };
+      }
+
+      function savePhoto(key, dataUrl, cb) {
+        openDB(function (database) {
+          if (!database) {
+            cb(false);
+            return;
+          }
+          var tx = database.transaction(STORE_NAME, 'readwrite');
+          var store = tx.objectStore(STORE_NAME);
+          var req = store.put(dataUrl, key);
+          req.onsuccess = function () { cb(true); };
+          req.onerror = function () { cb(false); };
+        });
+      }
+
+      function loadPhoto(key, cb) {
+        openDB(function (database) {
+          if (!database) {
+            cb(null);
+            return;
+          }
+          var tx = database.transaction(STORE_NAME, 'readonly');
+          var store = tx.objectStore(STORE_NAME);
+          var req = store.get(key);
+          req.onsuccess = function () { cb(req.result || null); };
+          req.onerror = function () { cb(null); };
+        });
+      }
+
+      function deletePhoto(key, cb) {
+        openDB(function (database) {
+          if (!database) {
+            cb(false);
+            return;
+          }
+          var tx = database.transaction(STORE_NAME, 'readwrite');
+          var store = tx.objectStore(STORE_NAME);
+          var req = store.delete(key);
+          req.onsuccess = function () { cb(true); };
+          req.onerror = function () { cb(false); };
+        });
+      }
+
+      function markFigureState(img, hasUserPhoto) {
+        if (!img) return;
+        var figure = img.closest('.stop-photo');
+        if (!figure) return;
+        if (hasUserPhoto) figure.classList.add('has-user-photo');
+        else figure.classList.remove('has-user-photo');
+      }
+
+      function applyUserPhotos() {
+        var images = document.querySelectorAll('img[data-photo]');
+        for (var i = 0; i < images.length; i++) {
+          (function (img) {
+            var key = img.getAttribute('data-photo');
+            if (!key) return;
+            if (!img.dataset.defaultSrc) {
+              img.dataset.defaultSrc = img.getAttribute('src') || '';
+            }
+            loadPhoto(key, function (storedDataUrl) {
+              if (!storedDataUrl) {
+                markFigureState(img, false);
+                return;
+              }
+              img.src = storedDataUrl;
+              markFigureState(img, true);
+            });
+          })(images[i]);
+        }
+      }
+
+      function initUploadOverlays() {
+        var figures = document.querySelectorAll('.stop-photo');
+        for (var i = 0; i < figures.length; i++) {
+          var figure = figures[i];
+          var img = figure.querySelector('img[data-photo]');
+          if (!img) continue;
+          if (!img.dataset.defaultSrc) {
+            img.dataset.defaultSrc = img.getAttribute('src') || '';
+          }
+
+          var overlay = figure.querySelector('.photo-upload-overlay');
+          if (!overlay) {
+            overlay = document.createElement('button');
+            overlay.type = 'button';
+            overlay.className = 'photo-upload-overlay';
+            overlay.textContent = '📷 上傳照片';
+            figure.appendChild(overlay);
+          }
+
+          var resetBtn = figure.querySelector('.photo-reset-btn');
+          if (!resetBtn) {
+            resetBtn = document.createElement('button');
+            resetBtn.type = 'button';
+            resetBtn.className = 'photo-reset-btn';
+            resetBtn.textContent = '✕ 還原';
+            figure.appendChild(resetBtn);
+          }
+
+          overlay.addEventListener('click', (function (photoKey, targetImg) {
+            return function () {
+              if (!fileInput || document.body.classList.contains('view-mode')) return;
+              pendingKey = photoKey;
+              pendingImg = targetImg;
+              fileInput.value = '';
+              fileInput.click();
+            };
+          })(img.getAttribute('data-photo'), img));
+
+          resetBtn.addEventListener('click', (function (photoKey, targetImg) {
+            return function () {
+              if (!photoKey) return;
+              deletePhoto(photoKey, function () {
+                targetImg.src = targetImg.dataset.defaultSrc || targetImg.getAttribute('src') || '';
+                markFigureState(targetImg, false);
+              });
+            };
+          })(img.getAttribute('data-photo'), img));
+        }
+      }
+
+      if (fileInput) {
+        fileInput.addEventListener('change', function (e) {
+          var file = e.target.files && e.target.files[0];
+          if (!file || !pendingImg || !pendingKey) return;
+          var reader = new FileReader();
+          reader.onload = function () {
+            var dataUrl = reader.result;
+            if (typeof dataUrl !== 'string' || !dataUrl) return;
+            savePhoto(pendingKey, dataUrl, function (ok) {
+              if (!ok) return;
+              pendingImg.src = dataUrl;
+              markFigureState(pendingImg, true);
+              if (window.okinawaScheduleFileAutoSync) window.okinawaScheduleFileAutoSync();
+            });
+          };
+          reader.readAsDataURL(file);
+        });
+      }
+
+      function runPhotoInitAfterDb() {
+        applyUserPhotos();
+        initUploadOverlays();
+      }
+
+      openDB(function (database) {
+        var pending = window.__OKINAWA_PENDING_PHOTO_BUNDLE;
+        if (pending !== undefined) {
+          try {
+            delete window.__OKINAWA_PENDING_PHOTO_BUNDLE;
+          } catch (e0) {}
+          if (database) {
+            try {
+              var tx = database.transaction(STORE_NAME, 'readwrite');
+              var store = tx.objectStore(STORE_NAME);
+              store.clear();
+              var pkeys = Object.keys(pending || {});
+              for (var p = 0; p < pkeys.length; p++) {
+                store.put(pending[pkeys[p]], pkeys[p]);
+              }
+              tx.oncomplete = function () {
+                runPhotoInitAfterDb();
+              };
+              tx.onerror = function () {
+                runPhotoInitAfterDb();
+              };
+              return;
+            } catch (err) {
+              runPhotoInitAfterDb();
+              return;
+            }
+          }
+        }
+        runPhotoInitAfterDb();
+      });
+
+      window.okinawaRefreshPhotos = function () {
+        applyUserPhotos();
+        initUploadOverlays();
+      };
+
+      function collectLocalState() {
+        var ls = {};
+        var i;
+        var k;
+        for (i = 0; i < localStorage.length; i++) {
+          k = localStorage.key(i);
+          if (k && k.indexOf('okinawa26_') === 0) {
+            ls[k] = localStorage.getItem(k);
+          }
+        }
+        return ls;
+      }
+
+      window.okinawaDumpStateForShare = function (cb) {
+        var ls = collectLocalState();
+        openDB(function (database) {
+          if (!database) {
+            cb({
+              v: 1,
+              exportedAt: new Date().toISOString(),
+              localStorage: ls,
+              photos: {}
+            });
+            return;
+          }
+          var tx = database.transaction(STORE_NAME, 'readonly');
+          var store = tx.objectStore(STORE_NAME);
+          var photos = {};
+          if (!store.getAllKeys || !store.getAll) {
+            cb({
+              v: 1,
+              exportedAt: new Date().toISOString(),
+              localStorage: ls,
+              photos: photos
+            });
+            return;
+          }
+          var rKeys = store.getAllKeys();
+          rKeys.onsuccess = function () {
+            var keys = rKeys.result || [];
+            var rVals = store.getAll();
+            rVals.onsuccess = function () {
+              var vals = rVals.result || [];
+              for (var j = 0; j < keys.length; j++) {
+                photos[keys[j]] = vals[j];
+              }
+              cb({
+                v: 1,
+                exportedAt: new Date().toISOString(),
+                localStorage: ls,
+                photos: photos
+              });
+            };
+            rVals.onerror = function () {
+              cb({
+                v: 1,
+                exportedAt: new Date().toISOString(),
+                localStorage: ls,
+                photos: photos
+              });
+            };
+          };
+          rKeys.onerror = function () {
+            cb({
+              v: 1,
+              exportedAt: new Date().toISOString(),
+              localStorage: ls,
+              photos: photos
+            });
+          };
+        });
+      };
+
+      window.okinawaApplyShareState = function (bundle, cb) {
+        if (!bundle || bundle.v !== 1 || !bundle.localStorage || typeof bundle.localStorage !== 'object') {
+          cb(false, '檔案格式不對，請選擇本頁匯出的 JSON。');
+          return;
+        }
+        var toRemove = [];
+        var ri;
+        var rk;
+        try {
+          for (ri = 0; ri < localStorage.length; ri++) {
+            rk = localStorage.key(ri);
+            if (rk && rk.indexOf('okinawa26_') === 0) toRemove.push(rk);
+          }
+          for (ri = 0; ri < toRemove.length; ri++) {
+            localStorage.removeItem(toRemove[ri]);
+          }
+          var lk = Object.keys(bundle.localStorage);
+          for (ri = 0; ri < lk.length; ri++) {
+            rk = lk[ri];
+            if (rk.indexOf('okinawa26_') !== 0) continue;
+            var val = bundle.localStorage[rk];
+            if (typeof val === 'string') localStorage.setItem(rk, val);
+          }
+        } catch (err) {
+          cb(false, '無法寫入瀏覽器儲存，請檢查容量或隱私設定。');
+          return;
+        }
+        var photos = bundle.photos && typeof bundle.photos === 'object' ? bundle.photos : {};
+        openDB(function (database) {
+          if (!database) {
+            cb(true);
+            return;
+          }
+          try {
+            var tx = database.transaction(STORE_NAME, 'readwrite');
+            var store = tx.objectStore(STORE_NAME);
+            store.clear();
+            var pkeys = Object.keys(photos);
+            for (var p = 0; p < pkeys.length; p++) {
+              store.put(photos[pkeys[p]], pkeys[p]);
+            }
+            tx.oncomplete = function () { cb(true); };
+            tx.onerror = function () { cb(false, '照片資料寫入失敗。'); };
+          } catch (err2) {
+            cb(false, '照片資料庫無法開啟。');
+          }
+        });
+      };
+    })();
+  </script>
+  <script>
+    (function () {
+      window.__OKINAWA_SYNC_FILE_HANDLE_BOUND = false;
+      var SYNC_DB = 'okinawa26_fileSyncDB';
+      var SYNC_STORE = 'handles';
+      var cachedHandle = null;
+      var debounceT = null;
+      var DEBOUNCE_MS = 1100;
+
+      function openSyncIDB(cb) {
+        var r = indexedDB.open(SYNC_DB, 1);
+        r.onupgradeneeded = function (e) {
+          if (!e.target.result.objectStoreNames.contains(SYNC_STORE)) {
+            e.target.result.createObjectStore(SYNC_STORE);
+          }
+        };
+        r.onsuccess = function () {
+          cb(r.result);
+        };
+        r.onerror = function () {
+          cb(null);
+        };
+      }
+
+      function getHandleFromIDB(cb) {
+        openSyncIDB(function (db) {
+          if (!db) {
+            cb(null);
+            return;
+          }
+          var tx = db.transaction(SYNC_STORE, 'readonly');
+          var req = tx.objectStore(SYNC_STORE).get('live');
+          req.onsuccess = function () {
+            cb(req.result || null);
+          };
+          req.onerror = function () {
+            cb(null);
+          };
+        });
+      }
+
+      function putHandleToIDB(handle, cb) {
+        openSyncIDB(function (db) {
+          if (!db) {
+            cb(false);
+            return;
+          }
+          var tx = db.transaction(SYNC_STORE, 'readwrite');
+          tx.objectStore(SYNC_STORE).put(handle, 'live');
+          tx.oncomplete = function () {
+            cb(true);
+          };
+          tx.onerror = function () {
+            cb(false);
+          };
+        });
+      }
+
+      function ensurePerm(handle, cb) {
+        if (!handle || typeof handle.queryPermission !== 'function') {
+          cb(!!handle);
+          return;
+        }
+        handle
+          .queryPermission({ mode: 'readwrite' })
+          .then(function (s) {
+            if (s === 'granted') {
+              cb(true);
+              return null;
+            }
+            return handle.requestPermission({ mode: 'readwrite' });
+          })
+          .then(function (s) {
+            if (s === null || s === undefined) return;
+            cb(s === 'granted');
+          })
+          .catch(function () {
+            cb(false);
+          });
+      }
+
+      function writeBundleToHandle(handle, bundle, cb) {
+        ensurePerm(handle, function (granted) {
+          if (!granted || !handle.createWritable) {
+            cb(false);
+            return;
+          }
+          handle
+            .createWritable()
+            .then(function (w) {
+              return w.write(JSON.stringify(bundle)).then(function () {
+                return w.close();
+              });
+            })
+            .then(function () {
+              cb(true);
+            })
+            .catch(function () {
+              cb(false);
+            });
+        });
+      }
+
+      function flushToBoundFile(cb) {
+        if (!window.okinawaDumpStateForShare) {
+          if (cb) cb(false);
+          return;
+        }
+        if (!cachedHandle) {
+          if (cb) cb(false);
+          return;
+        }
+        window.okinawaDumpStateForShare(function (bundle) {
+          writeBundleToHandle(cachedHandle, bundle, function (ok) {
+            if (cb) cb(ok);
+          });
+        });
+      }
+
+      function scheduleAutoSave() {
+        if (!window.__OKINAWA_SYNC_FILE_HANDLE_BOUND || !cachedHandle) return;
+        clearTimeout(debounceT);
+        debounceT = setTimeout(function () {
+          flushToBoundFile(null);
+        }, DEBOUNCE_MS);
+      }
+
+      window.okinawaScheduleFileAutoSync = scheduleAutoSave;
+      window.okinawaTryFlushBoundSyncFile = flushToBoundFile;
+
+      var origSetItem = Storage.prototype.setItem;
+      Storage.prototype.setItem = function (key) {
+        origSetItem.apply(this, arguments);
+        if (typeof key === 'string' && key.indexOf('okinawa26_') === 0) {
+          scheduleAutoSave();
+        }
+      };
+
+      function refreshSyncUI() {
+        var bindBtn = document.getElementById('bindSyncFileBtn');
+        var badge = document.getElementById('autoSyncBadge');
+        if (!bindBtn || !badge) return;
+        if (window.__OKINAWA_SYNC_FILE_HANDLE_BOUND) {
+          bindBtn.hidden = true;
+          badge.hidden = false;
+        } else {
+          bindBtn.hidden = false;
+          badge.hidden = true;
+        }
+      }
+
+      function initSyncFromIDB() {
+        getHandleFromIDB(function (h) {
+          if (!h) {
+            refreshSyncUI();
+            return;
+          }
+          ensurePerm(h, function (granted) {
+            if (!granted) {
+              cachedHandle = null;
+              window.__OKINAWA_SYNC_FILE_HANDLE_BOUND = false;
+              refreshSyncUI();
+              return;
+            }
+            cachedHandle = h;
+            window.__OKINAWA_SYNC_FILE_HANDLE_BOUND = true;
+            refreshSyncUI();
+          });
+        });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initSyncFromIDB);
+      } else {
+        initSyncFromIDB();
+      }
+
+      document.addEventListener('DOMContentLoaded', function () {
+        var bindBtn = document.getElementById('bindSyncFileBtn');
+        if (!bindBtn) return;
+        bindBtn.addEventListener('click', function () {
+          if (typeof window.showSaveFilePicker !== 'function') {
+            window.alert(
+              '此瀏覽器不支援直接寫入專案資料夾。請改用 Google Chrome 或 Microsoft Edge 再按「綁定自動儲存」，或按「立即存檔」下載 JSON 後手動放到與網頁同一資料夾。'
+            );
+            return;
+          }
+          if (!window.okinawaDumpStateForShare) return;
+          window
+            .showSaveFilePicker({
+              suggestedName: 'okinawa_live_state.json',
+              types: [
+                {
+                  description: 'JSON',
+                  accept: { 'application/json': ['.json'] }
+                }
+              ]
+            })
+            .then(function (handle) {
+              return new Promise(function (resolve, reject) {
+                window.okinawaDumpStateForShare(function (bundle) {
+                  writeBundleToHandle(handle, bundle, function (ok) {
+                    if (!ok) reject(new Error('write'));
+                    else resolve(handle);
+                  });
+                });
+              });
+            })
+            .then(function (handle) {
+              return new Promise(function (resolve, reject) {
+                putHandleToIDB(handle, function (idbOk) {
+                  if (!idbOk) reject(new Error('idb'));
+                  else resolve(handle);
+                });
+              });
+            })
+            .then(function (handle) {
+              cachedHandle = handle;
+              window.__OKINAWA_SYNC_FILE_HANDLE_BOUND = true;
+              refreshSyncUI();
+            })
+            .catch(function () {});
+        });
+      });
+    })();
+  </script>
+  <script>
+    (function () {
+      var saveSyncBtn = document.getElementById('saveSyncFileBtn');
+      var exportBtn = document.getElementById('exportShareStateBtn');
+      var importBtn = document.getElementById('importShareStateBtn');
+      var importInput = document.getElementById('importShareStateInput');
+      if (!saveSyncBtn || !exportBtn || !importBtn || !importInput) return;
+
+      function downloadJson(obj, filename) {
+        var blob = new Blob([JSON.stringify(obj)], { type: 'application/json;charset=utf-8' });
+        var a = document.createElement('a');
+        var url = URL.createObjectURL(blob);
+        a.href = url;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+      }
+
+      saveSyncBtn.addEventListener('click', function () {
+        if (window.__OKINAWA_SYNC_FILE_HANDLE_BOUND && window.okinawaTryFlushBoundSyncFile) {
+          saveSyncBtn.disabled = true;
+          window.okinawaTryFlushBoundSyncFile(function (ok) {
+            saveSyncBtn.disabled = false;
+            if (ok) return;
+            window.okinawaDumpStateForShare(function (bundle) {
+              downloadJson(bundle, 'okinawa_live_state.json');
+            });
+          });
+          return;
+        }
+        saveSyncBtn.disabled = true;
+        window.okinawaDumpStateForShare(function (bundle) {
+          saveSyncBtn.disabled = false;
+          downloadJson(bundle, 'okinawa_live_state.json');
+        });
+      });
+
+      exportBtn.addEventListener('click', function () {
+        exportBtn.disabled = true;
+        window.okinawaDumpStateForShare(function (bundle) {
+          exportBtn.disabled = false;
+          var stamp = new Date();
+          function pad(n) { return n < 10 ? '0' + n : String(n); }
+          var name =
+            'okinawa_itinerary_backup_' +
+            stamp.getFullYear() +
+            pad(stamp.getMonth() + 1) +
+            pad(stamp.getDate()) +
+            '_' +
+            pad(stamp.getHours()) +
+            pad(stamp.getMinutes()) +
+            '.json';
+          downloadJson(bundle, name);
+        });
+      });
+
+      importBtn.addEventListener('click', function () {
+        importInput.value = '';
+        importInput.click();
+      });
+
+      importInput.addEventListener('change', function () {
+        var file = importInput.files && importInput.files[0];
+        if (!file || !window.okinawaApplyShareState) return;
+        var reader = new FileReader();
+        reader.onload = function () {
+          try {
+            var bundle = JSON.parse(reader.result);
+            window.okinawaApplyShareState(bundle, function (ok, msg) {
+              if (!ok) {
+                window.alert(msg || '匯入失敗');
+                return;
+              }
+              window.location.reload();
+            });
+          } catch (e) {
+            window.alert('無法讀取 JSON：' + (e.message || '格式錯誤'));
+          }
+        };
+        reader.readAsText(file, 'utf-8');
+      });
+    })();
+  </script>
+  <script>
+    (function () {
+      var KEY = 'okinawa26_headerExpanded';
+      var btn = document.getElementById('headerCollapseBtn');
+      if (!btn) return;
+
+      function setExpanded(expanded) {
+        document.body.classList.toggle('header-collapsed', !expanded);
+        btn.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+        btn.textContent = expanded ? '收合行程介紹' : '展開行程介紹';
+      }
+
+      function getSavedExpanded() {
+        try {
+          return localStorage.getItem(KEY) === '1';
+        } catch (err) {
+          return false;
+        }
+      }
+
+      setExpanded(getSavedExpanded());
+
+      btn.addEventListener('click', function () {
+        var expanded = btn.getAttribute('aria-expanded') === 'true';
+        var next = !expanded;
+        setExpanded(next);
+        try {
+          localStorage.setItem(KEY, next ? '1' : '0');
+        } catch (err) {}
+      });
+    })();
+  </script>
+  <script>
+    (function () {
+      var MODE_KEY = 'okinawa26_editMode';
+      var btn = document.getElementById('editToggleBtn');
+      if (!btn) return;
+
+      function setEditableBySelector(selector, editable) {
+        var nodes = document.querySelectorAll(selector);
+        for (var i = 0; i < nodes.length; i++) {
+          nodes[i].setAttribute('contenteditable', editable ? 'true' : 'false');
+        }
+      }
+
+      function setMode(mode) {
+        var isEdit = mode === 'edit';
+        setEditableBySelector('.live-editable', isEdit);
+        setEditableBySelector('.desc-field', isEdit);
+        document.body.classList.toggle('view-mode', !isEdit);
+        if (window.refreshAllNoteVisibility) {
+          window.refreshAllNoteVisibility();
+        }
+        if (isEdit) {
+          btn.textContent = '確認';
+          btn.classList.remove('mode-view');
+          btn.classList.add('mode-edit');
+          btn.setAttribute('aria-label', '鎖定文字');
+        } else {
+          btn.textContent = 'Edit';
+          btn.classList.remove('mode-edit');
+          btn.classList.add('mode-view');
+          btn.setAttribute('aria-label', '開始編輯文字');
+        }
+      }
+
+      function getSavedMode() {
+        var saved = localStorage.getItem(MODE_KEY);
+        return saved === 'edit' ? 'edit' : 'view';
+      }
+
+      setMode(getSavedMode());
+
+      btn.addEventListener('click', function () {
+        var next = btn.classList.contains('mode-edit') ? 'view' : 'edit';
+        setMode(next);
+        try {
+          localStorage.setItem(MODE_KEY, next);
+        } catch (err) {}
+      });
+    })();
+  </script>
+  <script>
+    (function () {
+      if (!window.__OKINAWA_SYNC_FILE_APPLIED) return;
+      var foot = document.querySelector('footer');
+      if (!foot) return;
+      var note = document.createElement('span');
+      note.style.display = 'block';
+      note.style.marginTop = '0.35rem';
+      note.style.fontSize = '0.85em';
+      note.style.color = '#2e7d32';
+      note.style.fontWeight = '600';
+      note.textContent = '本次已自資料夾載入 okinawa_live_state.json。';
+      foot.appendChild(note);
+    })();
+  </script>
+</body>
+</html>
