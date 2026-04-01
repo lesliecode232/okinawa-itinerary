@@ -3,6 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- 減少 GitHub Pages／瀏覽器快取整頁，避免 okinawa_live_state.json 已更新卻仍顯示舊字 -->
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
   <script>
     (function () {
       try {
@@ -1606,14 +1609,8 @@
   <script>
     (function () {
       window.__OKINAWA_SYNC_FILE_APPLIED = false;
-      if (location.protocol === 'file:') return;
-      try {
-        var xhr = new XMLHttpRequest();
-        xhr.open('GET', 'okinawa_live_state.json?' + Date.now(), false);
-        xhr.send(null);
-        if (xhr.status !== 200) return;
-        var bundle = JSON.parse(xhr.responseText);
-        if (!bundle || bundle.v !== 1 || !bundle.localStorage || typeof bundle.localStorage !== 'object') return;
+      window.__OKINAWA_APPLY_LIVE_BUNDLE = function (bundle) {
+        if (!bundle || bundle.v !== 1 || !bundle.localStorage || typeof bundle.localStorage !== 'object') return false;
         var toRemove = [];
         var i;
         var k;
@@ -1632,6 +1629,19 @@
         window.__OKINAWA_PENDING_PHOTO_BUNDLE =
           bundle.photos && typeof bundle.photos === 'object' ? bundle.photos : {};
         window.__OKINAWA_SYNC_FILE_APPLIED = true;
+        return true;
+      };
+      if (location.protocol === 'file:') return;
+      try {
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', 'okinawa_live_state.json?t=' + Date.now() + '&r=' + Math.random(), false);
+        try {
+          xhr.setRequestHeader('Cache-Control', 'no-cache');
+          xhr.setRequestHeader('Pragma', 'no-cache');
+        } catch (e1) {}
+        xhr.send(null);
+        if (xhr.status !== 200) return;
+        window.__OKINAWA_APPLY_LIVE_BUNDLE(JSON.parse(xhr.responseText));
       } catch (err) {}
     })();
   </script>
@@ -1672,6 +1682,7 @@
       }
 
       loadAll();
+      window.__OKINAWA_RELOAD_DESC_FIELDS = loadAll;
 
       document.addEventListener('input', function (e) {
         var t = e.target;
@@ -3423,6 +3434,28 @@
       note.style.fontWeight = '600';
       note.textContent = '本次已自資料夾載入 okinawa_live_state.json。';
       foot.appendChild(note);
+    })();
+  </script>
+  <script>
+    (function () {
+      if (location.protocol === 'file:') return;
+      window.addEventListener('load', function () {
+        if (typeof window.__OKINAWA_APPLY_LIVE_BUNDLE !== 'function') return;
+        fetch('okinawa_live_state.json?nocache=' + Date.now(), { cache: 'no-store' })
+          .then(function (r) {
+            return r.ok ? r.json() : null;
+          })
+          .then(function (bundle) {
+            if (!bundle) return;
+            if (
+              window.__OKINAWA_APPLY_LIVE_BUNDLE(bundle) &&
+              typeof window.__OKINAWA_RELOAD_DESC_FIELDS === 'function'
+            ) {
+              window.__OKINAWA_RELOAD_DESC_FIELDS();
+            }
+          })
+          .catch(function () {});
+      });
     })();
   </script>
 </body>
