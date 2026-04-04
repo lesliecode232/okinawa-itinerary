@@ -1059,6 +1059,83 @@
     body.view-mode .photo-reset-btn {
       display: none !important;
     }
+    .header-story-edit-btn {
+      display: none;
+      margin-top: 0.45rem;
+      padding: 0.3rem 0.7rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.45);
+      background: rgba(255, 255, 255, 0.18);
+      color: #fff;
+      font-size: 0.78rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .header-story-edit-btn:hover { background: rgba(255, 255, 255, 0.28); }
+    body:not(.view-mode) .header-story-edit-btn { display: inline-block; }
+    .story-edit-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 1002;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0, 0, 0, 0.45);
+      padding: 1rem;
+    }
+    .story-edit-modal.is-open { display: flex; }
+    .story-edit-panel {
+      width: min(94vw, 40rem);
+      background: #fff;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.22);
+      padding: 1.1rem;
+    }
+    .story-edit-panel h3 {
+      margin: 0 0 0.6rem;
+      font-size: 1rem;
+      color: var(--ocean);
+    }
+    .story-edit-panel p.hint {
+      margin: 0 0 0.6rem;
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+    .story-edit-textarea {
+      width: 100%;
+      min-height: 14rem;
+      padding: 0.6rem 0.7rem;
+      border: 1px solid rgba(0, 110, 182, 0.25);
+      border-radius: 8px;
+      font-size: 0.88rem;
+      line-height: 1.75;
+      font-family: inherit;
+      resize: vertical;
+      outline: none;
+      box-sizing: border-box;
+    }
+    .story-edit-textarea:focus {
+      border-color: var(--ocean);
+      box-shadow: 0 0 0 2px rgba(0, 110, 182, 0.12);
+    }
+    .story-edit-actions {
+      display: flex;
+      gap: 0.5rem;
+      justify-content: flex-end;
+      margin-top: 0.65rem;
+    }
+    .story-edit-btn {
+      border: none;
+      border-radius: 8px;
+      padding: 0.45rem 0.9rem;
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .story-edit-btn.cancel { background: #eef2f6; color: #3f4b59; }
+    .story-edit-btn.save { background: var(--ocean); color: #fff; }
   </style>
 </head>
 <body>
@@ -1066,6 +1143,7 @@
     <h1>2026/4/24~4/28</h1>
     <p id="headerStory">這趟五天四夜的沖繩之旅，從那霸機場出發，沿著美麗的海岸線一路北上。<br><br>第一天抵達後先入住休息，隔天租車出發。<br>第二天開始，在讀谷村感受享用海鮮美味，欣賞萬座毛的壯闊海岬風光，北上去最美的小島谷宇利島。<br>第三天走進美麗海水族館，看著優游的鯨鯊，心曠神怡。<br>第四天南下，在美國村散步購物、到Parco City採購，最後入住那霸市區。<br>最後一天逛牧志公設市場，品嚐新鮮海味，再搭機依依不捨地回家。<br><br>整趟行程節奏free style，山海美景與在地美食兼顧，讓每一天都充滿舒心的回憶。<br><span id="buildStamp" class="build-stamp">檔案最後更新：讀取中...</span></p>
     <button id="headerCollapseBtn" class="header-collapse-btn" type="button" aria-expanded="false" aria-controls="headerStory">展開行程介紹</button>
+    <button id="headerStoryEditBtn" class="header-story-edit-btn" type="button">✎ 編輯說明</button>
     <nav class="nav-days" aria-label="每日行程">
       <a href="#day1">Day 1</a>
       <a href="#day2">Day 2</a>
@@ -3122,8 +3200,8 @@
     <span id="autoSyncBadge" class="auto-sync-badge" hidden title="已綁定檔案，編輯後約 1 秒自動寫入">已自動儲存到專案</span>
     <button id="bindSyncFileBtn" class="share-sync-btn is-primary" type="button" title="綁定後每次編輯自動寫入同資料夾的 okinawa_live_state.json，手機即可同步">綁定自動儲存</button>
     <button id="saveSyncFileBtn" class="share-sync-btn" type="button" title="立即下載 okinawa_live_state.json 並覆蓋到網頁同資料夾">立即存檔</button>
-    <button id="exportShareStateBtn" class="share-sync-btn" type="button" title="匯出含時間戳的備份 JSON">匯出備份</button>
-    <button id="importShareStateBtn" class="share-sync-btn" type="button" title="從 JSON 檔匯入狀態">匯入</button>
+    <button id="exportShareStateBtn" class="share-sync-btn" type="button" title="匯出含時間戳的備份 JSON" hidden>匯出備份</button>
+    <button id="importShareStateBtn" class="share-sync-btn" type="button" title="從 JSON 檔匯入狀態" hidden>匯入</button>
     <input id="importShareStateInput" type="file" accept="application/json,.json" style="display:none" />
     <button id="editToggleBtn" class="edit-toggle-btn" type="button" aria-label="切換編輯模式">Edit</button>
   </div>
@@ -3142,6 +3220,17 @@
         <button id="mapEditDelete" class="map-edit-btn delete" type="button" hidden>刪除此按鈕</button>
         <button id="mapEditCancel" class="map-edit-btn cancel" type="button">取消</button>
         <button id="mapEditSave" class="map-edit-btn save" type="button">儲存</button>
+      </div>
+    </div>
+  </div>
+  <div id="storyEditModal" class="story-edit-modal" aria-hidden="true">
+    <div class="story-edit-panel" role="dialog" aria-modal="true" aria-labelledby="storyEditTitle">
+      <h3 id="storyEditTitle">✎ 編輯行程說明</h3>
+      <p class="hint">直接輸入文字，換行即為新段落。</p>
+      <textarea id="storyEditTextarea" class="story-edit-textarea" placeholder="在這裡輸入行程說明…"></textarea>
+      <div class="story-edit-actions">
+        <button id="storyEditCancel" class="story-edit-btn cancel" type="button">取消</button>
+        <button id="storyEditSave" class="story-edit-btn save" type="button">儲存</button>
       </div>
     </div>
   </div>
@@ -4805,6 +4894,83 @@
           .catch(function () {});
       }
       setInterval(pollLiveState, 18000);
+    })();
+  </script>
+  <script>
+    (function () {
+      var LS_KEY = 'okinawa26_headerStory';
+      var storyEl = document.getElementById('headerStory');
+      var stampEl = document.getElementById('buildStamp');
+      var modal = document.getElementById('storyEditModal');
+      var textarea = document.getElementById('storyEditTextarea');
+      var saveBtn = document.getElementById('storyEditSave');
+      var cancelBtn = document.getElementById('storyEditCancel');
+      var editBtn = document.getElementById('headerStoryEditBtn');
+
+      function getStoryText() {
+        // 取 headerStory 的 innerHTML，去掉結尾的 buildStamp span
+        var clone = storyEl.cloneNode(true);
+        var stamp = clone.querySelector('#buildStamp');
+        if (stamp) stamp.remove();
+        // 把 <br> 轉回換行，方便 textarea 編輯
+        return clone.innerHTML
+          .replace(/<br\s*\/?>/gi, '\n')
+          .replace(/&nbsp;/g, ' ')
+          .trim();
+      }
+
+      function setStoryText(text) {
+        // 把換行轉回 <br>
+        var html = text.trim().replace(/\n/g, '<br>');
+        // 重建 p 內容，保留 buildStamp
+        storyEl.innerHTML = html + (stampEl ? '<br><span id="buildStamp" class="build-stamp">' + stampEl.textContent + '</span>' : '');
+      }
+
+      function restoreFromStorage() {
+        var saved = localStorage.getItem(LS_KEY);
+        if (saved) setStoryText(saved);
+      }
+
+      function openModal() {
+        textarea.value = getStoryText();
+        modal.classList.add('is-open');
+        modal.setAttribute('aria-hidden', 'false');
+        textarea.focus();
+      }
+
+      function closeModal() {
+        modal.classList.remove('is-open');
+        modal.setAttribute('aria-hidden', 'true');
+      }
+
+      restoreFromStorage();
+
+      if (editBtn) {
+        editBtn.addEventListener('click', openModal);
+      }
+
+      if (saveBtn) {
+        saveBtn.addEventListener('click', function () {
+          var text = textarea.value;
+          setStoryText(text);
+          try { localStorage.setItem(LS_KEY, text); } catch (e) {}
+          closeModal();
+        });
+      }
+
+      if (cancelBtn) {
+        cancelBtn.addEventListener('click', closeModal);
+      }
+
+      if (modal) {
+        modal.addEventListener('click', function (e) {
+          if (e.target === modal) closeModal();
+        });
+      }
+
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && modal && modal.classList.contains('is-open')) closeModal();
+      });
     })();
   </script>
 </body>
