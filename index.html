@@ -6,6 +6,7 @@
   <!-- 減少 GitHub Pages／瀏覽器快取整頁，避免 okinawa_live_state.json 已更新卻仍顯示舊字 -->
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
   <meta http-equiv="Pragma" content="no-cache" />
+  <meta name="robots" content="noindex, nofollow" />
   <script>
     (function () {
       try {
@@ -290,6 +291,180 @@
       opacity: 0.55;
       cursor: grabbing !important;
     }
+    .link-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      margin-top: 0.4rem;
+      align-items: center;
+    }
+    .link-btn-wrap {
+      position: relative;
+      display: inline-flex;
+      align-items: stretch;
+      border-radius: 8px;
+      overflow: visible;
+    }
+    .link-btn-wrap a.link-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      padding: 0.4rem 0.7rem;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: #fff;
+      background: #6b5ce7;
+      text-decoration: none;
+      border-radius: 8px;
+      transition: background 0.2s;
+    }
+    .link-btn-wrap a.link-btn:hover,
+    .link-btn-wrap a.link-btn:focus-visible {
+      background: #5a49d6;
+      outline: none;
+    }
+    body:not(.view-mode) .link-btn-wrap a.link-btn {
+      outline: 1px dashed rgba(107, 92, 231, 0.45);
+      outline-offset: 2px;
+      cursor: pointer;
+    }
+    .link-btn-wrap.link-btn--hidden {
+      opacity: 0.45;
+    }
+    .link-btn-wrap.link-btn--hidden a.link-btn {
+      background: #b0a8e8;
+      border: 1px dashed #8b80d0;
+    }
+    body.view-mode .link-btn-wrap.link-btn--hidden {
+      display: none !important;
+    }
+    .link-ctrl {
+      display: inline-flex;
+      gap: 0.2rem;
+      margin-left: 0.15rem;
+      align-items: center;
+    }
+    .link-ctrl-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 1.45rem;
+      height: 1.45rem;
+      padding: 0;
+      border: none;
+      border-radius: 6px;
+      font-size: 0.68rem;
+      font-weight: 800;
+      line-height: 1;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .link-ctrl-btn.link-hide-toggle {
+      color: #5a49d6;
+      background: #ede9ff;
+    }
+    .link-ctrl-btn.link-hide-toggle:hover {
+      background: #ddd6ff;
+    }
+    .link-ctrl-btn.link-delete {
+      color: #b42318;
+      background: #fde8e8;
+    }
+    .link-ctrl-btn.link-delete:hover {
+      background: #fcd4d4;
+    }
+    body.view-mode .link-ctrl {
+      display: none !important;
+    }
+    .link-add-btn {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.38rem 0.65rem;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: #6b5ce7;
+      background: #f3f0ff;
+      border: 1px dashed rgba(107, 92, 231, 0.5);
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.15s, border-color 0.15s;
+    }
+    .link-add-btn:hover,
+    .link-add-btn:focus-visible {
+      background: #ede9ff;
+      border-color: rgba(107, 92, 231, 0.8);
+      outline: none;
+    }
+    body.view-mode .link-add-btn {
+      display: none !important;
+    }
+    .link-edit-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 1001;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0, 0, 0, 0.35);
+      padding: 1rem;
+    }
+    .link-edit-modal.is-open { display: flex; }
+    .link-edit-panel {
+      width: min(92vw, 32rem);
+      background: #fff;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      padding: 0.9rem;
+    }
+    .link-edit-panel h3 {
+      margin: 0 0 0.75rem;
+      font-size: 1rem;
+      color: #5a49d6;
+    }
+    .link-edit-field { margin-bottom: 0.65rem; }
+    .link-edit-field label {
+      display: block;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--muted);
+      margin-bottom: 0.3rem;
+    }
+    .link-edit-field input {
+      width: 100%;
+      padding: 0.5rem 0.6rem;
+      border: 1px solid rgba(107, 92, 231, 0.25);
+      border-radius: 8px;
+      font-size: 0.88rem;
+      outline: none;
+    }
+    .link-edit-field input:focus {
+      border-color: #6b5ce7;
+      box-shadow: 0 0 0 2px rgba(107, 92, 231, 0.12);
+    }
+    .link-edit-actions {
+      display: flex;
+      gap: 0.5rem;
+      justify-content: flex-end;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-top: 0.35rem;
+    }
+    .link-edit-actions .link-edit-btn.delete {
+      margin-right: auto;
+      background: #fde8e8;
+      color: #b42318;
+    }
+    .link-edit-btn {
+      border: none;
+      border-radius: 8px;
+      padding: 0.45rem 0.75rem;
+      font-size: 0.82rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .link-edit-btn.cancel { background: #eef2f6; color: #3f4b59; }
+    .link-edit-btn.save { background: #6b5ce7; color: #fff; }
     .item--split .split-tracks,
     .item--meal-split .split-tracks {
       display: grid;
@@ -463,6 +638,127 @@
     body.view-mode .timeline-card-toolbar {
       display: none !important;
     }
+    .item--meal-split .split-tracks > .card.card-meal {
+      position: relative;
+    }
+    .card-meal.card-meal--hidden {
+      border-style: dashed;
+      position: relative;
+    }
+    .card-meal.card-meal--hidden::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 12px;
+      background: rgba(248, 250, 252, 0.72);
+      pointer-events: none;
+      z-index: 1;
+    }
+    .card-meal.card-meal--hidden .stop-photo img {
+      filter: grayscale(0.45);
+      opacity: 0.55;
+    }
+    body.view-mode .card-meal.card-meal--hidden {
+      display: none !important;
+    }
+    .meal-option-hide-btn {
+      position: absolute;
+      top: 0.35rem;
+      right: 2.15rem;
+      z-index: 3;
+      min-width: 2.35rem;
+      height: 1.65rem;
+      padding: 0 0.35rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.72rem;
+      font-weight: 800;
+      line-height: 1;
+      color: var(--ocean-dark);
+      background: #e8f4fc;
+      border: 1px solid rgba(0, 110, 182, 0.35);
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .meal-option-hide-btn:hover,
+    .meal-option-hide-btn:focus-visible {
+      background: #d4ebfa;
+      outline: none;
+    }
+    .meal-option-delete-btn {
+      position: absolute;
+      top: 0.35rem;
+      right: 0.35rem;
+      z-index: 3;
+      width: 1.65rem;
+      height: 1.65rem;
+      padding: 0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      font-weight: 700;
+      line-height: 1;
+      color: #b42318;
+      background: #fde8e8;
+      border: 1px solid #f5c2c2;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .meal-option-delete-btn:hover,
+    .meal-option-delete-btn:focus-visible {
+      background: #fcd4d4;
+      outline: none;
+    }
+    .meal-option-add-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.42rem 0.75rem;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--ocean-dark);
+      background: #f8fbff;
+      border: 1px dashed rgba(0, 110, 182, 0.55);
+      border-radius: 10px;
+      cursor: pointer;
+      margin-top: 0.15rem;
+      transition: background 0.15s, border-color 0.15s;
+    }
+    .meal-option-add-btn:hover,
+    .meal-option-add-btn:focus-visible {
+      background: #eef8ff;
+      border-color: rgba(0, 110, 182, 0.85);
+      outline: none;
+    }
+    body.view-mode .meal-option-delete-btn,
+    body.view-mode .meal-option-hide-btn,
+    body.view-mode .meal-option-add-btn {
+      display: none !important;
+    }
+    @media (min-width: 640px) {
+      .item--meal-split .split-tracks.split-tracks--5 {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.85rem;
+        align-items: stretch;
+      }
+      .item--meal-split .split-tracks.split-tracks--6 {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.85rem;
+        align-items: stretch;
+      }
+    }
+    @media (min-width: 960px) {
+      .item--meal-split .split-tracks.split-tracks--5 {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      .item--meal-split .split-tracks.split-tracks--6 {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
     .meal-name {
       font-size: 0.95rem;
       font-weight: 700;
@@ -626,7 +922,7 @@
       background: #2e9b7b;
       color: #fff;
     }
-    /* 窄螢幕（手機）：隱藏右下角浮動的 Edit／同步按鈕，方便家人純閱讀。Safari 底部「返回、網址列」為系統介面，網頁無法關閉。 */
+    /* 窄螢幕（手機）：隱藏右下角浮動的 Edit／同步按鈕，方便家人純閱讀。需要編輯／手動匯出時請在網址後加 ?edit=1 。Safari 底部「返回、網址列」為系統介面，網頁無法關閉。 */
     @media (max-width: 768px) {
       .edit-floating-bar {
         display: none !important;
@@ -1601,7 +1897,7 @@
 
   <footer>
     行程內容依《202604 日本沖繩 總行程表.pdf》順序整理 · 實際時間請以現場與預訂為準 · 行程照對照表見 <strong>okinawa_photos.js</strong>
-    <br /><span style="font-size:0.88em;color:var(--muted)">同步：在 Chrome／Edge 按一次「綁定自動儲存」選專案裡的 <strong>okinawa_live_state.json</strong> 後，編輯會自動寫入；手機請用底下「一鍵分享」腳本或任何方式以 <strong>http(s)</strong> 開同一資料夾（勿用 file://）。</span>
+    <br /><span style="font-size:0.88em;color:var(--muted)">同步：在 Chrome／Edge 按一次「綁定自動儲存」選專案裡的 <strong>okinawa_live_state.json</strong> 後，編輯會自動寫入；手機請用底下「一鍵分享」腳本或任何方式以 <strong>http(s)</strong> 開同一資料夾（勿用 file://）。以 http(s) 開啟時，頁面約每 18 秒會檢查是否更新（分頁在前景時）。手機要顯示右下角 Edit／匯出請在網址後加 <strong>?edit=1</strong>。</span>
   </footer>
 
   <script src="okinawa_photos.js"></script>
@@ -1629,6 +1925,9 @@
         window.__OKINAWA_PENDING_PHOTO_BUNDLE =
           bundle.photos && typeof bundle.photos === 'object' ? bundle.photos : {};
         window.__OKINAWA_SYNC_FILE_APPLIED = true;
+        try {
+          if (bundle.exportedAt) window.__OKINAWA_LAST_LIVE_EXPORTED_AT = String(bundle.exportedAt);
+        } catch (eExp) {}
         return true;
       };
       if (location.protocol === 'file:') return;
@@ -1878,6 +2177,532 @@
         }
       }
 
+      var MEAL_OPTIONS_KEY = LS_PRE + 'mealOptionsLayout';
+      var MEAL_CHOICE_CIRCLED = ['①', '②', '③', '④', '⑤', '⑥', '⑦', '⑧', '⑨', '⑩'];
+
+      function loadMealManifestAll() {
+        try {
+          var raw = localStorage.getItem(MEAL_OPTIONS_KEY);
+          if (!raw) return {};
+          var o = JSON.parse(raw);
+          return o && typeof o === 'object' ? o : {};
+        } catch (e) {
+          return {};
+        }
+      }
+
+      function saveMealManifestAll(obj) {
+        try {
+          localStorage.setItem(MEAL_OPTIONS_KEY, JSON.stringify(obj));
+        } catch (e) {}
+      }
+
+      function mealPhotoId(articleKey, customId) {
+        return 'mealopt-' + articleKey + '-' + customId;
+      }
+
+      function buildMealOptionCard(articleKey, customId) {
+        var card = document.createElement('div');
+        card.className = 'card card-meal';
+        card.setAttribute('data-meal-option-kind', 'custom');
+        card.setAttribute('data-meal-custom-id', customId);
+
+        var badge = document.createElement('span');
+        badge.className = 'choice-badge';
+        card.appendChild(badge);
+
+        var nameEl = document.createElement('h3');
+        nameEl.className = 'meal-name';
+        nameEl.textContent = '新選項';
+        card.appendChild(nameEl);
+
+        var fig = document.createElement('figure');
+        fig.className = 'stop-photo';
+        var imgEl = document.createElement('img');
+        imgEl.setAttribute('data-photo', mealPhotoId(articleKey, customId));
+        imgEl.setAttribute('src', customPhotoPlaceholderSrc());
+        imgEl.setAttribute('alt', '新選項照片');
+        imgEl.setAttribute('width', '960');
+        imgEl.setAttribute('height', '540');
+        imgEl.setAttribute('loading', 'lazy');
+        imgEl.setAttribute('decoding', 'async');
+        fig.appendChild(imgEl);
+        card.appendChild(fig);
+
+        var detailEl = document.createElement('p');
+        detailEl.className = 'detail';
+        card.appendChild(detailEl);
+
+        var mapRow = document.createElement('div');
+        mapRow.className = 'map-row';
+        var mapLink = document.createElement('a');
+        mapLink.className = 'map-btn';
+        mapLink.setAttribute('href', 'https://www.google.com/maps');
+        mapLink.setAttribute('target', '_blank');
+        mapLink.setAttribute('rel', 'noopener noreferrer');
+        mapLink.textContent = '📍 地圖';
+        mapRow.appendChild(mapLink);
+        card.appendChild(mapRow);
+
+        return card;
+      }
+
+      function ensureBuiltinIndicesOnMealSplit(split) {
+        var cards = split.querySelectorAll(':scope > .card.card-meal');
+        var bi = 0;
+        for (var i = 0; i < cards.length; i++) {
+          var c = cards[i];
+          if (c.getAttribute('data-meal-custom-id')) continue;
+          if (!c.hasAttribute('data-meal-builtin-idx')) {
+            c.setAttribute('data-meal-builtin-idx', String(bi));
+          }
+          bi++;
+        }
+      }
+
+      function countBuiltinSlots(split) {
+        var cards = split.querySelectorAll(':scope > .card.card-meal');
+        var max = -1;
+        for (var i = 0; i < cards.length; i++) {
+          var c = cards[i];
+          if (c.getAttribute('data-meal-custom-id')) continue;
+          var ix = parseInt(c.getAttribute('data-meal-builtin-idx'), 10);
+          if (!isNaN(ix) && ix > max) max = ix;
+        }
+        return max + 1;
+      }
+
+      function defaultMealManifestFromSplit(split) {
+        ensureBuiltinIndicesOnMealSplit(split);
+        var cards = split.querySelectorAll(':scope > .card.card-meal');
+        var opts = [];
+        for (var i = 0; i < cards.length; i++) {
+          var c = cards[i];
+          var cid = c.getAttribute('data-meal-custom-id');
+          if (cid) {
+            opts.push({ t: 'c', id: cid });
+          } else {
+            var ix = parseInt(c.getAttribute('data-meal-builtin-idx'), 10);
+            if (!isNaN(ix)) opts.push({ t: 'b', idx: ix });
+          }
+        }
+        return { options: opts };
+      }
+
+      function validateMealManifest(manifest, builtinCount) {
+        if (!manifest || !Array.isArray(manifest.options)) return null;
+        var out = [];
+        for (var i = 0; i < manifest.options.length; i++) {
+          var o = manifest.options[i];
+          if (!o || !o.t) continue;
+          if (o.t === 'b') {
+            var idx = typeof o.idx === 'number' ? o.idx : parseInt(o.idx, 10);
+            if (!isNaN(idx) && idx >= 0 && idx < builtinCount) {
+              var ob = { t: 'b', idx: idx };
+              if (o.hidden) ob.hidden = true;
+              out.push(ob);
+            }
+          } else if (o.t === 'c' && o.id && typeof o.id === 'string') {
+            var oc = { t: 'c', id: o.id };
+            if (o.hidden) oc.hidden = true;
+            out.push(oc);
+          }
+        }
+        return out.length ? { options: out } : null;
+      }
+
+      function stripMealOptionChromeFromSplit(split) {
+        var dels = split.querySelectorAll('.meal-option-delete-btn');
+        for (var d = 0; d < dels.length; d++) dels[d].remove();
+        var hides = split.querySelectorAll('.meal-option-hide-btn');
+        for (var h = 0; h < hides.length; h++) hides[h].remove();
+        var add = split.querySelector('.meal-option-add-btn');
+        if (add) add.remove();
+      }
+
+      function countVisibleMealCards(split) {
+        var cards = split.querySelectorAll(':scope > .card.card-meal');
+        var n = 0;
+        for (var i = 0; i < cards.length; i++) {
+          if (!cards[i].classList.contains('card-meal--hidden')) n++;
+        }
+        return n;
+      }
+
+      function updateMealSplitClass(split) {
+        var n = countVisibleMealCards(split);
+        split.classList.remove('split-tracks--2', 'split-tracks--3', 'split-tracks--4', 'split-tracks--5', 'split-tracks--6');
+        if (n <= 1) return;
+        if (n === 2) split.classList.add('split-tracks--2');
+        else if (n === 3) split.classList.add('split-tracks--3');
+        else if (n === 4) split.classList.add('split-tracks--4');
+        else if (n === 5) split.classList.add('split-tracks--5');
+        else split.classList.add('split-tracks--6');
+      }
+
+      function renumberMealChoiceBadges(split) {
+        var cards = split.querySelectorAll(':scope > .card.card-meal');
+        var vis = 0;
+        for (var i = 0; i < cards.length; i++) {
+          var badge = cards[i].querySelector(':scope > .choice-badge');
+          if (!badge) continue;
+          if (cards[i].classList.contains('card-meal--hidden')) {
+            badge.textContent = '（已隱藏）';
+            continue;
+          }
+          var sym = vis < MEAL_CHOICE_CIRCLED.length ? MEAL_CHOICE_CIRCLED[vis] : String(vis + 1);
+          badge.textContent = '選項 ' + sym;
+          vis++;
+        }
+      }
+
+      function listMealCardStorageKeys(dayId, articleKey, cardIndex) {
+        var prefix = LS_PRE + dayId + '_' + articleKey + '_' + cardIndex + '_';
+        var out = [];
+        try {
+          for (var i = localStorage.length - 1; i >= 0; i--) {
+            var k = localStorage.key(i);
+            if (k && k.indexOf(prefix) === 0) out.push(k);
+          }
+        } catch (e) {}
+        return out;
+      }
+
+      function migrateMealKeysAfterDelete(dayId, articleKey, deleteIndex, oldCount) {
+        if (deleteIndex < 0 || deleteIndex >= oldCount) return;
+        var keysToRemove = listMealCardStorageKeys(dayId, articleKey, deleteIndex);
+        for (var r = 0; r < keysToRemove.length; r++) {
+          try {
+            localStorage.removeItem(keysToRemove[r]);
+          } catch (e) {}
+        }
+        for (var j = deleteIndex + 1; j < oldCount; j++) {
+          var fromP = LS_PRE + dayId + '_' + articleKey + '_' + j + '_';
+          var toP = LS_PRE + dayId + '_' + articleKey + '_' + (j - 1) + '_';
+          var batch = [];
+          try {
+            for (var i = 0; i < localStorage.length; i++) {
+              var k = localStorage.key(i);
+              if (k && k.indexOf(fromP) === 0) batch.push(k);
+            }
+          } catch (e) {}
+          for (var b = 0; b < batch.length; b++) {
+            var ok = batch[b];
+            var tail = ok.slice(fromP.length);
+            var nk = toP + tail;
+            try {
+              if (localStorage.getItem(nk) == null) {
+                localStorage.setItem(nk, localStorage.getItem(ok));
+              }
+              localStorage.removeItem(ok);
+            } catch (e) {}
+          }
+        }
+      }
+
+      function applyMealOptionsForArticle(article) {
+        if (!article || !article.classList.contains('item--meal-split')) return;
+        var ak = article.getAttribute('data-article-key');
+        if (!ak) return;
+        var split = article.querySelector('.split-tracks');
+        if (!split) return;
+        var section = article.closest('.day-section');
+        var dayId = section && section.id;
+        if (!dayId) return;
+
+        ensureBuiltinIndicesOnMealSplit(split);
+        var builtinCount = countBuiltinSlots(split);
+        var allM = loadMealManifestAll();
+        var rawManifest = allM[ak];
+        var manifest = validateMealManifest(rawManifest, builtinCount);
+        if (!manifest) {
+          updateMealSplitClass(split);
+          renumberMealChoiceBadges(split);
+          return;
+        }
+
+        stripMealOptionChromeFromSplit(split);
+
+        var poolB = {};
+        var poolC = {};
+        var cardEls = split.querySelectorAll(':scope > .card.card-meal');
+        for (var i = 0; i < cardEls.length; i++) {
+          var card = cardEls[i];
+          var cid = card.getAttribute('data-meal-custom-id');
+          if (cid) {
+            poolC[cid] = card;
+          } else {
+            var bix = card.getAttribute('data-meal-builtin-idx');
+            if (bix != null) poolB[bix] = card;
+          }
+        }
+
+        while (split.firstChild) split.removeChild(split.firstChild);
+
+        var opts = manifest.options;
+        var applied = [];
+        for (var oi = 0; oi < opts.length; oi++) {
+          var op = opts[oi];
+          var el = null;
+          if (op.t === 'b') el = poolB[String(op.idx)] || poolB[op.idx];
+          else if (op.t === 'c') el = poolC[op.id] || buildMealOptionCard(ak, op.id);
+          if (el) {
+            split.appendChild(el);
+            if (op.hidden) el.classList.add('card-meal--hidden');
+            else el.classList.remove('card-meal--hidden');
+            applied.push(op);
+          }
+        }
+        if (applied.length !== opts.length) {
+          if (applied.length === 0) {
+            var allFix = loadMealManifestAll();
+            delete allFix[ak];
+            saveMealManifestAll(allFix);
+            var keysB = Object.keys(poolB).sort(function (a, b) {
+              return parseInt(a, 10) - parseInt(b, 10);
+            });
+            for (var ki = 0; ki < keysB.length; ki++) {
+              if (poolB[keysB[ki]]) split.appendChild(poolB[keysB[ki]]);
+            }
+            var keysC = Object.keys(poolC);
+            for (var kc = 0; kc < keysC.length; kc++) {
+              if (poolC[keysC[kc]]) split.appendChild(poolC[keysC[kc]]);
+            }
+          } else {
+            persistMealManifestForArticle(ak, applied);
+          }
+        }
+
+        updateMealSplitClass(split);
+        renumberMealChoiceBadges(split);
+      }
+
+      function applyAllMealOptionLayouts() {
+        var arts = document.querySelectorAll('.day-section .timeline > article.item--meal-split');
+        for (var i = 0; i < arts.length; i++) {
+          applyMealOptionsForArticle(arts[i]);
+        }
+      }
+
+      window.okinawaFinishTimelineRefresh = finishTimelineRefresh;
+      window.okinawaApplyMealOptionLayouts = applyAllMealOptionLayouts;
+
+      function persistMealManifestForArticle(articleKey, options) {
+        var allM = loadMealManifestAll();
+        allM[articleKey] = { options: options };
+        saveMealManifestAll(allM);
+      }
+
+      function getMealManifestOptionsOrDefault(article) {
+        var ak = article.getAttribute('data-article-key');
+        var split = article.querySelector('.split-tracks');
+        if (!ak || !split) return [];
+        ensureBuiltinIndicesOnMealSplit(split);
+        var builtinCount = countBuiltinSlots(split);
+        var allM = loadMealManifestAll();
+        var m = validateMealManifest(allM[ak], builtinCount);
+        if (m) return m.options.slice();
+        return defaultMealManifestFromSplit(split).options;
+      }
+
+      function mealOptionEntryFromCard(cj) {
+        var cidj = cj.getAttribute('data-meal-custom-id');
+        var ent;
+        if (cidj) ent = { t: 'c', id: cidj };
+        else {
+          var bj = parseInt(cj.getAttribute('data-meal-builtin-idx'), 10);
+          if (isNaN(bj)) return null;
+          ent = { t: 'b', idx: bj };
+        }
+        if (cj.classList.contains('card-meal--hidden')) ent.hidden = true;
+        return ent;
+      }
+
+      function syncMealHideButtonForCard(card, btn) {
+        if (!btn) return;
+        var hid = card.classList.contains('card-meal--hidden');
+        btn.textContent = hid ? '顯示' : '隱藏';
+        btn.setAttribute('aria-label', hid ? '顯示此選項（不刪除）' : '隱藏此選項（不刪除）');
+        btn.setAttribute('title', hid ? '顯示此選項' : '隱藏此選項');
+      }
+
+      function mealOptionKey(ent) {
+        if (!ent || !ent.t) return '';
+        return ent.t === 'b' ? 'b:' + ent.idx : 'c:' + ent.id;
+      }
+
+      function onMealOptionToggleHide(card, article) {
+        if (document.body.classList.contains('view-mode')) return;
+        var split = article.querySelector('.split-tracks');
+        var ak = article.getAttribute('data-article-key');
+        if (!ak || !split) return;
+        var selfEnt = mealOptionEntryFromCard(card);
+        if (!selfEnt) return;
+        var targetKey = mealOptionKey(selfEnt);
+        var cards = split.querySelectorAll(':scope > .card.card-meal');
+        var prevOpts = getMealManifestOptionsOrDefault(article);
+        var hiddenByKey = {};
+        for (var pi = 0; pi < prevOpts.length; pi++) {
+          var po = prevOpts[pi];
+          var pk = mealOptionKey(po);
+          if (pk && po.hidden) hiddenByKey[pk] = true;
+        }
+        var opts = [];
+        for (var j = 0; j < cards.length; j++) {
+          var ent = mealOptionEntryFromCard(cards[j]);
+          if (!ent) continue;
+          var k = mealOptionKey(ent);
+          if (hiddenByKey[k]) ent.hidden = true;
+          opts.push(ent);
+        }
+        var toggled = false;
+        for (var m = 0; m < opts.length; m++) {
+          if (mealOptionKey(opts[m]) !== targetKey) continue;
+          toggled = true;
+          if (opts[m].hidden) {
+            delete opts[m].hidden;
+            card.classList.remove('card-meal--hidden');
+          } else {
+            opts[m].hidden = true;
+            card.classList.add('card-meal--hidden');
+          }
+          break;
+        }
+        if (!toggled) return;
+        persistMealManifestForArticle(ak, opts);
+        var hb = card.querySelector(':scope > .meal-option-hide-btn');
+        syncMealHideButtonForCard(card, hb);
+        updateMealSplitClass(split);
+        renumberMealChoiceBadges(split);
+        finishTimelineRefresh();
+      }
+
+      function onMealOptionDeleteClick(card, article) {
+        if (document.body.classList.contains('view-mode')) return;
+        var split = article.querySelector('.split-tracks');
+        if (!split) return;
+        var section = article.closest('.day-section');
+        var dayId = section && section.id;
+        var ak = article.getAttribute('data-article-key');
+        if (!dayId || !ak) return;
+        var cards = split.querySelectorAll(':scope > .card.card-meal');
+        if (cards.length <= 1) {
+          window.alert('至少保留一個選項。');
+          return;
+        }
+        var visibleCount = countVisibleMealCards(split);
+        var cardIsHidden = card.classList.contains('card-meal--hidden');
+        if (!cardIsHidden && visibleCount <= 1) {
+          window.alert('至少保留一個未隱藏的選項，或請先顯示其他選項再刪除此卡。');
+          return;
+        }
+        var delIdx = -1;
+        for (var i = 0; i < cards.length; i++) {
+          if (cards[i] === card) {
+            delIdx = i;
+            break;
+          }
+        }
+        if (delIdx < 0) return;
+        if (!window.confirm('刪除此選項？')) return;
+        var oldCount = cards.length;
+        var opts = getMealManifestOptionsOrDefault(article);
+        if (opts.length !== oldCount) {
+          opts = [];
+          for (var j = 0; j < cards.length; j++) {
+            var ent = mealOptionEntryFromCard(cards[j]);
+            if (ent) opts.push(ent);
+          }
+        }
+        if (delIdx >= opts.length) return;
+        opts.splice(delIdx, 1);
+        migrateMealKeysAfterDelete(dayId, ak, delIdx, oldCount);
+        persistMealManifestForArticle(ak, opts);
+        card.remove();
+        updateMealSplitClass(split);
+        renumberMealChoiceBadges(split);
+        finishTimelineRefresh();
+      }
+
+      function onMealOptionAddClick(article) {
+        if (document.body.classList.contains('view-mode')) return;
+        var ak = article.getAttribute('data-article-key');
+        var split = article.querySelector('.split-tracks');
+        if (!ak || !split) return;
+        var opts = getMealManifestOptionsOrDefault(article);
+        var newId = genId();
+        opts.push({ t: 'c', id: newId });
+        persistMealManifestForArticle(ak, opts);
+        var addBtn = split.querySelector('.meal-option-add-btn');
+        var card = buildMealOptionCard(ak, newId);
+        if (addBtn) split.insertBefore(card, addBtn);
+        else split.appendChild(card);
+        updateMealSplitClass(split);
+        renumberMealChoiceBadges(split);
+        finishTimelineRefresh();
+      }
+
+      function wireMealOptionChrome() {
+        var articles = document.querySelectorAll('.day-section .timeline > article.item--meal-split');
+        for (var a = 0; a < articles.length; a++) {
+          var article = articles[a];
+          var split = article.querySelector('.split-tracks');
+          if (!split) continue;
+          var cards = split.querySelectorAll(':scope > .card.card-meal');
+          for (var c = 0; c < cards.length; c++) {
+            var card = cards[c];
+            if (!card.querySelector(':scope > .meal-option-hide-btn')) {
+              var hb = document.createElement('button');
+              hb.type = 'button';
+              hb.className = 'meal-option-hide-btn';
+              syncMealHideButtonForCard(card, hb);
+              hb.addEventListener(
+                'click',
+                (function (cardEl, art) {
+                  return function () {
+                    onMealOptionToggleHide(cardEl, art);
+                  };
+                })(card, article)
+              );
+              card.appendChild(hb);
+            } else {
+              syncMealHideButtonForCard(card, card.querySelector(':scope > .meal-option-hide-btn'));
+            }
+            if (card.querySelector(':scope > .meal-option-delete-btn')) continue;
+            var db = document.createElement('button');
+            db.type = 'button';
+            db.className = 'meal-option-delete-btn';
+            db.setAttribute('aria-label', '刪除此選項');
+            db.textContent = '×';
+            db.addEventListener(
+              'click',
+              (function (cardEl, art) {
+                return function () {
+                  onMealOptionDeleteClick(cardEl, art);
+                };
+              })(card, article)
+            );
+            card.appendChild(db);
+          }
+          if (!split.querySelector(':scope > .meal-option-add-btn')) {
+            var ab = document.createElement('button');
+            ab.type = 'button';
+            ab.className = 'meal-option-add-btn';
+            ab.textContent = '＋ 新增選項';
+            ab.setAttribute('aria-label', '新增一個選項卡片');
+            ab.addEventListener(
+              'click',
+              (function (art) {
+                return function () {
+                  onMealOptionAddClick(art);
+                };
+              })(article)
+            );
+            split.appendChild(ab);
+          }
+        }
+      }
+
       function ensureToolbar(timeline) {
         var bar = timeline.querySelector('.timeline-card-toolbar');
         if (!bar) {
@@ -1950,6 +2775,7 @@
         if (window.okinawaInitLiveEditables) window.okinawaInitLiveEditables();
         if (window.okinawaReloadLiveFromStorage) window.okinawaReloadLiveFromStorage();
         if (window.okinawaRefreshMaps) window.okinawaRefreshMaps();
+        if (window.okinawaRefreshLinks) window.okinawaRefreshLinks();
         if (window.okinawaRefreshPhotos) window.okinawaRefreshPhotos();
         if (window.okinawaRefreshTimelineChrome) window.okinawaRefreshTimelineChrome();
         if (window.refreshAllNoteVisibility) window.refreshAllNoteVisibility();
@@ -2058,7 +2884,10 @@
         }
       }
 
-      window.okinawaRefreshTimelineChrome = wireArticleChrome;
+      window.okinawaRefreshTimelineChrome = function () {
+        wireArticleChrome();
+        wireMealOptionChrome();
+      };
 
       function initAllTimelines() {
         var layouts = getLayoutAll();
@@ -2096,6 +2925,7 @@
             localStorage.removeItem(LEGACY_MANIFEST);
           } catch (err) {}
         }
+        applyAllMealOptionLayouts();
         patchAllCustomArticlePhotos();
       }
 
@@ -2290,11 +3120,11 @@
   </script>
   <div class="edit-floating-bar" aria-label="編輯與同步選單">
     <span id="autoSyncBadge" class="auto-sync-badge" hidden title="已綁定檔案，編輯後約 1 秒自動寫入">已自動儲存到專案</span>
-    <button id="bindSyncFileBtn" class="share-sync-btn is-primary" type="button" title="選取或建立與網頁同層的 okinawa_live_state.json（僅需一次；建議用 Chrome／Edge）">① 綁定自動儲存（一次）</button>
-    <button id="saveSyncFileBtn" class="share-sync-btn" type="button" title="立刻再寫入一次（已綁定時寫入綁定檔；未綁定則下載檔案）">立即存檔</button>
-    <button id="exportShareStateBtn" class="share-sync-btn" type="button" title="另存含日期檔名的備份">備份另存…</button>
+    <button id="bindSyncFileBtn" class="share-sync-btn is-primary" type="button" title="綁定後每次編輯自動寫入同資料夾的 okinawa_live_state.json，手機即可同步">綁定自動儲存</button>
+    <button id="saveSyncFileBtn" class="share-sync-btn" type="button" title="立即下載 okinawa_live_state.json 並覆蓋到網頁同資料夾">立即存檔</button>
+    <button id="exportShareStateBtn" class="share-sync-btn" type="button" title="匯出含時間戳的備份 JSON">匯出備份</button>
+    <button id="importShareStateBtn" class="share-sync-btn" type="button" title="從 JSON 檔匯入狀態">匯入</button>
     <input id="importShareStateInput" type="file" accept="application/json,.json" style="display:none" />
-    <button id="importShareStateBtn" class="share-sync-btn" type="button" title="選取 JSON 寫入此瀏覽器">匯入</button>
     <button id="editToggleBtn" class="edit-toggle-btn" type="button" aria-label="切換編輯模式">Edit</button>
   </div>
   <div id="mapEditModal" class="map-edit-modal" aria-hidden="true">
@@ -2315,6 +3145,24 @@
       </div>
     </div>
   </div>
+  <div id="linkEditModal" class="link-edit-modal" aria-hidden="true">
+    <div class="link-edit-panel" role="dialog" aria-modal="true" aria-labelledby="linkEditTitle">
+      <h3 id="linkEditTitle">新增連結</h3>
+      <div class="link-edit-field">
+        <label for="linkEditText">按鈕名稱</label>
+        <input id="linkEditText" type="text" placeholder="例：官網、Tabelog、訂位" />
+      </div>
+      <div class="link-edit-field">
+        <label for="linkEditHref">連結 URL</label>
+        <input id="linkEditHref" type="url" placeholder="https://..." />
+      </div>
+      <div class="link-edit-actions">
+        <button id="linkEditDelete" class="link-edit-btn delete" type="button" hidden>刪除此連結</button>
+        <button id="linkEditCancel" class="link-edit-btn cancel" type="button">取消</button>
+        <button id="linkEditSave" class="link-edit-btn save" type="button">儲存</button>
+      </div>
+    </div>
+  </div>
   <script>
     (function () {
       var LS_PREFIX = 'okinawa26_';
@@ -2329,11 +3177,77 @@
       var cancelBtn = document.getElementById('mapEditCancel');
       var deleteBtn = document.getElementById('mapEditDelete');
 
+      function computeStableMapRowKey(row, rowDocumentIndex) {
+        var card = row.closest('.card');
+        var item = row.closest('.item[data-article-key]');
+        if (!card || !item) {
+          return 'row_unscoped_' + rowDocumentIndex;
+        }
+        var articleKey = item.getAttribute('data-article-key') || 'item';
+        var scopeRows = card.querySelectorAll(':scope > .map-row');
+        var rowIndex = 0;
+        for (var ri = 0; ri < scopeRows.length; ri++) {
+          if (scopeRows[ri] === row) {
+            rowIndex = ri;
+            break;
+          }
+        }
+        if (item.classList.contains('item--meal-split')) {
+          var mealCustomId = card.getAttribute('data-meal-custom-id');
+          if (mealCustomId) return articleKey + '_mc' + mealCustomId + '_r' + rowIndex;
+          var mealBuiltinIdx = card.getAttribute('data-meal-builtin-idx');
+          if (mealBuiltinIdx != null) return articleKey + '_mb' + mealBuiltinIdx + '_r' + rowIndex;
+        }
+        var cards = item.querySelectorAll('.card');
+        var cardIndex = 0;
+        for (var ci = 0; ci < cards.length; ci++) {
+          if (cards[ci] === card) {
+            cardIndex = ci;
+            break;
+          }
+        }
+        return articleKey + '_c' + cardIndex + '_r' + rowIndex;
+      }
+
       function assignMapRowKeys() {
         var rows = document.querySelectorAll('.map-row');
         for (var i = 0; i < rows.length; i++) {
-          rows[i].setAttribute('data-map-row-key', 'row_' + i);
+          rows[i].setAttribute('data-map-row-key', computeStableMapRowKey(rows[i], i));
         }
+      }
+
+      function migrateLegacyMapCustomRowKeys() {
+        var flag = LS_PREFIX + 'map_custom_rowkey_migrated_v1';
+        try {
+          if (localStorage.getItem(flag)) return;
+          var customRows = getCustomMapRows();
+          var hasLegacy = false;
+          for (var k in customRows) {
+            if (customRows.hasOwnProperty(k) && /^row_\d+$/.test(k)) {
+              hasLegacy = true;
+              break;
+            }
+          }
+          if (!hasLegacy) {
+            localStorage.setItem(flag, '1');
+            return;
+          }
+          var rows = document.querySelectorAll('.map-row');
+          var next = {};
+          for (var k2 in customRows) {
+            if (!customRows.hasOwnProperty(k2)) continue;
+            if (/^row_\d+$/.test(k2)) continue;
+            next[k2] = customRows[k2];
+          }
+          for (var ri = 0; ri < rows.length; ri++) {
+            var oldKey = 'row_' + ri;
+            if (!Array.isArray(customRows[oldKey]) || !customRows[oldKey].length) continue;
+            var newKey = computeStableMapRowKey(rows[ri], ri);
+            next[newKey] = customRows[oldKey];
+          }
+          saveCustomMapRows(next);
+          localStorage.setItem(flag, '1');
+        } catch (err) {}
       }
 
       function removeOrphanMapRowsOnItems() {
@@ -2362,9 +3276,24 @@
       }
 
       function assignMapKeys() {
-        var links = document.querySelectorAll('.map-btn');
-        for (var i = 0; i < links.length; i++) {
-          links[i].setAttribute('data-map-key', 'map_' + i);
+        var rows = document.querySelectorAll('.map-row[data-map-row-key]');
+        for (var r = 0; r < rows.length; r++) {
+          var row = rows[r];
+          var rowKey = row.getAttribute('data-map-row-key');
+          if (!rowKey) continue;
+          var builtins = 0;
+          var customs = 0;
+          var btns = row.querySelectorAll(':scope > .map-btn');
+          for (var b = 0; b < btns.length; b++) {
+            var btn = btns[b];
+            if (btn.getAttribute('data-map-custom') === '1') {
+              btn.setAttribute('data-map-key', rowKey + '_x' + customs);
+              customs++;
+            } else {
+              btn.setAttribute('data-map-key', rowKey + '_m' + builtins);
+              builtins++;
+            }
+          }
         }
       }
 
@@ -2457,6 +3386,7 @@
         var links = document.querySelectorAll('.map-btn[data-map-key]');
         for (var i = 0; i < links.length; i++) {
           var link = links[i];
+          if (link.getAttribute('data-map-custom') === '1') continue;
           var key = link.getAttribute('data-map-key');
           if (!key) continue;
           var savedHref = localStorage.getItem(LS_PREFIX + key + '_href');
@@ -2639,6 +3569,12 @@
         if (!activeMapLink) return;
         activeMapLink.textContent = nextText;
         activeMapLink.setAttribute('href', nextHref);
+        if (activeMapLink.getAttribute('data-map-custom') === '1') {
+          var rowSync = activeMapLink.closest('.map-row[data-map-row-key]');
+          if (rowSync) saveCustomRowFromDom(rowSync);
+          closeMapEditor();
+          return;
+        }
         var key = activeMapLink.getAttribute('data-map-key');
         if (!key) {
           closeMapEditor();
@@ -2671,8 +3607,21 @@
         }
       });
 
+      function cleanupLegacyMapOverrideKeys() {
+        try {
+          var dead = [];
+          for (var i = 0; i < localStorage.length; i++) {
+            var k = localStorage.key(i);
+            if (k && /^okinawa26_map_\d+_(href|text)$/.test(k)) dead.push(k);
+          }
+          for (var d = 0; d < dead.length; d++) localStorage.removeItem(dead[d]);
+        } catch (err) {}
+      }
+
       removeOrphanMapRowsOnItems();
       ensureMapRowsForAllCards();
+      migrateLegacyMapCustomRowKeys();
+      cleanupLegacyMapOverrideKeys();
       assignMapRowKeys();
       renderCustomMapRows();
       assignMapKeys();
@@ -2683,10 +3632,330 @@
       window.okinawaRefreshMaps = function () {
         removeOrphanMapRowsOnItems();
         ensureMapRowsForAllCards();
+        migrateLegacyMapCustomRowKeys();
+        cleanupLegacyMapOverrideKeys();
         assignMapRowKeys();
         renderCustomMapRows();
         assignMapKeys();
         loadMapLinksFromStorage();
+      };
+    })();
+  </script>
+  <script>
+    (function () {
+      var LS_PREFIX = 'okinawa26_';
+      var LINK_KEY = LS_PREFIX + 'link_custom_rows';
+      var activeLinkWrap = null;
+      var activeLinkRow = null;
+      var activeLinkIdx = -1;
+
+      var modal = document.getElementById('linkEditModal');
+      var titleEl = document.getElementById('linkEditTitle');
+      var textInput = document.getElementById('linkEditText');
+      var hrefInput = document.getElementById('linkEditHref');
+      var saveBtn = document.getElementById('linkEditSave');
+      var cancelBtn = document.getElementById('linkEditCancel');
+      var deleteBtn = document.getElementById('linkEditDelete');
+
+      function getLinkData() {
+        try {
+          var raw = localStorage.getItem(LINK_KEY);
+          if (!raw) return {};
+          var parsed = JSON.parse(raw);
+          return parsed && typeof parsed === 'object' ? parsed : {};
+        } catch (e) { return {}; }
+      }
+
+      function saveLinkData(data) {
+        try { localStorage.setItem(LINK_KEY, JSON.stringify(data)); } catch (e) {}
+      }
+
+      function computeLinkRowKey(card) {
+        var item = card.closest('.item[data-article-key]');
+        if (!item) return null;
+        var ak = item.getAttribute('data-article-key') || 'item';
+        var cards = item.querySelectorAll('.card');
+        var ci = 0;
+        for (var i = 0; i < cards.length; i++) {
+          if (cards[i] === card) { ci = i; break; }
+        }
+        return ak + '_c' + ci + '_links';
+      }
+
+      function ensureLinkRowsForAllCards() {
+        var cards = document.querySelectorAll('.timeline .card');
+        for (var i = 0; i < cards.length; i++) {
+          var card = cards[i];
+          if (card.querySelector(':scope > .link-row')) continue;
+          var row = document.createElement('div');
+          row.className = 'link-row';
+          var mapRow = card.querySelector(':scope > .map-row');
+          if (mapRow && mapRow.nextSibling) {
+            card.insertBefore(row, mapRow.nextSibling);
+          } else if (mapRow) {
+            card.appendChild(row);
+          } else {
+            var descBlock = card.querySelector(':scope > .desc-block');
+            if (descBlock) card.insertBefore(row, descBlock);
+            else card.appendChild(row);
+          }
+        }
+      }
+
+      function assignLinkRowKeys() {
+        var cards = document.querySelectorAll('.timeline .card');
+        for (var i = 0; i < cards.length; i++) {
+          var row = cards[i].querySelector(':scope > .link-row');
+          if (!row) continue;
+          var key = computeLinkRowKey(cards[i]);
+          if (key) row.setAttribute('data-link-row-key', key);
+        }
+      }
+
+      function createLinkBtnWrap(item, idx) {
+        var wrap = document.createElement('span');
+        wrap.className = 'link-btn-wrap';
+        if (item.hidden) wrap.classList.add('link-btn--hidden');
+        wrap.setAttribute('data-link-idx', String(idx));
+
+        var a = document.createElement('a');
+        a.className = 'link-btn';
+        a.href = item.href;
+        a.target = '_blank';
+        a.rel = 'noopener noreferrer';
+        a.textContent = item.text || '連結';
+        wrap.appendChild(a);
+
+        var ctrl = document.createElement('span');
+        ctrl.className = 'link-ctrl';
+
+        var hideBtn = document.createElement('button');
+        hideBtn.type = 'button';
+        hideBtn.className = 'link-ctrl-btn link-hide-toggle';
+        hideBtn.textContent = item.hidden ? '顯' : '隱';
+        hideBtn.title = item.hidden ? '顯示此連結' : '隱藏此連結';
+        ctrl.appendChild(hideBtn);
+
+        var delBtn = document.createElement('button');
+        delBtn.type = 'button';
+        delBtn.className = 'link-ctrl-btn link-delete';
+        delBtn.textContent = '✕';
+        delBtn.title = '刪除此連結';
+        ctrl.appendChild(delBtn);
+
+        wrap.appendChild(ctrl);
+        return wrap;
+      }
+
+      function renderCustomLinks() {
+        var rows = document.querySelectorAll('.link-row[data-link-row-key]');
+        var data = getLinkData();
+        for (var i = 0; i < rows.length; i++) {
+          var row = rows[i];
+          var oldWraps = row.querySelectorAll('.link-btn-wrap');
+          for (var j = 0; j < oldWraps.length; j++) oldWraps[j].remove();
+          var oldAdd = row.querySelector('.link-add-btn');
+          if (oldAdd) oldAdd.remove();
+
+          var key = row.getAttribute('data-link-row-key');
+          var list = data[key];
+          if (Array.isArray(list)) {
+            for (var k = 0; k < list.length; k++) {
+              if (!list[k] || !list[k].text || !list[k].href) continue;
+              row.appendChild(createLinkBtnWrap(list[k], k));
+            }
+          }
+
+          var addBtn = document.createElement('button');
+          addBtn.type = 'button';
+          addBtn.className = 'link-add-btn';
+          addBtn.textContent = '+ 新增連結';
+          row.appendChild(addBtn);
+        }
+      }
+
+      function saveRowFromDom(row) {
+        var key = row && row.getAttribute('data-link-row-key');
+        if (!key) return;
+        var wraps = row.querySelectorAll('.link-btn-wrap');
+        var list = [];
+        for (var i = 0; i < wraps.length; i++) {
+          var a = wraps[i].querySelector('a.link-btn');
+          if (!a) continue;
+          var text = (a.textContent || '').trim();
+          var href = a.getAttribute('href') || '';
+          if (!text || !href) continue;
+          list.push({
+            text: text,
+            href: href,
+            hidden: wraps[i].classList.contains('link-btn--hidden')
+          });
+        }
+        var data = getLinkData();
+        if (list.length > 0) {
+          data[key] = list;
+        } else {
+          delete data[key];
+        }
+        saveLinkData(data);
+      }
+
+      function openLinkCreator(row) {
+        if (!modal || !textInput || !hrefInput || !row) return;
+        activeLinkWrap = null;
+        activeLinkRow = row;
+        activeLinkIdx = -1;
+        if (titleEl) titleEl.textContent = '新增連結';
+        textInput.value = '';
+        hrefInput.value = '';
+        if (deleteBtn) deleteBtn.hidden = true;
+        modal.classList.add('is-open');
+        modal.setAttribute('aria-hidden', 'false');
+        textInput.focus();
+      }
+
+      function openLinkEditor(wrap) {
+        if (!modal || !textInput || !hrefInput || !wrap) return;
+        var a = wrap.querySelector('a.link-btn');
+        if (!a) return;
+        activeLinkWrap = wrap;
+        activeLinkRow = wrap.closest('.link-row[data-link-row-key]');
+        activeLinkIdx = parseInt(wrap.getAttribute('data-link-idx') || '-1', 10);
+        if (titleEl) titleEl.textContent = '修改連結';
+        textInput.value = (a.textContent || '').trim();
+        hrefInput.value = a.getAttribute('href') || '';
+        if (deleteBtn) deleteBtn.hidden = false;
+        modal.classList.add('is-open');
+        modal.setAttribute('aria-hidden', 'false');
+        textInput.focus();
+      }
+
+      function closeLinkEditor() {
+        if (!modal) return;
+        modal.classList.remove('is-open');
+        modal.setAttribute('aria-hidden', 'true');
+        activeLinkWrap = null;
+        activeLinkRow = null;
+        activeLinkIdx = -1;
+        if (deleteBtn) deleteBtn.hidden = true;
+      }
+
+      function saveLinkEditor() {
+        var nextText = textInput ? textInput.value.trim() : '';
+        var nextHref = hrefInput ? hrefInput.value.trim() : '';
+        if (!nextText || !nextHref) return;
+
+        if (activeLinkRow && !activeLinkWrap) {
+          var key = activeLinkRow.getAttribute('data-link-row-key');
+          if (!key) { closeLinkEditor(); return; }
+          var data = getLinkData();
+          if (!Array.isArray(data[key])) data[key] = [];
+          data[key].push({ text: nextText, href: nextHref, hidden: false });
+          saveLinkData(data);
+          renderCustomLinks();
+          closeLinkEditor();
+          return;
+        }
+
+        if (!activeLinkWrap) { closeLinkEditor(); return; }
+        var a = activeLinkWrap.querySelector('a.link-btn');
+        if (a) {
+          a.textContent = nextText;
+          a.setAttribute('href', nextHref);
+        }
+        var row = activeLinkWrap.closest('.link-row[data-link-row-key]');
+        if (row) saveRowFromDom(row);
+        closeLinkEditor();
+      }
+
+      function deleteActiveLink() {
+        if (!activeLinkWrap) return;
+        if (!window.confirm('刪除此連結？')) return;
+        var row = activeLinkWrap.closest('.link-row[data-link-row-key]');
+        activeLinkWrap.remove();
+        if (row) saveRowFromDom(row);
+        closeLinkEditor();
+      }
+
+      function bindLinkEditor() {
+        document.addEventListener('click', function (e) {
+          var addBtn = e.target.closest && e.target.closest('.link-add-btn');
+          if (addBtn) {
+            if (document.body.classList.contains('view-mode')) return;
+            e.preventDefault();
+            var row = addBtn.closest('.link-row[data-link-row-key]');
+            openLinkCreator(row);
+            return;
+          }
+
+          var hideToggle = e.target.closest && e.target.closest('.link-hide-toggle');
+          if (hideToggle) {
+            if (document.body.classList.contains('view-mode')) return;
+            e.preventDefault();
+            e.stopPropagation();
+            var wrap = hideToggle.closest('.link-btn-wrap');
+            if (!wrap) return;
+            var isHidden = wrap.classList.toggle('link-btn--hidden');
+            hideToggle.textContent = isHidden ? '顯' : '隱';
+            hideToggle.title = isHidden ? '顯示此連結' : '隱藏此連結';
+            var row2 = wrap.closest('.link-row[data-link-row-key]');
+            if (row2) saveRowFromDom(row2);
+            return;
+          }
+
+          var delBtn = e.target.closest && e.target.closest('.link-ctrl-btn.link-delete');
+          if (delBtn) {
+            if (document.body.classList.contains('view-mode')) return;
+            e.preventDefault();
+            e.stopPropagation();
+            if (!window.confirm('刪除此連結？')) return;
+            var wrap2 = delBtn.closest('.link-btn-wrap');
+            var row3 = wrap2 && wrap2.closest('.link-row[data-link-row-key]');
+            if (wrap2) wrap2.remove();
+            if (row3) saveRowFromDom(row3);
+            return;
+          }
+
+          var linkBtn = e.target.closest && e.target.closest('.link-btn-wrap a.link-btn');
+          if (linkBtn) {
+            if (document.body.classList.contains('view-mode')) return;
+            e.preventDefault();
+            var wrap3 = linkBtn.closest('.link-btn-wrap');
+            openLinkEditor(wrap3);
+            return;
+          }
+        });
+      }
+
+      if (saveBtn) saveBtn.addEventListener('click', saveLinkEditor);
+      if (cancelBtn) cancelBtn.addEventListener('click', closeLinkEditor);
+      if (deleteBtn) deleteBtn.addEventListener('click', deleteActiveLink);
+      if (modal) {
+        modal.addEventListener('click', function (e) {
+          if (e.target === modal) closeLinkEditor();
+        });
+      }
+      document.addEventListener('keydown', function (e) {
+        if (!modal || !modal.classList.contains('is-open')) return;
+        if (e.key === 'Escape') {
+          e.preventDefault();
+          closeLinkEditor();
+        }
+        if (e.key === 'Enter' && (e.target === textInput || e.target === hrefInput)) {
+          e.preventDefault();
+          saveLinkEditor();
+        }
+      });
+
+      ensureLinkRowsForAllCards();
+      assignLinkRowKeys();
+      renderCustomLinks();
+      bindLinkEditor();
+
+      window.okinawaRefreshLinks = function () {
+        ensureLinkRowsForAllCards();
+        assignLinkRowKeys();
+        renderCustomLinks();
       };
     })();
   </script>
@@ -2899,6 +4168,37 @@
         }
         runPhotoInitAfterDb();
       });
+
+      window.okinawaMergeSyncPhotoBundle = function (photosObj, cb) {
+        photosObj = photosObj && typeof photosObj === 'object' ? photosObj : {};
+        openDB(function (database) {
+          if (!database) {
+            runPhotoInitAfterDb();
+            if (cb) cb();
+            return;
+          }
+          try {
+            var tx = database.transaction(STORE_NAME, 'readwrite');
+            var store = tx.objectStore(STORE_NAME);
+            store.clear();
+            var pkeys = Object.keys(photosObj);
+            for (var p = 0; p < pkeys.length; p++) {
+              store.put(photosObj[pkeys[p]], pkeys[p]);
+            }
+            tx.oncomplete = function () {
+              runPhotoInitAfterDb();
+              if (cb) cb();
+            };
+            tx.onerror = function () {
+              runPhotoInitAfterDb();
+              if (cb) cb();
+            };
+          } catch (err) {
+            runPhotoInitAfterDb();
+            if (cb) cb();
+          }
+        });
+      };
 
       window.okinawaRefreshPhotos = function () {
         applyUserPhotos();
@@ -3439,23 +4739,72 @@
   <script>
     (function () {
       if (location.protocol === 'file:') return;
+      var LS_URL = 'okinawa_live_state.json';
+      var lastLiveLm = null;
+      var lastHeavyPollMs = 0;
+      function refreshDomAfterLiveBundle(bundle) {
+        if (typeof window.__OKINAWA_RELOAD_DESC_FIELDS === 'function') {
+          window.__OKINAWA_RELOAD_DESC_FIELDS();
+        }
+        if (window.okinawaApplyMealOptionLayouts) window.okinawaApplyMealOptionLayouts();
+        if (window.okinawaFinishTimelineRefresh) window.okinawaFinishTimelineRefresh();
+        var photos = bundle && bundle.photos && typeof bundle.photos === 'object' ? bundle.photos : {};
+        if (window.okinawaMergeSyncPhotoBundle) {
+          window.okinawaMergeSyncPhotoBundle(photos);
+        } else if (window.okinawaRefreshPhotos) {
+          window.okinawaRefreshPhotos();
+        }
+      }
+      function fetchLiveStateJson() {
+        return fetch(LS_URL + '?nocache=' + Date.now(), { cache: 'no-store' }).then(function (r) {
+          if (!r.ok) return null;
+          var lm = r.headers.get('Last-Modified');
+          if (lm) lastLiveLm = lm;
+          return r.json();
+        });
+      }
+      function applyIfNewBundle(bundle, forceDom) {
+        if (!bundle || typeof window.__OKINAWA_APPLY_LIVE_BUNDLE !== 'function') return false;
+        var ex = bundle.exportedAt ? String(bundle.exportedAt) : '';
+        if (!forceDom && ex && window.__OKINAWA_LAST_LIVE_EXPORTED_AT === ex) return false;
+        if (!window.__OKINAWA_APPLY_LIVE_BUNDLE(bundle)) return false;
+        refreshDomAfterLiveBundle(bundle);
+        return true;
+      }
       window.addEventListener('load', function () {
         if (typeof window.__OKINAWA_APPLY_LIVE_BUNDLE !== 'function') return;
-        fetch('okinawa_live_state.json?nocache=' + Date.now(), { cache: 'no-store' })
-          .then(function (r) {
-            return r.ok ? r.json() : null;
-          })
+        fetchLiveStateJson()
           .then(function (bundle) {
-            if (!bundle) return;
-            if (
-              window.__OKINAWA_APPLY_LIVE_BUNDLE(bundle) &&
-              typeof window.__OKINAWA_RELOAD_DESC_FIELDS === 'function'
-            ) {
-              window.__OKINAWA_RELOAD_DESC_FIELDS();
-            }
+            if (bundle) applyIfNewBundle(bundle, true);
           })
           .catch(function () {});
       });
+      function pollLiveState() {
+        if (document.visibilityState === 'hidden') return;
+        var q = LS_URL + '?nocache=' + Date.now();
+        var now = Date.now();
+        fetch(q, { method: 'HEAD', cache: 'no-store' })
+          .then(function (r) {
+            if (!r.ok) {
+              if (now - lastHeavyPollMs < 90000) return null;
+              lastHeavyPollMs = now;
+              return fetchLiveStateJson();
+            }
+            var lm = r.headers.get('Last-Modified');
+            if (lm && lastLiveLm && lm === lastLiveLm) return null;
+            if (!lm) {
+              if (now - lastHeavyPollMs < 90000) return null;
+              lastHeavyPollMs = now;
+            }
+            return fetchLiveStateJson();
+          })
+          .then(function (bundle) {
+            if (!bundle) return;
+            applyIfNewBundle(bundle, false);
+          })
+          .catch(function () {});
+      }
+      setInterval(pollLiveState, 18000);
     })();
   </script>
 </body>
