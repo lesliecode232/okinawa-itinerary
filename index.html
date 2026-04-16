@@ -3116,8 +3116,31 @@
           var k = el.getAttribute('data-key');
           if (!k) continue;
           var v = localStorage.getItem(k);
-          if (v !== null && v !== '') el.innerHTML = v;
+          if (v === null || v === '') continue;
+          var cleaned = sanitizeLiveValue(el, k, v);
+          if (cleaned !== v) {
+            try { localStorage.setItem(k, cleaned); } catch (err) {}
+          }
+          el.innerHTML = cleaned;
         }
+      }
+
+      function normalizeTitleHtml(html) {
+        var raw = String(html == null ? '' : html).replace(/<!--[\s\S]*?-->/g, '');
+        var box = document.createElement('div');
+        box.innerHTML = raw;
+        var text = (box.textContent || '')
+          .replace(/\u00a0/g, ' ')
+          .replace(/\s+/g, ' ')
+          .trim();
+        return text;
+      }
+
+      function sanitizeLiveValue(el, key, html) {
+        var raw = String(html == null ? '' : html).replace(/<!--[\s\S]*?-->/g, '');
+        var isTitle = (el && el.classList && el.classList.contains('title')) || /_title$/.test(String(key || ''));
+        if (isTitle) return normalizeTitleHtml(raw);
+        return raw;
       }
 
       window.okinawaInitLiveEditables = initLiveEditables;
@@ -3159,7 +3182,12 @@
           var k = el.getAttribute('data-key');
           if (!k) continue;
           var v = localStorage.getItem(k);
-          if (v !== null && v !== '') el.innerHTML = v;
+          if (v === null || v === '') continue;
+          var cleaned = sanitizeLiveValue(el, k, v);
+          if (cleaned !== v) {
+            try { localStorage.setItem(k, cleaned); } catch (err) {}
+          }
+          el.innerHTML = cleaned;
         }
       };
 
@@ -3168,8 +3196,10 @@
         if (!t.classList || !t.classList.contains('live-editable')) return;
         var k = t.getAttribute('data-key');
         if (!k) return;
+        var cleaned = sanitizeLiveValue(t, k, t.innerHTML);
+        if (cleaned !== t.innerHTML) t.innerHTML = cleaned;
         try {
-          localStorage.setItem(k, t.innerHTML);
+          localStorage.setItem(k, cleaned);
           flashLive(t);
         } catch (err) {}
         if (t.classList.contains('note')) refreshNoteVisibility(t);
